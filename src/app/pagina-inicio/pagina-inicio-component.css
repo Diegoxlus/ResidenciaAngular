@@ -1,0 +1,19 @@
+.imSlider{
+  height:440px;
+  width: 1200px;
+}
+
+#tituloSlider{
+  text-align: center;
+}
+
+.container{
+  position: relative !important;
+  min-height: 80vh !important;
+}
+
+
+
+
+
+

@@ -1,0 +1,12 @@
+<div class="container-fluid mt-4">
+  <div class="row ml-sm-1 ml-0 mr-sm-1 mr-0 mb-4 justify-content-around">
+    <button type="button" class=" col-sm-3  mt-2 btn btn-success btn-lg" (click)="router.navigate(['/alta-personal'])">Añadir personal</button>
+    <button type="button" class=" col-sm-3 offset-sm-1  mt-2 btn btn-outline-primary btn-lg" (click)="vista=true;">Residentes</button>
+    <button type="button" class=" col-sm-3 offset-sm-1 mt-2 btn btn-outline-primary btn-lg" (click)="vista=false;">Trabajadores</button>
+  </div>
+
+
+
+<tabla-trabajadores *ngIf="!vista"></tabla-trabajadores>
+<tabla-residentes *ngIf="vista"></tabla-residentes>
+</div>

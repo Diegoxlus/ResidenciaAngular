@@ -1,0 +1,62 @@
+<div class="container ">
+  <h1 id="tituloPersonal" class="w-50">Formulario personal nuevo</h1>
+  <form id="personalForm" class=" justify-content-center w-50" (ngSubmit)="onSubmit()" #personalForm="ngForm">
+    <div class="form-group">
+      <label for="nombre">Nombre</label>
+      <input type="text" class="form-control" id="nombre" required [(ngModel)]="usuario._nombre" [ngModelOptions]="{standalone: true}" name="nombre"
+             #nombre="ngModel" >
+      <div [hidden]="nombre.valid || nombre.pristine"
+           class="alert alert-danger">
+        Introduce el nombre de usuario
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="apellidos">Apellidos</label>
+      <input type="text" class="form-control" id="apellidos" required [(ngModel)]="usuario._apellidos" [ngModelOptions]="{standalone: true}" name="apellidos"
+             #apellidos="ngModel">
+      <div [hidden]="apellidos.valid || apellidos.pristine"
+           class="alert alert-danger">
+        Introduce los apellidos
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="text" class="form-control" id="email" required [(ngModel)]="usuario._email" [ngModelOptions]="{standalone: true}" name="email"
+             #email="ngModel">
+      <div [hidden]="email.valid || email.pristine"
+           class="alert alert-danger">
+        Introduce el email
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="contraseña">Contraseña</label>
+      <input type="text" class="form-control" id="contraseña" required [(ngModel)]="usuario._pass" [ngModelOptions]="{standalone: true}" name="pass"
+             #pass="ngModel">
+      <div [hidden]="pass.valid || pass.pristine"
+           class="alert alert-danger">
+        Introduce la contraseña
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="power">Rol</label>
+      <select class="form-control" id="power" required [(ngModel)]="usuario._rol" [ngModelOptions]="{standalone: true}" name="rol"
+              #rol="ngModel">
+        <option  *ngFor="let rol of roles" [value]="rol">{{rol}} </option>
+      </select>
+      <div [hidden]="rol.valid || rol.pristine"
+           class="alert alert-danger">
+        Introduce el rol
+      </div>
+    </div>
+
+    <div class="mt-4">
+    <button type="submit" class=" col-md-3 btn btn-success mt-2" [disabled]="!usuario.validoParcial()">Registrar</button>
+    <button type="button" class=" col-md-3 offset-md-2 btn btn-warning mt-2" (click)="router.navigate(['/personal'])">Volver</button>
+    </div>
+  </form>
+
+</div>

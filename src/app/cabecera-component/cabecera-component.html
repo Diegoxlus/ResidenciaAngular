@@ -1,0 +1,167 @@
+<!-- Aqui empieza el modal de login -->
+
+<div class="modal fade" id="modalLoginForm" #modalLogin tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <form action="">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <h4 class="modal-title w-100 font-weight-bold">Accede a tua conta</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body mx-3">
+          <div class="md-form mb-2">
+            <i class="fa fa-user"></i>
+            <label data-error="wrong" data-success="right" for="defaultForm-email">Correo</label>
+            <input [(ngModel)]="usuarioLogin.email" name="email" type="email" id="defaultForm-email"
+                   class="form-control ">
+
+          </div>
+
+          <div class="md-form mb-2">
+            <i class="fas fa-unlock-alt	"></i>
+            <label data-error="wrong" data-success="right" for="defaultForm-pass">Contrasinal</label>
+            <input  [(ngModel)]="usuarioLogin.pass" name="pass" type="password" id="defaultForm-pass"
+                   class="form-control ">
+
+          </div>
+
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+          <button type="button" (click)="login()" class="btn btn-outline-success">Login</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- Aqui acaba el modal de login -->
+
+<!-- Aqui empieza el modal de registro -->
+<div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <form   #personalForm="ngForm">
+      <div class="modal-content container-fluid">
+        {{diagnostic}}
+        <div class="modal-header text-center">
+          <h1 id="tituloPersonal">Formulario registro</h1>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input type="text" class="form-control" id="nombre" required [(ngModel)]="usuarioRegistro.nombre" [ngModelOptions]="{standalone: true}" name="nombre"
+               #nombre="ngModel" >
+        <div [hidden]="nombre.valid || nombre.pristine"
+             class="alert alert-danger">
+          Introduce el nombre de usuario
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="apellidos">Apellidos</label>
+        <input type="text" class="form-control" id="apellidos" required [(ngModel)]="usuarioRegistro.apellidos" [ngModelOptions]="{standalone: true}" name="apellidos"
+               #apellidos="ngModel">
+        <div [hidden]="apellidos.valid || apellidos.pristine"
+             class="alert alert-danger">
+          Introduce los apellidos
+        </div>
+      </div>
+
+        <div class="form-group">
+          <label for="email">Fecha nacimiento</label>
+          <input type="date" class="form-control" id="fNac" required [(ngModel)]="usuarioRegistro.fNac" [ngModelOptions]="{standalone: true}" name="fNac"
+                 #fNac="ngModel">
+          <div [hidden]="fNac.valid || fNac.pristine"
+               class="alert alert-danger">
+            Introduce una fecha
+          </div>
+        </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" class="form-control" id="email" required [(ngModel)]="usuarioRegistro.email" [ngModelOptions]="{standalone: true}" name="email"
+               #email="ngModel">
+        <div [hidden]="email.valid || email.pristine"
+             class="alert alert-danger">
+          Introduce el email
+        </div>
+      </div>
+
+        <div class="form-group">
+          <label for="email">DNI</label>
+          <input type="text" class="form-control" id="dni" required [(ngModel)]="usuarioRegistro.dni" [ngModelOptions]="{standalone: true}" name="dni"
+                 #dni="ngModel">
+          <div [hidden]="dni.valid || dni.pristine"
+               class="alert alert-danger">
+            Introduce el DNI
+          </div>
+        </div>
+
+      <div class="form-group">
+        <label for="contraseña">Contraseña</label>
+        <input type="text" class="form-control" id="contraseña" required [(ngModel)]="usuarioRegistro.pass" [ngModelOptions]="{standalone: true}" name="pass"
+               #pass="ngModel">
+        <div [hidden]="pass.valid || pass.pristine"
+             class="alert alert-danger">
+          Introduce la contraseña
+        </div>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button (click)="registrar()" type="submit" class=" col- btn btn-success">Registrar</button>
+        <button type="button" class=" col- offset-sm-1 btn btn-warning" (click)="router.navigate(['/personal'])">Volver</button>
+      </div>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- Aqui acaba el modal de registro -->
+<!-- Aqui acaban los modales -->
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="logo">
+    <a class="navbar-brand" href="#">
+      <img src="../../assets/logo.svg" alt="">
+    </a>
+    <h6>Rede de residencias xuvenís</h6>
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+          aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto ml-2">
+      <li class="nav-item active">
+        <a class="nav-link" href="javascript:void(0);" *ngIf="usuarioLogin.rol==0 && usuarioLogin.logueado==true" (click)="router.navigate(['/menu-directora'])">Inicio</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Residencias</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Novas</a>
+      </li>
+    </ul>
+    <span class="navbar-text">
+
+            <button *ngIf="!usuarioLogin.logueado" type="button" class="btn btn-outline-light my-2 my-sm-0 mr-2" data-toggle="modal"
+                    data-target="#modalLoginForm">Acceso</button>
+            <button *ngIf="!usuarioLogin.logueado"  type="button" class="btn btn-outline-light my-2 my-sm-0" data-toggle="modal"
+                    data-target="#modalRegisterForm">Rexístrate</button>
+
+            <button *ngIf="usuarioLogin.logueado" (click)="exit()"  type="button" class="btn btn-danger my-2 my-sm-0">Salir</button>
+    </span>
+  </div>
+</nav>
+
+
+

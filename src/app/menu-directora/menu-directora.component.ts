@@ -1,0 +1,38 @@
+import { Component, OnInit } from '@angular/core';
+import {faUserFriends} from '@fortawesome/free-solid-svg-icons';
+import {faBed} from '@fortawesome/free-solid-svg-icons';
+import {faUserTimes} from '@fortawesome/free-solid-svg-icons';
+import {faNewspaper} from '@fortawesome/free-solid-svg-icons';
+import {Router} from '@angular/router';
+
+
+@Component({
+  selector: 'app-menu-directora',
+  templateUrl: './menu-directora.component.html',
+  styleUrls: ['./menu-directora.component.css']
+})
+export class MenuDirectoraComponent implements OnInit {
+  iconoUsuarios = faUserFriends;
+  iconoHabitacion = faBed;
+  iconoParte = faUserTimes;
+  iconoNoticia = faNewspaper;
+
+  constructor( private router: Router) {
+  }
+
+  ngOnInit() {
+  }
+  irGestionPersonal() {
+    this.router.navigate(['/personal']);
+  }
+  irGestionHabitaciones() {
+    this.router.navigate(['/habitaciones']);
+  }
+  irGestionPartes() {
+    this.router.navigate(['/partes']);
+  }
+  irGestionNoticias() {
+    this.router.navigate(['/noticias']);
+  }
+
+}
