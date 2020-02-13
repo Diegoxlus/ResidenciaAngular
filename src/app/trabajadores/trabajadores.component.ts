@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import {Usuario} from '../models/usuario.model';
-import {UsuarioService} from '../usuario.service';
+import {UsuarioService} from '../servicios/usuario.service';
 import {Router} from '@angular/router';
 import {faInfoCircle} from '@fortawesome/free-solid-svg-icons';
 import {faTrashAlt} from '@fortawesome/free-solid-svg-icons';

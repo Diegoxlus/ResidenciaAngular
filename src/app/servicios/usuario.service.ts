@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpRequest, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Config} from 'protractor';
-import {Usuario} from './models/usuario.model';
+import {Usuario} from '../models/usuario.model';
 import {map} from 'rxjs/operators';
 
 
@@ -65,5 +65,12 @@ export class UsuarioService {
   eliminarResidente(email: string): Observable<any> {
     return this.http.delete(this.url+"/residente/"+email,{responseType:'text'});
 
+  }
+
+  modificarResidente(residente: Usuario) {
+    let json = JSON.stringify(residente);
+    let parametros = "residente="+json;
+    let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
+    return this.http.post(this.url+"/residente/"+residente.email, parametros, {headers: headers,responseType:'text'});
   }
 }

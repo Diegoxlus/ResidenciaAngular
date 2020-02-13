@@ -6,23 +6,28 @@ export class Usuario {
   private _apellidos?: string;
   private _pass?: string;
   private _logueado?: boolean;
-  private _dni: string;
-  private _fNac: string;
-  private _rol: any;
-  private _habitacion: number;
+  private _dni?: string;
+  private _f_nac?: string;
+  private _rol?: any;
+  private _habitacion?: number;
 
 
-  constructor(nombre?: string, apellidos?: string, email?: string , contrasena?: string , dni?: string, fNac?: string , rol?: any, habitacion?:number ) {
+  constructor(nombre?: string, apellidos?: string, email?: string , contrasena?: string , dni?: string, f_nac?: string , rol?: any, habitacion?:number ) {
     this._nombre = nombre;
     this._email = email;
     this._apellidos = apellidos;
     this._pass = contrasena;
     this._logueado = false;
     this._dni = dni;
-    this._fNac = fNac;
+    this._f_nac = f_nac;
     this._rol = rol;
     this._habitacion = habitacion;
   }
+
+
+
+
+
 
   get nombre(): string {
     return this._nombre;
@@ -72,12 +77,12 @@ export class Usuario {
     this._dni = value;
   }
 
-  get fNac(): string {
-    return this._fNac;
+  get f_nac(): string {
+    return this._f_nac;
   }
 
-  set fNac(value: string) {
-    this._fNac = value;
+  set f_nac(value: string) {
+    this._f_nac = value;
   }
 
   get rol(): any {
@@ -107,4 +112,6 @@ export class Usuario {
     if (this._rol == undefined) { correcto = false; }
     return correcto;
   }
+
+
 }

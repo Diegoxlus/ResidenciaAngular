@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
 import {PaginaInicioComponent} from './pagina-inicio/pagina-inicio-component';
 import {HabitacionesComponent} from './habitaciones/habitaciones.component';
 import {ResidentesComponent} from './residentes/residentes.component';
@@ -8,6 +7,7 @@ import {PersonalComponent} from './personal/personal.component';
 import {PagosComponent} from './pagos/pagos.component';
 import {MenuDirectoraComponent} from './menu-directora/menu-directora.component';
 import {AltaPersonaComponent} from './alta-persona/alta-persona.component';
+import {ResidenteEditComponent} from './residente-edit/residente-edit.component';
 
 
 const routes: Routes = [
@@ -17,8 +17,8 @@ const routes: Routes = [
   {path: 'habitaciones', component: HabitacionesComponent},
   {path: 'pagos', component: PagosComponent},
   {path: 'menu-directora', component: MenuDirectoraComponent},
-  {path: 'alta-personal', component: AltaPersonaComponent}
-
+  {path: 'alta-personal', component: AltaPersonaComponent},
+  {path: 'modificar-residente', component: ResidenteEditComponent}
 
 ];
 

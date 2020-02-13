@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Usuario} from '../models/usuario.model';
-import {UsuarioService} from '../usuario.service';
+import {UsuarioService} from '../servicios/usuario.service';
 import {FormsModule} from '@angular/forms';
 
 // import { FormBuilder } from '@angular/forms';
@@ -22,13 +22,7 @@ export class AltaPersonaComponent implements OnInit {
   ) {
     this.enviado = false;
     this.usuario = new Usuario('', '', '');
-    /*this.formularioValido = this.formBuilder.group({
-      nombre: '',
-      apellidos: '',
-      email: '',
-      pass: '',
-      rol: ''
-    });*/
+
   }
 
   ngOnInit() {
@@ -38,7 +32,7 @@ export class AltaPersonaComponent implements OnInit {
   this.pipeRol(this.usuario);
       this.usuarioService.registroManual(this.usuario).subscribe(
         result => {
-          if (result.status === 200) {
+          if (result.status === 201) {
             console.log("OKKKKK");
           } else {
             console.log("ERROR")

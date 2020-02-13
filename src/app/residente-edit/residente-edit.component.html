@@ -1,0 +1,73 @@
+<div class="container ">
+  <h1 id="tituloPersonal" class="w-50">Editar a {{residente.nombre}} {{residente.apellidos}}</h1>
+  <form id="personalForm" class=" justify-content-center w-50" (ngSubmit)="onSubmit()" #personalForm="ngForm">
+    <div class="form-group">
+      <label for="nombre">Nombre</label>
+      <input type="text" class="form-control" id="nombre" required [(ngModel)]="residente.nombre" [ngModelOptions]="{standalone: true}" name="nombre"
+             #nombre="ngModel" >
+      <div [hidden]="nombre.valid || nombre.pristine"
+           class="alert alert-danger">
+        Introduce el nombre de residente
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="apellidos">Apellidos</label>
+      <input type="text" class="form-control" id="apellidos" required [(ngModel)]="residente.apellidos" [ngModelOptions]="{standalone: true}" name="apellidos"
+             #apellidos="ngModel">
+      <div [hidden]="apellidos.valid || apellidos.pristine"
+           class="alert alert-danger">
+        Introduce los apellidos
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Fecha nacimiento</label>
+      <p>{{residente.f_nac}}</p>
+      <input [(ngModel)]="residente.f_nac" type="date" value="{{residente.f_nac}}" class="form-control" id="fNac" [ngModelOptions]="{standalone: true}"/>
+    </div>
+
+    <div class="form-group">
+      <label for="contraseña">DNI</label>
+      <input type="text" class="form-control" id="dni" required [(ngModel)]="residente.dni" [ngModelOptions]="{standalone: true}" name="dni"
+             #dni="ngModel">
+      <div [hidden]="dni.valid || dni.pristine"
+           class="alert alert-danger">
+        Introduce el DNI
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="text" class="form-control" id="email" readonly required [(ngModel)]="residente.email" [ngModelOptions]="{standalone: true}" name="email"
+             #email="ngModel">
+      <div [hidden]="email.valid || email.pristine"
+           class="alert alert-danger">
+        Introduce el email
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="contraseña">Contraseña</label>
+      <input type="text" class="form-control" id="contraseña" required [(ngModel)]="residente.pass" [ngModelOptions]="{standalone: true}" name="pass"
+             #pass="ngModel">
+      <div [hidden]="pass.valid || pass.pristine"
+           class="alert alert-danger">
+        Introduce la contraseña
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="power">Rol</label>
+      <select [(ngModel)]="residente.rol" class="form-control" id="power"  name="rol" >
+        <option *ngFor="let roloption of roles; index as i" [attr.selected]="residente.rol==i" [value]=i >{{roloption}} </option>
+      </select>
+    </div>
+
+    <div class="mt-4">
+      <button (click)="modificarResidente()" type="submit" class=" col-md-3 btn btn-success mt-2">Registrar</button>
+      <button type="button" class=" col-md-3 offset-md-2 btn btn-warning mt-2" (click)="router.navigate(['/personal'])">Volver</button>
+    </div>
+  </form>
+
+</div>

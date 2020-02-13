@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import {Usuario} from '../models/usuario.model';
 import {faInfoCircle, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
-import {UsuarioService} from '../usuario.service';
+import {UsuarioService} from '../servicios/usuario.service';
 import {Router} from '@angular/router';
 import {MatDialog, MatDialogRef, MatTableDataSource} from '@angular/material';
 import {DialogoConfirmacionComponent} from '../dialogo-confirmacion/dialogo-confirmacion.component';
+import {DatosUsuarioService} from '../servicios/datos-usuario.service';
 
 @Component({
   selector: 'tabla-residentes',
   templateUrl: './residentes.component.html',
-  styleUrls: ['./residentes.component.css']
+  styleUrls: ['./residentes.component.css'],
 })
 export class ResidentesComponent implements OnInit {
   dialogRef: MatDialogRef<DialogoConfirmacionComponent>;
@@ -19,7 +20,7 @@ export class ResidentesComponent implements OnInit {
   detalles = faInfoCircle;
   eliminar = faTrashAlt;
 
-  constructor(private usuarioService:UsuarioService,private router: Router,public dialog: MatDialog) {
+  constructor(private usuarioService:UsuarioService,private router: Router,public dialog: MatDialog, private datosUsuario: DatosUsuarioService ) {
     this.residentes = new Array<Usuario>();
   }
 
@@ -60,6 +61,13 @@ export class ResidentesComponent implements OnInit {
         this.ngOnInit();
       }
     });
+  }
+
+  irAEditarResidente(residente: Usuario): void{
+    console.log(residente);
+    this.datosUsuario.cambiarUsuario(residente);
+    console.log(this.datosUsuario.usuario);
+    this.router.navigate(['modificar-residente']);
   }
 
   applyFilter(event: Event) {

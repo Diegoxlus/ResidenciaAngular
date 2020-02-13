@@ -23,6 +23,8 @@ import {TrabajadoresComponent} from './trabajadores/trabajadores.component';
 import { DialogoConfirmacionComponent } from './dialogo-confirmacion/dialogo-confirmacion.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ResidenteEditComponent } from './residente-edit/residente-edit.component';
+import {DatosUsuarioService} from './servicios/datos-usuario.service';
 
 
 @NgModule({
@@ -40,7 +42,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     pipeCargo,
     FiltroTabla,
     TrabajadoresComponent,
-    DialogoConfirmacionComponent
+    DialogoConfirmacionComponent,
+    ResidenteEditComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -57,7 +61,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   exports: [
     FiltroTabla
   ],
-  providers: [],
+  providers: [DatosUsuarioService],
   bootstrap: [AppComponent],
   entryComponents: [DialogoConfirmacionComponent]
 })

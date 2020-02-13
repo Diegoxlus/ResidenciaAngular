@@ -75,7 +75,7 @@
 
         <div class="form-group">
           <label for="email">Fecha nacimiento</label>
-          <input type="date" class="form-control" id="fNac" required [(ngModel)]="usuarioRegistro.fNac" [ngModelOptions]="{standalone: true}" name="fNac"
+          <input type="date" class="form-control" id="fNac" required [(ngModel)]="usuarioRegistro.f_nac" [ngModelOptions]="{standalone: true}" name="fNac"
                  #fNac="ngModel">
           <div [hidden]="fNac.valid || fNac.pristine"
                class="alert alert-danger">

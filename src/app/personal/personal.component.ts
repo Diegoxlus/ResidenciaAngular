@@ -1,7 +1,7 @@
 import { Component, OnInit, Output,EventEmitter,Input } from '@angular/core';
 import {Router} from '@angular/router';
 import {Usuario} from '../models/usuario.model';
-import {UsuarioService} from '../usuario.service';
+import {UsuarioService} from '../servicios/usuario.service';
 import {pipeCargo} from '../pippes/pipeCargo';
 
 
