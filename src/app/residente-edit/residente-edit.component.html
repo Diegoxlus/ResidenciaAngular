@@ -1,68 +1,71 @@
 <div class="container ">
-  <h1 id="tituloPersonal" class="w-50">Editar a {{residente.nombre}} {{residente.apellidos}}</h1>
-  <form id="personalForm" class=" justify-content-center w-50" (ngSubmit)="onSubmit()" #personalForm="ngForm">
+  <!--<h1 id="tituloPersonal" class="w-50">Editar a {{residente.nombre}} {{residente.apellidos}}</h1> -->
+  <form id="personalForm" [formGroup]="FormularioEdit" class=" justify-content-center w-50" (ngSubmit)="onSubmit()">
+
     <div class="form-group">
       <label for="nombre">Nombre</label>
-      <input type="text" class="form-control" id="nombre" required [(ngModel)]="residente.nombre" [ngModelOptions]="{standalone: true}" name="nombre"
-             #nombre="ngModel" >
-      <div [hidden]="nombre.valid || nombre.pristine"
-           class="alert alert-danger">
-        Introduce el nombre de residente
+      <input [class.ng-invalid]="(nombreEdit.invalid && nombreEdit.touched)" type="text" class="form-control ng-valid" id="nombre" formControlName="nombreEdit"  name="nombre" >
+      <div *ngIf="(nombreEdit.invalid && nombreEdit.touched) || nombreEdit.dirty">
+        <small *ngIf="nombreEdit.errors?.required" class="text-danger">El nombre es obligatorio</small>
+        <small *ngIf="nombreEdit.errors?.pattern" class="text-danger">El nombre no es valido</small>
       </div>
     </div>
 
     <div class="form-group">
       <label for="apellidos">Apellidos</label>
-      <input type="text" class="form-control" id="apellidos" required [(ngModel)]="residente.apellidos" [ngModelOptions]="{standalone: true}" name="apellidos"
-             #apellidos="ngModel">
-      <div [hidden]="apellidos.valid || apellidos.pristine"
-           class="alert alert-danger">
-        Introduce los apellidos
+      <input [class.ng-invalid]="(apellidosEdit.invalid && apellidosEdit.touched)" type="text" formControlName="apellidosEdit" class="form-control ng-valid" id="apellidos">
+      <div *ngIf="(apellidosEdit.invalid && apellidosEdit.touched) || apellidosEdit.dirty">
+        <small *ngIf="apellidosEdit.errors?.required" class="text-danger">Los apellidos son obligatorio</small>
+        <small *ngIf="apellidosEdit.errors?.pattern" class="text-danger">Los apellidos no son validos</small>
       </div>
     </div>
 
     <div class="form-group">
       <label for="email">Fecha nacimiento</label>
-      <p>{{residente.f_nac}}</p>
-      <input [(ngModel)]="residente.f_nac" type="date" value="{{residente.f_nac}}" class="form-control" id="fNac" [ngModelOptions]="{standalone: true}"/>
-    </div>
-
-    <div class="form-group">
-      <label for="contraseña">DNI</label>
-      <input type="text" class="form-control" id="dni" required [(ngModel)]="residente.dni" [ngModelOptions]="{standalone: true}" name="dni"
-             #dni="ngModel">
-      <div [hidden]="dni.valid || dni.pristine"
-           class="alert alert-danger">
-        Introduce el DNI
+      <input [class.ng-invalid]="(fechaEdit.invalid && fechaEdit.touched)" type="date" formControlName="fNacRegistro" class="form-control ng-valid" id="fNac" name="fNac" >
+      <div *ngIf="(fechaEdit.invalid && fechaEdit.touched) || fechaEdit.dirty">
+        <small *ngIf="fechaEdit.errors?.required" class="text-danger">La fecha es obligatoria</small>
       </div>
     </div>
 
     <div class="form-group">
+      <label for="dni">DNI</label>
+      <input [class.ng-invalid]="validarDni(dniEdit.value)==false" type="text" class="form-control ng-valid" id="dni" name="dni" formControlName="dniEdit">
+      <div *ngIf="(dniEdit.invalid && dniEdit.touched) || dniEdit.dirty || validarDni(dniEdit.value)">
+        <small *ngIf="dniEdit.errors?.required" class="text-danger">El DNI es necesario</small>
+        <small *ngIf="dniEdit.errors?.pattern" class="text-danger">El DNI no es valido</small>
+        <small *ngIf="!validarDni(dniEdit.value) && !dniEdit.errors?.pattern && !dniEdit.errors?.required" class="text-danger">La letra del DNI no es valida</small>
+
+      </div>
+
+    </div>
+
+    <div class="form-group">
       <label for="email">Email</label>
-      <input type="text" class="form-control" id="email" readonly required [(ngModel)]="residente.email" [ngModelOptions]="{standalone: true}" name="email"
-             #email="ngModel">
-      <div [hidden]="email.valid || email.pristine"
-           class="alert alert-danger">
-        Introduce el email
+      <input [class.ng-invalid]="(emailEdit.invalid && emailEdit.touched)" type="text" class="form-control ng-valid" formControlName="emailEdit" id="email" name="email">
+      <div *ngIf="(emailEdit.invalid && emailEdit.touched) || emailEdit.dirty">
+        <small *ngIf="emailEdit.errors?.required" class="text-danger">La fecha es obligatoria</small>
       </div>
     </div>
 
     <div class="form-group">
       <label for="contraseña">Contraseña</label>
-      <input type="text" class="form-control" id="contraseña" required [(ngModel)]="residente.pass" [ngModelOptions]="{standalone: true}" name="pass"
-             #pass="ngModel">
-      <div [hidden]="pass.valid || pass.pristine"
-           class="alert alert-danger">
-        Introduce la contraseña
+      <input [class.ng-invalid]="(contrasenaEdit.invalid && contrasenaEdit.touched)" type="text" formControlName="contrasenaEdit" class="form-control ng-valid" id="contraseña"  name="pass">
+      <div *ngIf="(contrasenaEdit.invalid && contrasenaEdit.touched) || contrasenaEdit.dirty">
+        <small *ngIf="contrasenaEdit.errors?.required" class="text-danger">La contraseña es obligatoria</small>
+        <small *ngIf="contrasenaEdit.errors?.pattern" class="text-danger">La contraseña debe teneral menos un dígito, al menos una minúscula y al menos una mayúscula, debe tener al entre 8 y 16 caracteres</small>
       </div>
     </div>
 
+
     <div class="form-group">
       <label for="power">Rol</label>
-      <select [(ngModel)]="residente.rol" class="form-control" id="power"  name="rol" >
+      <select class="form-control" id="power"  name="rol" >
         <option *ngFor="let roloption of roles; index as i" [attr.selected]="residente.rol==i" [value]=i >{{roloption}} </option>
       </select>
     </div>
+
+
 
     <div class="mt-4">
       <button (click)="modificarResidente()" type="submit" class=" col-md-3 btn btn-success mt-2">Registrar</button>

@@ -55,6 +55,7 @@ export class CabeceraComponent implements OnInit {
       ]
     )
   });
+  msgError: String;
 
   constructor(private usuarioService: UsuarioService, private router: Router) {
     this.usuarioLogin = new Usuario(null, null, null, null);
@@ -111,8 +112,8 @@ export class CabeceraComponent implements OnInit {
     this.usuarioRegistro.rol=3;
     this.usuarioService.registrar(this.usuarioRegistro).subscribe(
       result => {
-        if (result.status === 201) {
-          console.log(this.usuarioRegistro);
+        console.log(result);
+        if (result === true) {
           this.router.navigate(['/menu-directora']);
           $('#modalRegisterForm').modal('toggle');
         } else {
@@ -123,7 +124,7 @@ export class CabeceraComponent implements OnInit {
 
       },
       error => {
-        console.log(error as any);
+        this.msgError = error.error;
         this.intentoFallidoRegistro=true;
       })
     ;

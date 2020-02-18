@@ -32,7 +32,7 @@ export class UsuarioService {
     let json = JSON.stringify(usuario);
     let parametros = "usuario="+json;
     let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
-    return this.http.post(this.url, parametros, {headers: headers,responseType:'text'});
+    return this.http.post(this.url, parametros, {headers: headers,responseType:'json'});
   }
 
   getResidentes(): Observable<any> {

@@ -125,7 +125,7 @@
 
         <div *ngIf="this.intentoFallidoRegistro" class="alert alert-danger">
           <a href="#" (click)="resetearIntento()" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-          <strong>Error: </strong>Revisa los campos del formulario.
+          <strong>Error: </strong>{{msgError}}.
         </div>
 
       <div class="modal-footer d-flex justify-content-center">
