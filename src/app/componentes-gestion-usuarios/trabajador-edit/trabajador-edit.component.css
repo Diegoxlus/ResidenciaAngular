@@ -1,0 +1,16 @@
+#personalForm{
+  margin-left: 25% !important;
+}
+#tituloEdit{
+  margin-left: 15% !important;
+
+}
+
+#trabajdorEditForm{
+  margin-left: 15% !important;
+  border-radius: 10px 10px 10px 10px;
+  border: 2px solid #007bff;
+  padding: 20px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}

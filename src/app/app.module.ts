@@ -5,26 +5,30 @@ import { AppComponent } from './app.component';
 import { CabeceraComponent } from './cabecera-component/cabecera-component';
 import { PieComponentComponent } from './pie/pie.component';
 import { PaginaInicioComponent } from './pagina-inicio/pagina-inicio-component';
-import { HabitacionesComponent } from './habitaciones/habitaciones.component';
-import { ResidentesComponent } from './residentes/residentes.component';
+import { HabitacionesComponent } from './componentes-gestion-habitaciones/habitaciones/habitaciones.component';
+import { ResidentesComponent } from './componentes-gestion-usuarios/residentes/residentes.component';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import { MaterialModule } from './material.module';
-import { PersonalComponent } from './personal/personal.component';
+import { PersonalComponent } from './componentes-gestion-usuarios/personal/personal.component';
 import { PagosComponent } from './pagos/pagos.component';
-import { AltaPersonaComponent } from './alta-persona/alta-persona.component';
+import { AltaPersonaComponent } from './componentes-gestion-usuarios/alta-persona/alta-persona.component';
 import { MenuDirectoraComponent } from './menu-directora/menu-directora.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {pipeCargo} from './pippes/pipeCargo';
 import {FiltroTabla} from './pippes/filtro';
 import {CdkTableModule} from '@angular/cdk/table';
-import {MatTableModule} from '@angular/material';
-import {TrabajadoresComponent} from './trabajadores/trabajadores.component';
+import {MatOptionModule, MatSelectModule, MatTableModule} from '@angular/material';
+import {TrabajadoresComponent} from './componentes-gestion-usuarios/trabajadores/trabajadores.component';
 import { DialogoConfirmacionComponent } from './dialogo-confirmacion/dialogo-confirmacion.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ResidenteEditComponent } from './residente-edit/residente-edit.component';
+import { ResidenteEditComponent } from './componentes-gestion-usuarios/residente-edit/residente-edit.component';
 import {DatosUsuarioService} from './servicios/datos-usuario.service';
+import { TrabajadorEditComponent } from './componentes-gestion-usuarios/trabajador-edit/trabajador-edit.component';
+import { AltaHabitacionComponent } from './componentes-gestion-habitaciones/alta-habitacion/alta-habitacion.component';
+import {NgxMatSelectSearchModule} from 'ngx-mat-select-search';
+import { SelectResidentesComponent } from './componentes-gestion-habitaciones/select-residentes/select-residentes.component';
 
 
 @NgModule({
@@ -44,6 +48,9 @@ import {DatosUsuarioService} from './servicios/datos-usuario.service';
     TrabajadoresComponent,
     DialogoConfirmacionComponent,
     ResidenteEditComponent,
+    TrabajadorEditComponent,
+    AltaHabitacionComponent,
+    SelectResidentesComponent,
 
   ],
   imports: [
@@ -56,7 +63,10 @@ import {DatosUsuarioService} from './servicios/datos-usuario.service';
     CdkTableModule,
     MatTableModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxMatSelectSearchModule,
+    MatOptionModule,
+    MatSelectModule
   ],
   exports: [
     FiltroTabla

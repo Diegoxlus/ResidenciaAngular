@@ -1,14 +1,15 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
-import {Usuario} from '../models/usuario.model';
-import {UsuarioService} from '../servicios/usuario.service';
+import {Usuario} from '../../models/usuario';
+import {UsuarioService} from '../../servicios/usuario.service';
 import {Router} from '@angular/router';
 import {faInfoCircle} from '@fortawesome/free-solid-svg-icons';
 import {faTrashAlt} from '@fortawesome/free-solid-svg-icons';
 import { MatDialog, MatDialogRef } from '@angular/material';
+import {DatosUsuarioService} from '../../servicios/datos-usuario.service';
 import {Observable} from 'rxjs';
 import {catchError} from 'rxjs/operators';
-import {DialogoConfirmacionComponent} from '../dialogo-confirmacion/dialogo-confirmacion.component';
+import {DialogoConfirmacionComponent} from '../../dialogo-confirmacion/dialogo-confirmacion.component';
 
 
 
@@ -29,7 +30,7 @@ export class TrabajadoresComponent implements OnInit,AfterViewInit{
   detalles = faInfoCircle;
   eliminar = faTrashAlt;
 
-  constructor(private usuarioService:UsuarioService,private router: Router,public dialog: MatDialog) {
+  constructor(private usuarioService:UsuarioService,private datosUsuario :DatosUsuarioService,private router: Router,public dialog: MatDialog) {
     this.trabajadores = new Array<Usuario>();
   }
 
@@ -51,7 +52,6 @@ export class TrabajadoresComponent implements OnInit,AfterViewInit{
     this.usuarioService.getTrabajadores().subscribe(
       result => {
         for (let trabajador of result){
-          this.pipeRol(trabajador);
           this.trabajadores.push(trabajador);
         }
 
@@ -73,18 +73,21 @@ export class TrabajadoresComponent implements OnInit,AfterViewInit{
     });
   }
 
-  private pipeRol(trabajador: Usuario) {
+  private pipeRol(trabajador: Usuario) : String {
     switch (trabajador.rol) {
-      case 0: trabajador.rol="Director/a";
-        break;
-      case 1: trabajador.rol="Secretario/a";
-        break;
-      case 2: trabajador.rol="Cocinero/a";
-        break;
-      case 3: trabajador.rol="Residente/a";
-        break;
+      case 0: return "Director/a";
+      case 1: return "Secretario/a";
+      case 2: return "Cocinero/a";
+      case 3: return "Residente/a";
 
     }
+  }
+
+  irAEditarTrabajador(trabajador: Usuario): void{
+    console.log(trabajador);
+    this.datosUsuario.cambiarUsuario(trabajador);
+    console.log(this.datosUsuario.usuario);
+    this.router.navigate(['modificar-trabajador']);
   }
 
   applyFilter(event: Event) {

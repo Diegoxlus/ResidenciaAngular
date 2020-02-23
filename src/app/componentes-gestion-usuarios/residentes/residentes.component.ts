@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {Usuario} from '../models/usuario.model';
+import {Usuario} from '../../models/usuario';
 import {faInfoCircle, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
-import {UsuarioService} from '../servicios/usuario.service';
+import {UsuarioService} from '../../servicios/usuario.service';
 import {Router} from '@angular/router';
 import {MatDialog, MatDialogRef, MatTableDataSource} from '@angular/material';
-import {DialogoConfirmacionComponent} from '../dialogo-confirmacion/dialogo-confirmacion.component';
-import {DatosUsuarioService} from '../servicios/datos-usuario.service';
+import {DialogoConfirmacionComponent} from '../../dialogo-confirmacion/dialogo-confirmacion.component';
+import {DatosUsuarioService} from '../../servicios/datos-usuario.service';
 
 @Component({
   selector: 'tabla-residentes',

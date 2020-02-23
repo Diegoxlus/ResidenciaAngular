@@ -1,0 +1,92 @@
+<div class="container ">
+  <h1 id="tituloAlta" class="w-75">Nuevo personal</h1>
+  <form id="personalAltaForm" [formGroup]="FormularioAlta" class=" justify-content-center w-75" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label for="numero">Numero</label>
+      <input [class.ng-invalid]="(numeroAlta.invalid && numeroAlta.touched)" type="text" class="form-control ng-valid" id="numero" formControlName="numeroAlta"  name="numero" >
+      <div *ngIf="(numeroAlta.invalid && numeroAlta.touched) || numeroAlta.dirty">
+        <small *ngIf="numeroAlta.errors?.required" class="text-danger">El numero es obligatorio</small>
+        <small *ngIf="numeroAlta.errors?.pattern" class="text-danger">El numero no es valido</small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="tipo">Tipo</label>
+      <input [class.ng-invalid]="(tipoAlta.invalid && tipoAlta.touched)" type="text" formControlName="tipoAlta" class="form-control ng-valid" id="tipo">
+      <div *ngIf="(tipoAlta.invalid && tipoAlta.touched) || tipoAlta.dirty">
+        <small *ngIf="tipoAlta.errors?.required" class="text-danger">El tipo es obligatorio</small>
+        <small *ngIf="tipoAlta.errors?.pattern" class="text-danger">El tipo no es valido</small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Residente</label>
+      <mat-form-field>
+        <mat-select [formControl]="residenteAlta" placeholder="Residentes" #singleSelect>
+          <mat-option>
+            <ngx-mat-select-search [formControl]="bankFilterCtrl"></ngx-mat-select-search>
+          </mat-option>
+          <mat-option *ngFor="let bank of filteredBanks | async" [value]="bank">
+            {{bank.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <label for="dni">DNI</label>
+      <input [class.ng-invalid]="(dniAlta.invalid && dniAlta.touched) || dniAlta.dirty" type="text" class="form-control ng-valid" id="dni" name="dni" formControlName="dniAlta">
+      <div *ngIf="(dniAlta.invalid && dniAlta.touched) || dniAlta.dirty">
+        <small *ngIf="dniAlta.errors?.required" class="text-danger">El DNI es necesario</small>
+        <small *ngIf="dniAlta.errors?.pattern" class="text-danger">El DNI no es valido</small>
+
+      </div>
+
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input [class.ng-invalid]="(emailAlta.invalid && emailAlta.touched)" type="text"  class="form-control ng-valid" formControlName="emailAlta" id="email" name="email">
+      <div *ngIf="(emailAlta.invalid && emailAlta.touched) || emailAlta.dirty">
+        <small *ngIf="emailAlta.errors?.required" class="text-danger">La fecha es obligatoria</small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="contraseña">Contraseña</label>
+      <input [class.ng-invalid]="(contrasenaAlta.invalid && contrasenaAlta.touched)" type="text" formControlName="contrasenaAlta" class="form-control ng-valid" id="contraseña"  name="pass">
+      <div *ngIf="(contrasenaAlta.invalid && contrasenaAlta.touched) || contrasenaAlta.dirty">
+        <small *ngIf="contrasenaAlta.errors?.pattern" class="text-danger">La contraseña debe teneral menos un dígito, al menos una minúscula y al menos una mayúscula, debe tener al entre 8 y 16 caracteres</small>
+      </div>
+      <div *ngIf="!(contrasenaAlta.invalid && contrasenaAlta.touched) || !contrasenaAlta.dirty">
+        <small *ngIf="!contrasenaAlta.errors?.pattern" class="text-success">La contraseña puede ser cambiada por el usuario posteriormente</small>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <label for="power">Rol</label>
+      <select [selectedIndex]="3"  class="form-control" id="power"  name="rol" formControlName="rolAlta" >
+        <option *ngFor="let roloption of roles; index as i" [attr.selected]="3 == i" [value]=i >{{roloption}} </option>
+      </select>
+    </div>
+
+    <div *ngIf="registroCorrecto" [ngClass]="{'transition': registroCorrecto}"  id="registroCorrecto" class="alert alert-success">
+      <a href="#" (click)="resetearIntento()" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong>Residente modificado correctamente</strong>.
+    </div>
+
+    <div *ngIf="registroIncorrecto" class="alert alert-danger">
+      <a href="#" (click)="resetearIntento()" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong>Error: </strong>{{msgError}}.
+    </div>
+
+
+    <div class="mt-4">
+      <button (click)="altaResidente()" type="submit" class=" col-md-3 btn btn-success mt-2">Registrar</button>
+      <button type="button" class=" col-md-3 offset-md-2 btn btn-warning mt-2" (click)="router.navigate(['/personal'])">Volver</button>
+    </div>
+  </form>
+
+</div>

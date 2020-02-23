@@ -21,14 +21,14 @@
   <!-- Weight Column -->
   <ng-container  class="col-3 " matColumnDef="Cargo">
     <th mat-header-cell *matHeaderCellDef> Cargo </th>
-    <td mat-cell *matCellDef="let trabajador"> {{trabajador.rol}} </td>
+    <td mat-cell *matCellDef="let trabajador"> {{this.pipeRol(trabajador)}} </td>
   </ng-container>
 
   <!-- Symbol Column -->
   <ng-container class="col-3" matColumnDef="Acciones">
     <th mat-header-cell *matHeaderCellDef> Acciones </th>
     <td mat-cell *matCellDef="let trabajador">
-      <button type="button" class="col-12 btn btn-warning mt-1 "><fa-icon class="fa-1x" [icon]="detalles"></fa-icon>
+      <button (click)="irAEditarTrabajador(this.trabajador)" type="button" class="col-12 btn btn-warning mt-1 "><fa-icon class="fa-1x" [icon]="detalles"></fa-icon>
       </button>
       <button (click)="openConfirmationDialog(trabajador)" type="button " class="col-12 btn btn-danger mt-2 mb-1"><fa-icon class="fa-1x" [icon]="eliminar" ></fa-icon></button>
     </td>

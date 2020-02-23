@@ -1,19 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
-import {UsuarioService} from '../servicios/usuario.service';
-import {Usuario} from '../models/usuario.model';
-import {DatosUsuarioService} from '../servicios/datos-usuario.service';
+import {Usuario} from '../../models/usuario';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {DatosUsuarioService} from '../../servicios/datos-usuario.service';
+import {UsuarioService} from '../../servicios/usuario.service';
+import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-residente-edit',
-  templateUrl: './residente-edit.component.html',
-  styleUrls: ['./residente-edit.component.css'],
-
+  selector: 'app-trabajador-edit',
+  templateUrl: './trabajador-edit.component.html',
+  styleUrls: ['./trabajador-edit.component.css']
 })
-export class ResidenteEditComponent implements OnInit {
-  residente: Usuario;
+export class TrabajadorEditComponent implements OnInit {
+  trabajador: Usuario;
   roles = ['Director/a','Secretario/a', 'Cocinero/a', 'Residente/a'];
+  registroCorrecto : boolean = false;
+  registroIncorrecto : boolean = false;
+  msgError: string;
 
   public FormularioEdit = new FormGroup({
     nombreEdit: new FormControl('', [
@@ -33,35 +35,44 @@ export class ResidenteEditComponent implements OnInit {
     ]),
     contrasenaEdit: new FormControl('',[
         Validators.pattern("^(?=\\w*\\d)(?=\\w*[A-Z])(?=\\w*[a-z])\\S{8,16}$"),
-        Validators.minLength(6),
-        Validators.maxLength(16),
+
+      ]
+    ),
+    rolEdit: new FormControl('',[
         Validators.required
       ]
     )
   });
 
   constructor(private datos: DatosUsuarioService,private usuarioService: UsuarioService ,private router: Router){
-    this.residente = new Usuario(this.datos.usuario.nombre,this.datos.usuario.apellidos,this.datos.usuario.email,'',this.datos.usuario.dni,this.datos.usuario.f_nac,this.datos.usuario.rol);
+    this.trabajador = new Usuario(this.datos.usuario.nombre,this.datos.usuario.apellidos,this.datos.usuario.email,'',this.datos.usuario.dni,this.datos.usuario.f_nac,this.datos.usuario.rol);
   }
 
 
   ngOnInit() {
 
-    console.log(this.residente);
+    console.log(this.trabajador);
     this.pasarValoresFormulario();
-
 
   }
 
 
-  modificarResidente() {
-    this.usuarioService.modificarResidente(this.residente).subscribe(data=>{
-      console.log(data);
-    });
+  modificarTrabajador() {
+    this.pasarValoresAlUsuario();
+    this.usuarioService.modificarTrabajador(this.trabajador).subscribe(data=>{
+        if(data==true){
+          this.registroCorrecto=true;
+        }
+      },error =>{
+        this.registroIncorrecto = true;
+        this.msgError = error.error;
+
+      }
+    );
   }
 
   onSubmit() {
-    console.log(this.residente);
+    console.log(this.trabajador);
   }
 
   get nombreEdit(){
@@ -71,7 +82,7 @@ export class ResidenteEditComponent implements OnInit {
     return this.FormularioEdit.get('apellidosEdit');
   }
   get fechaEdit(){
-    return this.FormularioEdit.get('fechaEdit');
+    return this.FormularioEdit.get('fNacEdit');
   }
 
   get dniEdit(){
@@ -86,7 +97,15 @@ export class ResidenteEditComponent implements OnInit {
     return this.FormularioEdit.get('emailEdit');
   }
 
+  get rolEdit(){
+    return this.FormularioEdit.get('rolEdit');
+  }
+
   validarDni(value): boolean{
+
+    if(value==undefined || value== null){
+      return false;
+    }
 
     var validChars = 'TRWAGMYFPDXBNJZSQVHLCKET';
     var nifRexp = /^[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKET]$/i;
@@ -107,10 +126,25 @@ export class ResidenteEditComponent implements OnInit {
   }
 
   private pasarValoresFormulario() {
-    this.nombreEdit.setValue(this.)
-    this.apellidosEdit.setValue()
-    this.dniEdit.setValue()
-    this.fechaEdit.setValue()
-    this.emailEdit.setValue()
+    this.nombreEdit.setValue(this.trabajador.nombre);
+    this.apellidosEdit.setValue(this.trabajador.apellidos);
+    this.dniEdit.setValue(this.trabajador.dni);
+    this.fechaEdit.setValue(this.trabajador.f_nac);
+    this.emailEdit.setValue(this.trabajador.email);
+    this.rolEdit.setValue(this.trabajador.rol);
+  }
+
+  private pasarValoresAlUsuario() {
+    this.trabajador.nombre = this.nombreEdit.value;
+    this.trabajador.apellidos = this.apellidosEdit.value;
+    this.trabajador.dni = this.dniEdit.value;
+    this.trabajador.f_nac = this.fechaEdit.value;
+    this.trabajador.rol = this.rolEdit.value;
+  }
+
+  resetearIntento() {
+    this.registroCorrecto=false;
+    this.registroIncorrecto = false;
   }
 }
+

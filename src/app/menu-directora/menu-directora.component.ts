@@ -26,6 +26,7 @@ export class MenuDirectoraComponent implements OnInit {
     this.router.navigate(['/personal']);
   }
   irGestionHabitaciones() {
+    console.log("Redirect correcto");
     this.router.navigate(['/habitaciones']);
   }
   irGestionPartes() {

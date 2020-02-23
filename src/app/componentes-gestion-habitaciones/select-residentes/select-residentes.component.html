@@ -1,0 +1,17 @@
+<h3>Multiple selection</h3>
+<p>
+  <mat-form-field>
+    <mat-select [formControl]="usuarioMultiCtrl" placeholder="Residentes" (selectionChange)="changed()" multiple #multiSelect>
+      <ngx-mat-select-search [formControl]="usuarioMultiFilterCtrl"></ngx-mat-select-search>
+      <mat-option [ngClass]="{'verde' : this.residente.habitacion!=null,'rojo':this.residente.habitacion==null}" *ngFor="let residente of filteredUsuarioMulti | async" [value]="residente">
+        {{residente.nombre+" "+residente.apellidos}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</p>
+<p>
+  Selected Banks:
+</p>
+<ul *ngFor="let usuario of usuarioMultiCtrl?.value">
+  <li>{{usuario.email}}</li>
+</ul>

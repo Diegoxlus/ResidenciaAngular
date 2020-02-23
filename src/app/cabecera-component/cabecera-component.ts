@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UsuarioService} from '../servicios/usuario.service';
-import {Usuario} from '../models/usuario.model';
+import {Usuario} from '../models/usuario';
 import {Router} from '@angular/router';
 import {FormControl,FormGroup,Validators} from '@angular/forms';
 
@@ -74,7 +74,7 @@ export class CabeceraComponent implements OnInit {
     this.usuarioService.login(this.emailFormLogin.value, this.contrasenaFormLogin.value).subscribe(
       result => {
         if (result.status === 200) {
-          this.usuarioLogin.email = result.body.emailLogin;
+          this.usuarioLogin.email = result.body.email;
           this.usuarioLogin.nombre = result.body.nombre;
           this.usuarioLogin.apellidos = result.body.apellidos;
           this.usuarioLogin.dni = result.body.dni;
