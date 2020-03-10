@@ -18,7 +18,7 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {pipeCargo} from './pippes/pipeCargo';
 import {FiltroTabla} from './pippes/filtro';
 import {CdkTableModule} from '@angular/cdk/table';
-import {MatOptionModule, MatSelectModule, MatTableModule} from '@angular/material';
+import {MatCheckboxModule, MatOptionModule, MatSelectModule, MatTableModule} from '@angular/material';
 import {TrabajadoresComponent} from './componentes-gestion-usuarios/trabajadores/trabajadores.component';
 import { DialogoConfirmacionComponent } from './dialogo-confirmacion/dialogo-confirmacion.component';
 import {ReactiveFormsModule} from '@angular/forms';
@@ -66,7 +66,8 @@ import { SelectResidentesComponent } from './componentes-gestion-habitaciones/se
     BrowserAnimationsModule,
     NgxMatSelectSearchModule,
     MatOptionModule,
-    MatSelectModule
+    MatSelectModule,
+    MatCheckboxModule
   ],
   exports: [
     FiltroTabla

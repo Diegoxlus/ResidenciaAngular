@@ -39,8 +39,10 @@ export class ResidentesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log("1");
     this.usuarioService.getResidentesHabitacion().subscribe(
       result => {
+        console.log(result);
         for (let residente of result){
           this.residentes.push(residente);
         }

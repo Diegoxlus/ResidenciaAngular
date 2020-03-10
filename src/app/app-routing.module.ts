@@ -10,10 +10,11 @@ import {AltaPersonaComponent} from './componentes-gestion-usuarios/alta-persona/
 import {ResidenteEditComponent} from './componentes-gestion-usuarios/residente-edit/residente-edit.component';
 import {TrabajadorEditComponent} from './componentes-gestion-usuarios/trabajador-edit/trabajador-edit.component';
 import {SelectResidentesComponent} from './componentes-gestion-habitaciones/select-residentes/select-residentes.component';
+import {AltaHabitacionComponent} from './componentes-gestion-habitaciones/alta-habitacion/alta-habitacion.component';
 
 
 const routes: Routes = [
-  {path: '', component: SelectResidentesComponent},
+  {path: '', component: PaginaInicioComponent},
   {path: 'personal', component: PersonalComponent},
   {path: 'residentes', component: ResidentesComponent},
   {path: 'habitaciones', component: HabitacionesComponent},
@@ -22,7 +23,8 @@ const routes: Routes = [
   {path: 'alta-personal', component: AltaPersonaComponent},
   {path: 'modificar-residente', component: ResidenteEditComponent},
   {path: 'modificar-trabajador',component:TrabajadorEditComponent},
-  {path: 'select-residente',component:SelectResidentesComponent}
+  {path: 'select-residente',component:SelectResidentesComponent},
+  {path: 'alta-habitacion', component:AltaHabitacionComponent}
 
 
 ];

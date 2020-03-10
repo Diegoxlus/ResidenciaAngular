@@ -15,7 +15,7 @@
           <div class="form-group mb-2">
             <i class="fa fa-user"></i>
             <label data-error="wrong" data-success="right" for="email">Email</label>
-            <input [class.ng-invalid]="FormularioLogin.get('emailLogin').invalid && FormularioLogin.get('emailLogin').touched" type="email" class="form-control" formControlName="emailLogin" name="email" >
+            <input [ngClass]="!FormularioLogin.get('emailLogin').invalid ? 'ng-valid-input': 'ng-invalid-input'" type="email" class="form-control" formControlName="emailLogin" name="email" >
             <div *ngIf="(emailFormLogin.invalid && emailFormLogin.touched) || emailFormLogin.dirty">
               <small *ngIf="emailFormLogin.errors?.required" class="text-danger">El email es necesario</small>
               <!--question mark(?) is a safe navigation operator-->
@@ -27,8 +27,8 @@
           <div class="md-form mb-2">
             <i class="fas fa-unlock-alt	"></i>
             <label data-error="wrong" data-success="right" for="defaultForm-pass">Contraseña</label>
-            <input [class.ng-valid]="!FormularioLogin.get('contrasenaLogin').invalid && !FormularioLogin.get('contrasenaLogin').touched"   name="pass" type="password" id="defaultForm-pass"
-                   class="form-control ng-invalid " formControlName="contrasenaLogin">
+            <input  [ngClass]="!FormularioLogin.get('contrasenaLogin').invalid ? 'ng-valid-input': 'ng-invalid-input'"   name="pass" type="password" id="defaultForm-pass"
+                   class="form-control ng-invalid-input " formControlName="contrasenaLogin">
             <div *ngIf="(contrasenaFormLogin.invalid && contrasenaFormLogin.touched) || contrasenaFormLogin.dirty">
               <small *ngIf="contrasenaFormLogin.errors?.required" class="text-danger">La contraseña es necesario</small>
               <small *ngIf="contrasenaFormLogin.errors?.pattern" class="text-danger">La contraseña debe teneral menos un dígito, al menos una minúscula y al menos una mayúscula, debe tener al entre 8 y 16 caracteres</small>
@@ -70,7 +70,7 @@
 
       <div class="form-group">
         <label for="nombre">Nombre</label>
-        <input [class.ng-invalid]="(nombreRegistro.invalid && nombreRegistro.touched)" type="text" class="form-control ng-valid" id="nombre" formControlName="nombreRegistro"  name="nombre" >
+        <input [ngClass]="!nombreRegistro.invalid ? 'ng-valid-input': 'ng-invalid-input'" type="text" class="form-control ng-valid-input" id="nombre" formControlName="nombreRegistro"  name="nombre" >
         <div *ngIf="(nombreRegistro.invalid && nombreRegistro.touched) || nombreRegistro.dirty">
           <small *ngIf="nombreRegistro.errors?.required" class="text-danger">El nombre es obligatorio</small>
           <small *ngIf="nombreRegistro.errors?.pattern" class="text-danger">El nombre no es valido</small>
@@ -79,7 +79,7 @@
 
       <div class="form-group">
         <label for="apellidos">Apellidos</label>
-        <input [class.ng-invalid]="(apellidosRegistro.invalid && apellidosRegistro.touched)" type="text" formControlName="apellidosRegistro" class="form-control ng-valid" id="apellidos">
+        <input [ngClass]="!apellidosRegistro.invalid ? 'ng-valid-input': 'ng-invalid-input'" type="text" formControlName="apellidosRegistro" class="form-control ng-valid-input" id="apellidos">
         <div *ngIf="(apellidosRegistro.invalid && apellidosRegistro.touched) || apellidosRegistro.dirty">
           <small *ngIf="apellidosRegistro.errors?.required" class="text-danger">Los apellidos son obligatorio</small>
           <small *ngIf="apellidosRegistro.errors?.pattern" class="text-danger">Los apellidos no son validos</small>
@@ -88,7 +88,7 @@
 
         <div class="form-group">
           <label for="email">Fecha nacimiento</label>
-          <input [class.ng-invalid]="(fechaRegistro.invalid && fechaRegistro.touched)" type="date" formControlName="fNacRegistro" class="form-control ng-valid" id="fNac" name="fNac" >
+          <input [ngClass]="!fechaRegistro.invalid ? 'ng-valid-input': 'ng-invalid-input'" type="date" formControlName="fNacRegistro" class="form-control ng-valid-input" id="fNac" name="fNac" >
           <div *ngIf="(fechaRegistro.invalid && fechaRegistro.touched) || fechaRegistro.dirty">
             <small *ngIf="fechaRegistro.errors?.required" class="text-danger">La fecha es obligatoria</small>
           </div>
@@ -96,7 +96,7 @@
 
       <div class="form-group">
         <label for="email">Email</label>
-        <input [class.ng-invalid]="(emailRegistro.invalid && emailRegistro.touched)" type="text" class="form-control ng-valid" formControlName="emailRegistro" id="email" name="email">
+        <input [ngClass]="!emailRegistro.invalid ? 'ng-valid-input': 'ng-invalid-input'" type="text" class="form-control ng-valid-input" formControlName="emailRegistro" id="email" name="email">
         <div *ngIf="(emailRegistro.invalid && emailRegistro.touched) || emailRegistro.dirty">
           <small *ngIf="emailRegistro.errors?.required" class="text-danger">La fecha es obligatoria</small>
         </div>
@@ -104,7 +104,7 @@
 
         <div class="form-group">
           <label for="dni">DNI</label>
-          <input [class.ng-invalid]="validarDni(dniRegistro.value)==false" type="text" class="form-control ng-valid" id="dni" name="dni" formControlName="dniRegistro">
+          <input [ngClass]="!dniRegistro.invalid ? 'ng-valid-input': 'ng-invalid-input'" type="text" class="form-control ng-valid-input" id="dni" name="dni" formControlName="dniRegistro">
           <div *ngIf="(dniRegistro.invalid && dniRegistro.touched) || dniRegistro.dirty || validarDni(dniRegistro.value)">
             <small *ngIf="dniRegistro.errors?.required" class="text-danger">El DNI es necesario</small>
             <small *ngIf="dniRegistro.errors?.pattern" class="text-danger">El DNI no es valido</small>
@@ -116,7 +116,7 @@
 
       <div class="form-group">
         <label for="contraseña">Contraseña</label>
-        <input [class.ng-invalid]="(contrasenaRegistro.invalid && contrasenaRegistro.touched)" type="text" formControlName="contrasenaRegistro" class="form-control ng-valid" id="contraseña"  name="pass">
+        <input [ngClass]="!contrasenaRegistro.invalid ? 'ng-valid-input': 'ng-invalid-input'" type="text" formControlName="contrasenaRegistro" class="form-control ng-valid-input" id="contraseña"  name="pass">
         <div *ngIf="(contrasenaRegistro.invalid && contrasenaRegistro.touched) || contrasenaRegistro.dirty">
           <small *ngIf="contrasenaRegistro.errors?.required" class="text-danger">La contraseña es obligatoria</small>
           <small *ngIf="contrasenaRegistro.errors?.pattern" class="text-danger">La contraseña debe teneral menos un dígito, al menos una minúscula y al menos una mayúscula, debe tener al entre 8 y 16 caracteres</small>

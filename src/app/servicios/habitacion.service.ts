@@ -27,7 +27,10 @@ export class HabitacionService {
       return this.http.delete(this.url+"/habitacion/"+numero,{responseType:'json'});
   }
 
-  registrarHabitacion(nuevaHabitacion: Habitacion) {
-    
+  registrarHabitacion(nuevaHabitacion: Habitacion) : Observable<any> {
+    let json = JSON.stringify(nuevaHabitacion);
+    let parametros = "habitacion="+json;
+    let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
+    return this.http.post(this.url, parametros, {headers: headers,responseType:'json'});
   }
 }

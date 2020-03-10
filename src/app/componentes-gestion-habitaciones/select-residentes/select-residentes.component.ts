@@ -14,7 +14,7 @@ import {UsuarioService} from '../../servicios/usuario.service';
 export class SelectResidentesComponent implements OnInit, AfterViewInit, OnDestroy {
 
   /** list of banks */
-  private selecionResidentes: string[];
+  public selecionResidentes: string[];
   protected residentes: Usuario[];
 
   /** control for the selected bank for multi-selection */
@@ -41,10 +41,11 @@ export class SelectResidentesComponent implements OnInit, AfterViewInit, OnDestr
 
     this.usuarioService.getResidentesHabitacion().subscribe(result=>{
       for (let residente of result){
-        this.residentes.push(new Usuario(residente.nombre,residente.apellidos,residente.email));
+        console.log("ONINIT EJECUTANDO...");
+        this.residentes.push(new Usuario(residente.nombre,residente.apellidos,residente.email,null,null,null,null,residente.numero));
       }
     },error =>{
-      console.log("MERDA");
+
 
     });
 
@@ -113,7 +114,19 @@ export class SelectResidentesComponent implements OnInit, AfterViewInit, OnDestr
     if (this.usuarioMultiCtrl.value.length < 3) {
       this.selecionResidentes = this.usuarioMultiCtrl.value;
     } else {
+      this.usuarioMultiCtrl.setValue(this.selecionResidentes);
     }
   }
 
+  restart() {
+    this.selecionResidentes = [];
+    this.residentes = [];
+    this.changed();
+    this.ngOnInit();
+    this.usuarioMultiCtrl.reset();
+    this.usuarioMultiFilterCtrl.reset();
+
+
+
+  }
 }

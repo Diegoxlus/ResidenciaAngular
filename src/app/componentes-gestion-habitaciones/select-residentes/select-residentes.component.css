@@ -5,3 +5,7 @@
 .rojo{
   color: darkred;
 }
+
+.mat-form-field{
+  display: block !important;
+}

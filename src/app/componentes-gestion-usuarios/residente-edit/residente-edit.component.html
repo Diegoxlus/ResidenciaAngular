@@ -4,7 +4,7 @@
 
     <div class="form-group">
       <label for="nombre">Nombre</label>
-      <input [class.ng-invalid]="(nombreEdit.invalid && nombreEdit.touched)" type="text" class="form-control ng-valid" id="nombre" formControlName="nombreEdit"  name="nombre" >
+      <input [class.ng-invalid-input]="(nombreEdit.invalid && nombreEdit.touched)" type="text" class="form-control ng-valid-input" id="nombre" formControlName="nombreEdit"  name="nombre" >
       <div *ngIf="(nombreEdit.invalid && nombreEdit.touched) || nombreEdit.dirty">
         <small *ngIf="nombreEdit.errors?.required" class="text-danger">El nombre es obligatorio</small>
         <small *ngIf="nombreEdit.errors?.pattern" class="text-danger">El nombre no es valido</small>
@@ -13,7 +13,7 @@
 
     <div class="form-group">
       <label for="apellidos">Apellidos</label>
-      <input [class.ng-invalid]="(apellidosEdit.invalid && apellidosEdit.touched)" type="text" formControlName="apellidosEdit" class="form-control ng-valid" id="apellidos">
+      <input [class.ng-invalid-input]="(apellidosEdit.invalid && apellidosEdit.touched)" type="text" formControlName="apellidosEdit" class="form-control ng-valid-input" id="apellidos">
       <div *ngIf="(apellidosEdit.invalid && apellidosEdit.touched) || apellidosEdit.dirty">
         <small *ngIf="apellidosEdit.errors?.required" class="text-danger">Los apellidos son obligatorio</small>
         <small *ngIf="apellidosEdit.errors?.pattern" class="text-danger">Los apellidos no son validos</small>
@@ -22,7 +22,7 @@
 
     <div class="form-group">
       <label for="email">Fecha nacimiento</label>
-      <input [class.ng-invalid]="(fechaEdit.invalid && fechaEdit.touched)" type="date" formControlName="fNacEdit" class="form-control ng-valid" id="fNac" name="fNac" >
+      <input [class.ng-invalid-input]="(fechaEdit.invalid && fechaEdit.touched)" type="date" formControlName="fNacEdit" class="form-control ng-valid-input" id="fNac" name="fNac" >
       <div *ngIf="(fechaEdit.invalid && fechaEdit.touched) || fechaEdit.dirty">
         <small *ngIf="fechaEdit.errors?.required" class="text-danger">La fecha es obligatoria</small>
       </div>
@@ -30,7 +30,7 @@
 
     <div class="form-group">
       <label for="dni">DNI</label>
-      <input [class.ng-invalid]="validarDni(dniEdit.value)==false" type="text" class="form-control ng-valid" id="dni" name="dni" formControlName="dniEdit">
+      <input [class.ng-invalid-input]="validarDni(dniEdit.value)==false" type="text" class="form-control ng-valid-input" id="dni" name="dni" formControlName="dniEdit">
       <div *ngIf="(dniEdit.invalid && dniEdit.touched) || dniEdit.dirty || validarDni(dniEdit.value)">
         <small *ngIf="dniEdit.errors?.required" class="text-danger">El DNI es necesario</small>
         <small *ngIf="dniEdit.errors?.pattern" class="text-danger">El DNI no es valido</small>
@@ -42,7 +42,7 @@
 
     <div class="form-group">
       <label for="email">Email</label>
-      <input [class.ng-invalid]="(emailEdit.invalid && emailEdit.touched)" readonly type="text"  class="form-control ng-valid" formControlName="emailEdit" id="email" name="email">
+      <input [class.ng-invalid-input]="(emailEdit.invalid && emailEdit.touched)" readonly type="text"  class="form-control ng-valid-input" formControlName="emailEdit" id="email" name="email">
       <div *ngIf="(emailEdit.invalid && emailEdit.touched) || emailEdit.dirty">
         <small *ngIf="emailEdit.errors?.required" class="text-danger">La fecha es obligatoria</small>
       </div>
@@ -50,7 +50,7 @@
 
     <div class="form-group">
       <label for="contraseña">Contraseña</label>
-      <input [class.ng-invalid]="(contrasenaEdit.invalid && contrasenaEdit.touched)" type="text" formControlName="contrasenaEdit" class="form-control ng-valid" id="contraseña"  name="pass">
+      <input [class.ng-invalid-input]="(contrasenaEdit.invalid && contrasenaEdit.touched)" type="text" formControlName="contrasenaEdit" class="form-control ng-valid-input" id="contraseña"  name="pass">
       <div *ngIf="(contrasenaEdit.invalid && contrasenaEdit.touched) || contrasenaEdit.dirty">
         <small *ngIf="contrasenaEdit.errors?.pattern" class="text-danger">La contraseña debe teneral menos un dígito, al menos una minúscula y al menos una mayúscula, debe tener al entre 8 y 16 caracteres</small>
       </div>
