@@ -33,4 +33,17 @@ export class HabitacionService {
     let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
     return this.http.post(this.url, parametros, {headers: headers,responseType:'json'});
   }
+
+  eliminarResidenteHabitacion(numero: any, residente: any) : Observable<any> {
+    return this.http.delete(this.url+"/"+numero+'/'+residente,{responseType:'json'});
+
+  }
+
+
+  editarHabitacion(habitacion: Habitacion) {
+    let json = JSON.stringify(habitacion);
+    let parametros = "habitacion="+json;
+    let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
+    return this.http.post(this.url+'/'+habitacion.numero, parametros, {headers: headers,responseType:'json'});
+  }
 }

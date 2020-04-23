@@ -1,7 +1,7 @@
 <mat-form-field class="w-75">
-    <mat-select [formControl]="usuarioMultiCtrl" placeholder="Residentes" (selectionChange)="changed()" multiple #multiSelect>
+    <mat-select  [formControl]="usuarioMultiCtrl" placeholder="Residentes" (selectionChange)="changed()" multiple #multiSelect>
       <ngx-mat-select-search [formControl]="usuarioMultiFilterCtrl"></ngx-mat-select-search>
-      <mat-option [ngClass]="{'verde' : this.residente.habitacion!=null,'rojo':this.residente.habitacion==null}" *ngFor="let residente of filteredUsuarioMulti | async" [value]="residente">
+      <mat-option [spellcheck]="true"  [ngClass]="{'verde' : this.residente.habitacion!=null,'rojo':this.residente.habitacion==null}" *ngFor="let residente of filteredUsuarioMulti | async" [value]="residente">
         {{residente.nombre+" "+residente.apellidos}}
       </mat-option>
     </mat-select>

@@ -18,7 +18,7 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {pipeCargo} from './pippes/pipeCargo';
 import {FiltroTabla} from './pippes/filtro';
 import {CdkTableModule} from '@angular/cdk/table';
-import {MatCheckboxModule, MatOptionModule, MatSelectModule, MatTableModule} from '@angular/material';
+import {DateAdapter, MAT_DATE_LOCALE, MatCheckboxModule, MatOptionModule, MatSelectModule, MatTableModule} from '@angular/material';
 import {TrabajadoresComponent} from './componentes-gestion-usuarios/trabajadores/trabajadores.component';
 import { DialogoConfirmacionComponent } from './dialogo-confirmacion/dialogo-confirmacion.component';
 import {ReactiveFormsModule} from '@angular/forms';
@@ -29,7 +29,15 @@ import { TrabajadorEditComponent } from './componentes-gestion-usuarios/trabajad
 import { AltaHabitacionComponent } from './componentes-gestion-habitaciones/alta-habitacion/alta-habitacion.component';
 import {NgxMatSelectSearchModule} from 'ngx-mat-select-search';
 import { SelectResidentesComponent } from './componentes-gestion-habitaciones/select-residentes/select-residentes.component';
-
+import { MenuCocineraComponent } from './menu-cocinera/menu-cocinera.component';
+import { CalendarioMenuComponent } from './componentes-gestion-menu/calendario-menu/calendario-menu.component';
+import { FullCalendarModule} from '@fullcalendar/angular';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { ModalComidaComponent } from './modal-comida/modal-comida.component';
+import { AltaMenuComponent } from './componentes-gestion-menu/alta-menu/alta-menu.component';
+import {MyDateAdapter} from '../assets/my-date-adapter';
+import {DatePipe} from '@angular/common';
+import { EditHabitacionComponent } from './componentes-gestion-habitaciones/edit-habitacion/edit-habitacion.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +59,11 @@ import { SelectResidentesComponent } from './componentes-gestion-habitaciones/se
     TrabajadorEditComponent,
     AltaHabitacionComponent,
     SelectResidentesComponent,
+    MenuCocineraComponent,
+    CalendarioMenuComponent,
+    ModalComidaComponent,
+    AltaMenuComponent,
+    EditHabitacionComponent,
 
   ],
   imports: [
@@ -67,12 +80,14 @@ import { SelectResidentesComponent } from './componentes-gestion-habitaciones/se
     NgxMatSelectSearchModule,
     MatOptionModule,
     MatSelectModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    FullCalendarModule,
+    NgbModule
   ],
   exports: [
     FiltroTabla
   ],
-  providers: [DatosUsuarioService],
+  providers: [DatosUsuarioService,{provide: MAT_DATE_LOCALE , useValue: 'es-ES'},{provide: DateAdapter, useClass: MyDateAdapter},DatePipe],
   bootstrap: [AppComponent],
   entryComponents: [DialogoConfirmacionComponent]
 })

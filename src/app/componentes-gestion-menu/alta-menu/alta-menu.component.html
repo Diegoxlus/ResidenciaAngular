@@ -1,0 +1,52 @@
+<form id="menuAltaForm" [formGroup]="FormularioAlta" class=" justify-content-center w-75" (ngSubmit)="onSubmit()">
+
+  <div class="form-group">
+    <label for="comidaMenu">Comida</label>
+    <input [class.ng-invalid-input]="(comida.invalid && comida.touched)" type="text" class="form-control ng-valid-input" id="comidaMenu" formControlName="comida"  name="nombre" >
+    <div *ngIf="(comida.invalid && comida.touched) || comida.dirty">
+      <small *ngIf="comida.errors?.pattern" class="text-danger">La comida no es valida</small>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="cenaMenu">Cena</label>
+    <input [class.ng-invalid-input]="(cena.invalid && cena.touched)" type="text" formControlName="cena" class="form-control ng-valid-input" id="cenaMenu">
+    <div *ngIf="(cena.invalid && cena.touched) || cena.dirty">
+      <small *ngIf="cena.errors?.pattern" class="text-danger">La cena no es valida</small>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <mat-form-field>
+    <input matInput [matDatepickerFilter]="filtro" [class.ng-invalid-input]="(fecha.invalid && fecha.touched) || !fecha.value" (dateChange)="comprobarComidas()" formControlName="fecha" class="form-control ng-valid-input" [matDatepicker]="menuDatepicker" id="menuDatepicker" >
+    <mat-datepicker-toggle matSuffix [for]="menuDatepicker"></mat-datepicker-toggle>
+    <mat-datepicker touchUi="true" color="accent" #menuDatepicker></mat-datepicker>
+    <div *ngIf="(fecha.invalid && fecha.touched) || fecha.dirty">
+      <small *ngIf="fecha.errors?.required" class="text-danger">La fecha es obligatoria</small>
+    </div>
+    </mat-form-field>
+  </div>
+
+  <div *ngIf="existeComida" class="alert alert-warning alert-dismissible">
+    <a href="#" (click)="this.existeComida=false" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <p><strong>Ya hay comida/cena para el dia {{this.sfecha | date: 'dd/MM/yyyy'}}</strong></p>
+    <p><strong>Comida: </strong> {{this.comidaSelecionada}}</p>
+    <p><strong>Cena: </strong> {{this.cenaSelecionada}}</p>
+  </div>
+
+  <div *ngIf="registroCorrecto" [ngClass]="{'transition': registroCorrecto}"  id="registroCorrecto" class="alert alert-success">
+    <a href="#" (click)="resetearIntento()" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Comida registrada</strong>.
+  </div>
+
+  <div *ngIf="registroIncorrecto" class="alert alert-danger">
+    <a href="#" (click)="resetearIntento()" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Error: </strong>{{msgError}}.
+  </div>
+
+  <div class="mt-4">
+    <button (click)="altaMenu()" type="submit" class=" col-md-3 btn btn-success mt-2">Añadir</button>
+  </div>
+</form>
+
+

@@ -11,10 +11,13 @@ import {ResidenteEditComponent} from './componentes-gestion-usuarios/residente-e
 import {TrabajadorEditComponent} from './componentes-gestion-usuarios/trabajador-edit/trabajador-edit.component';
 import {SelectResidentesComponent} from './componentes-gestion-habitaciones/select-residentes/select-residentes.component';
 import {AltaHabitacionComponent} from './componentes-gestion-habitaciones/alta-habitacion/alta-habitacion.component';
-
+import {MenuCocineraComponent} from './menu-cocinera/menu-cocinera.component';
+import {CalendarioMenuComponent} from './componentes-gestion-menu/calendario-menu/calendario-menu.component';
+import {AltaMenuComponent} from './componentes-gestion-menu/alta-menu/alta-menu.component';
+import {EditHabitacionComponent} from './componentes-gestion-habitaciones/edit-habitacion/edit-habitacion.component';
 
 const routes: Routes = [
-  {path: '', component: PaginaInicioComponent},
+  {path: '', component: AltaMenuComponent},
   {path: 'personal', component: PersonalComponent},
   {path: 'residentes', component: ResidentesComponent},
   {path: 'habitaciones', component: HabitacionesComponent},
@@ -24,7 +27,11 @@ const routes: Routes = [
   {path: 'modificar-residente', component: ResidenteEditComponent},
   {path: 'modificar-trabajador',component:TrabajadorEditComponent},
   {path: 'select-residente',component:SelectResidentesComponent},
-  {path: 'alta-habitacion', component:AltaHabitacionComponent}
+  {path: 'alta-habitacion', component:AltaHabitacionComponent},
+  {path: 'menu-cocinera', component: MenuCocineraComponent},
+  {path: 'calendario-menu', component: CalendarioMenuComponent},
+  {path: 'alta-menu', component: AltaMenuComponent},
+  {path: 'modificar-habitacion', component: EditHabitacionComponent}
 
 
 ];

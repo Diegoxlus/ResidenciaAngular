@@ -69,7 +69,7 @@ export class CabeceraComponent implements OnInit {
       this.router.navigate(['']);
     }
   }
-
+ 
   login() {
     this.usuarioService.login(this.emailFormLogin.value, this.contrasenaFormLogin.value).subscribe(
       result => {
@@ -81,12 +81,15 @@ export class CabeceraComponent implements OnInit {
           this.usuarioLogin.pass = result.body.contrasena;
           this.usuarioLogin.rol = result.body.rol;
           this.usuarioLogin.logueado = true;
-          console.log(this.usuarioRegistro);
 
           window.sessionStorage.setItem('emailLogin', this.usuarioLogin.email);
           window.sessionStorage.setItem('pass', this.usuarioLogin.pass);
-
-          this.router.navigate(['/menu-directora']);
+          if(this.usuarioLogin.rol == 0){
+            this.router.navigate(['/menu-directora']);
+          }
+          if( this.usuarioLogin.rol == 2){
+            this.router.navigate(['/menu-cocinera'])
+          }
           $('#modalLoginForm').modal('toggle');
         } else {
           this.intentoFallidoLogin=true;

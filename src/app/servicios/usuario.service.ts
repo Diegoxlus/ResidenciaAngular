@@ -1,12 +1,9 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders, HttpRequest, HttpResponse} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Config} from 'protractor';
 import {Usuario} from '../models/usuario';
 import {map} from 'rxjs/operators';
-
-
-
 
 
 @Injectable({

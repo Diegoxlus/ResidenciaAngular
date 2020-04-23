@@ -1,0 +1,24 @@
+<div id="main-panel-content" class="container">
+  <div class="row">
+    <div class="col text-center">
+      <h3 class="display-2 mb-5" id="titulo-gestion">
+        Panel de gestión
+      </h3>
+    </div>
+  </div>
+  <div class="row mt-3 my-2 justify-content-around row align-items-center" >
+    <div class="col- text-center mt-2 ">
+      <button class="btn text-dark btn-gestion" id="ver-comidas" (click)="irVerComidas()" >
+        <fa-icon class="fa-8x" [icon]="iconoComida"></fa-icon>
+        <strong>Visualizar calendario</strong>
+      </button>
+    </div>
+    <div class="col- text-center mt-2 ">
+      <button class="btn text-dark btn-gestion" id="gestion-comidas" (click)="irGestionComidas()" >
+        <fa-icon class="fa-7x" [icon]="iconoAnotar"></fa-icon>
+        <strong>Añadir comidas</strong>
+      </button>
+    </div>
+  </div>
+</div>
+

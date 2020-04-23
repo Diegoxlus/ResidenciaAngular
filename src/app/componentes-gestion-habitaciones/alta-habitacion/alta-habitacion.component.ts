@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {Habitacion} from '../../models/habitacion';
 import {HabitacionService} from '../../servicios/habitacion.service';
 import {SelectResidentesComponent} from '../select-residentes/select-residentes.component';
+import {UsuarioService} from '../../servicios/usuario.service';
 
 @Component({
   selector: 'app-alta-habitacion',
@@ -33,8 +34,9 @@ export class AltaHabitacionComponent implements OnInit {
     disponibleAlta: new FormControl(true, [])
   });
 
-  constructor(private habitacionService: HabitacionService ,private router: Router){
+  constructor(private habitacionService: HabitacionService ,private router: Router, usuarioService: UsuarioService){
     this.nuevaHabitacion = new Habitacion();
+
   }
 
 
@@ -117,4 +119,9 @@ export class AltaHabitacionComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  cambioTipo(value: any) {
+    console.log("SI");
+    this.selectResidentes.tipo=value;
+    this.selectResidentes.changed();
+  }
 }

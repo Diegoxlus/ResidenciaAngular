@@ -4,7 +4,7 @@
 
     <div class="form-group">
       <label for="nombre">Nombre</label>
-      <input [class.ng-invalid-input]="(nombreAlta.invalid && nombreAlta.touched)" type="text" class="form-control ng-valid-input" id="nombre" formControlName="nombreAlta"  name="nombre" >
+      <input [class.ng-invalid-input]="(nombreAlta.invalid && nombreAlta.touched) || !nombreAlta.value" type="text" class="form-control ng-valid-input" id="nombre" formControlName="nombreAlta"  name="nombre" >
       <div *ngIf="(nombreAlta.invalid && nombreAlta.touched) || nombreAlta.dirty">
         <small *ngIf="nombreAlta.errors?.required" class="text-danger">El nombre es obligatorio</small>
         <small *ngIf="nombreAlta.errors?.pattern" class="text-danger">El nombre no es valido</small>
@@ -13,7 +13,7 @@
 
     <div class="form-group">
       <label for="apellidos">Apellidos</label>
-      <input [class.ng-invalid-input]="(apellidosAlta.invalid && apellidosAlta.touched)" type="text" formControlName="apellidosAlta" class="form-control ng-valid-input" id="apellidos">
+      <input [class.ng-invalid-input]="(apellidosAlta.invalid && apellidosAlta.touched) || !apellidosAlta.value" type="text" formControlName="apellidosAlta" class="form-control ng-valid-input" id="apellidos">
       <div *ngIf="(apellidosAlta.invalid && apellidosAlta.touched) || apellidosAlta.dirty">
         <small *ngIf="apellidosAlta.errors?.required" class="text-danger">Los apellidos son obligatorio</small>
         <small *ngIf="apellidosAlta.errors?.pattern" class="text-danger">Los apellidos no son validos</small>
@@ -22,7 +22,7 @@
 
     <div class="form-group">
       <label for="email">Fecha nacimiento</label>
-      <input [class.ng-invalid-input]="(fechaAlta.invalid && fechaAlta.touched)" type="date" formControlName="fNacAlta" class="form-control ng-valid-input" id="fNac" name="fNac" >
+      <input [class.ng-invalid-input]="(fechaAlta.invalid && fechaAlta.touched) || !fechaAlta.value" type="date" formControlName="fNacAlta" class="form-control ng-valid-input" id="fNac" name="fNac" >
       <div *ngIf="(fechaAlta.invalid && fechaAlta.touched) || fechaAlta.dirty">
         <small *ngIf="fechaAlta.errors?.required" class="text-danger">La fecha es obligatoria</small>
       </div>
@@ -30,7 +30,7 @@
 
     <div class="form-group">
       <label for="dni">DNI</label>
-      <input [class.ng-invalid-input]="(dniAlta.invalid && dniAlta.touched) || dniAlta.dirty" type="text" class="form-control ng-valid-input" id="dni" name="dni" formControlName="dniAlta">
+      <input [class.ng-invalid-input]="(dniAlta.invalid && dniAlta.touched) || dniAlta.dirty || !dniAlta.value" type="text" class="form-control ng-valid-input" id="dni" name="dni" formControlName="dniAlta">
       <div *ngIf="(dniAlta.invalid && dniAlta.touched) || dniAlta.dirty">
         <small *ngIf="dniAlta.errors?.required" class="text-danger">El DNI es necesario</small>
         <small *ngIf="dniAlta.errors?.pattern" class="text-danger">El DNI no es valido</small>
@@ -41,7 +41,7 @@
 
     <div class="form-group">
       <label for="email">Email</label>
-      <input [class.ng-invalid-input]="(emailAlta.invalid && emailAlta.touched)" type="text"  class="form-control ng-valid-input" formControlName="emailAlta" id="email" name="email">
+      <input [class.ng-invalid-input]="(emailAlta.invalid && emailAlta.touched) || !emailAlta.value" type="text"  class="form-control ng-valid-input" formControlName="emailAlta" id="email" name="email">
       <div *ngIf="(emailAlta.invalid && emailAlta.touched) || emailAlta.dirty">
         <small *ngIf="emailAlta.errors?.required" class="text-danger">La fecha es obligatoria</small>
       </div>
@@ -49,7 +49,7 @@
 
     <div class="form-group">
       <label for="contraseña">Contraseña</label>
-      <input [class.ng-invalid-input]="(contrasenaAlta.invalid && contrasenaAlta.touched)" type="text" formControlName="contrasenaAlta" class="form-control ng-valid-input" id="contraseña"  name="pass">
+      <input [class.ng-invalid-input]="(contrasenaAlta.invalid && contrasenaAlta.touched) || !contrasenaAlta.value" type="text" formControlName="contrasenaAlta" class="form-control ng-valid-input" id="contraseña"  name="pass">
       <div *ngIf="(contrasenaAlta.invalid && contrasenaAlta.touched) || contrasenaAlta.dirty">
         <small *ngIf="contrasenaAlta.errors?.pattern" class="text-danger">La contraseña debe teneral menos un dígito, al menos una minúscula y al menos una mayúscula, debe tener al entre 8 y 16 caracteres</small>
       </div>
@@ -61,7 +61,7 @@
 
     <div class="form-group">
       <label for="power">Rol</label>
-      <select [selectedIndex]="3"  class="form-control" id="power"  name="rol" formControlName="rolAlta" >
+      <select [selectedIndex]="3"  class="form-control ng-valid-input" id="power"  name="rol" formControlName="rolAlta" >
         <option *ngFor="let roloption of roles; index as i" [attr.selected]="3 == i" [value]=i >{{roloption}} </option>
       </select>
     </div>

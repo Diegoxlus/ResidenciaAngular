@@ -21,14 +21,14 @@
         <!-- Name Column -->
         <ng-container class="col-3" matColumnDef="Tipo">
           <th mat-header-cell *matHeaderCellDef> Tipo </th>
-          <td mat-cell *matCellDef="let habitacion"> {{habitacion.tipo}} </td>
+          <td mat-cell *matCellDef="let habitacion">{{habitacion.tipo}} </td>
         </ng-container>
 
         <!-- Weight Column -->
         <ng-container  class="col-3 " matColumnDef="Residente/s">
           <th mat-header-cell *matHeaderCellDef> Residente/s</th>
-          <td mat-cell *matCellDef="let habitacion"> {{habitacion.residente1}} </td>
-          <td mat-cell *matCellDef="let habitacion"> {{habitacion.residente2}} </td>
+          <td mat-cell *matCellDef="let habitacion"> <p>{{habitacion.residente1}}</p>
+            <p>{{habitacion.residente2}}</p> </td>
         </ng-container>
 
         <!-- Symbol Column -->

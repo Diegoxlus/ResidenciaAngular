@@ -31,7 +31,7 @@ export class SelectResidentesComponent implements OnInit, AfterViewInit, OnDestr
   /** Subject that emits when the component has been destroyed. */
   protected _onDestroy = new Subject<void>();
 
-
+  public tipo: number;
   constructor(private usuarioService: UsuarioService) {
     this.residentes = new Array<Usuario>();
     this.selecionResidentes = new Array<string>();
@@ -63,6 +63,7 @@ export class SelectResidentesComponent implements OnInit, AfterViewInit, OnDestr
 
         this.filterBanksMulti();
       });
+    console.log(this.selecionResidentes);
   }
 
   ngAfterViewInit() {
@@ -111,10 +112,16 @@ export class SelectResidentesComponent implements OnInit, AfterViewInit, OnDestr
   }
 
   changed() {
-    if (this.usuarioMultiCtrl.value.length < 3) {
-      this.selecionResidentes = this.usuarioMultiCtrl.value;
-    } else {
-      this.usuarioMultiCtrl.setValue(this.selecionResidentes);
+
+    if(this.usuarioMultiCtrl.value!=null) {
+      if (this.usuarioMultiCtrl.value.length < 2 + this.tipo) {
+        this.selecionResidentes = this.usuarioMultiCtrl.value;
+      } else {
+        if (this.selecionResidentes.length == 2 && this.tipo == 0) {
+          this.selecionResidentes.pop();
+        }
+        this.usuarioMultiCtrl.setValue(this.selecionResidentes);
+      }
     }
   }
 
@@ -128,5 +135,13 @@ export class SelectResidentesComponent implements OnInit, AfterViewInit, OnDestr
 
 
 
+  }
+
+  añadirPorEmail(email){
+    for (let residente of this.residentes){
+      if(residente.email == email ){
+        this.selecionResidentes.push(residente.email);
+      }
+    }
   }
 }
