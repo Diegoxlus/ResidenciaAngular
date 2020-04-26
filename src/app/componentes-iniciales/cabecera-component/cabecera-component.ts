@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {UsuarioService} from '../servicios/usuario.service';
-import {Usuario} from '../models/usuario';
+import {UsuarioService} from '../../servicios/usuario.service';
+import {Usuario} from '../../models/usuario';
 import {Router} from '@angular/router';
 import {FormControl,FormGroup,Validators} from '@angular/forms';
 
@@ -89,6 +89,9 @@ export class CabeceraComponent implements OnInit {
           }
           if( this.usuarioLogin.rol == 2){
             this.router.navigate(['/menu-cocinera'])
+          }
+          if( this.usuarioLogin.rol == 3){
+            this.router.navigate(['/menu-residente'])
           }
           $('#modalLoginForm').modal('toggle');
         } else {

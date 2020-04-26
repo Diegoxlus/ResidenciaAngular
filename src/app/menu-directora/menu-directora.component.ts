@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {faUserFriends} from '@fortawesome/free-solid-svg-icons';
 import {faBed} from '@fortawesome/free-solid-svg-icons';
+import {faCogs} from '@fortawesome/free-solid-svg-icons';
 import {faUserTimes} from '@fortawesome/free-solid-svg-icons';
 import {faNewspaper} from '@fortawesome/free-solid-svg-icons';
 import {Router} from '@angular/router';
@@ -16,6 +17,7 @@ export class MenuDirectoraComponent implements OnInit {
   iconoHabitacion = faBed;
   iconoParte = faUserTimes;
   iconoNoticia = faNewspaper;
+  iconoConfiguracion = faCogs;
 
   constructor( private router: Router) {
   }
@@ -36,4 +38,7 @@ export class MenuDirectoraComponent implements OnInit {
     this.router.navigate(['/noticias']);
   }
 
+  irConfiguracion() {
+    this.router.navigate(['/configuracion']);
+  }
 }

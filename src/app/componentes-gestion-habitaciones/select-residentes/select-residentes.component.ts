@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {ReplaySubject, Subject} from 'rxjs';
 import {MatSelect} from '@angular/material';
@@ -22,7 +22,7 @@ export class SelectResidentesComponent implements OnInit, AfterViewInit, OnDestr
 
   /** control for the MatSelect filter keyword multi-selection */
   public usuarioMultiFilterCtrl: FormControl = new FormControl();
-
+  @Input('tipo') tipo: number;
   /** list of banks filtered by search keyword */
   public filteredUsuarioMulti: ReplaySubject<Usuario[]> = new ReplaySubject<Usuario[]>(1);
 
@@ -31,7 +31,8 @@ export class SelectResidentesComponent implements OnInit, AfterViewInit, OnDestr
   /** Subject that emits when the component has been destroyed. */
   protected _onDestroy = new Subject<void>();
 
-  public tipo: number;
+
+
   constructor(private usuarioService: UsuarioService) {
     this.residentes = new Array<Usuario>();
     this.selecionResidentes = new Array<string>();
@@ -41,7 +42,6 @@ export class SelectResidentesComponent implements OnInit, AfterViewInit, OnDestr
 
     this.usuarioService.getResidentesHabitacion().subscribe(result=>{
       for (let residente of result){
-        console.log("ONINIT EJECUTANDO...");
         this.residentes.push(new Usuario(residente.nombre,residente.apellidos,residente.email,null,null,null,null,residente.numero));
       }
     },error =>{
@@ -114,8 +114,14 @@ export class SelectResidentesComponent implements OnInit, AfterViewInit, OnDestr
   changed() {
 
     if(this.usuarioMultiCtrl.value!=null) {
+      console.log("VALOR MCTRL: "+this.usuarioMultiCtrl.value.length);
+      console.log("VALOR TIPO: "+this.tipo);
+
+      console.log(this.usuarioMultiCtrl.value.length < (2 + this.tipo));
       if (this.usuarioMultiCtrl.value.length < 2 + this.tipo) {
+        console.log("SII");
         this.selecionResidentes = this.usuarioMultiCtrl.value;
+        console.log(this.selecionResidentes);
       } else {
         if (this.selecionResidentes.length == 2 && this.tipo == 0) {
           this.selecionResidentes.pop();

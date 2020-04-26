@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {PaginaInicioComponent} from './pagina-inicio/pagina-inicio-component';
+import {PaginaInicioComponent} from './componentes-iniciales/pagina-inicio/pagina-inicio-component';
 import {HabitacionesComponent} from './componentes-gestion-habitaciones/habitaciones/habitaciones.component';
 import {ResidentesComponent} from './componentes-gestion-usuarios/residentes/residentes.component';
 import {PersonalComponent} from './componentes-gestion-usuarios/personal/personal.component';
@@ -15,9 +15,12 @@ import {MenuCocineraComponent} from './menu-cocinera/menu-cocinera.component';
 import {CalendarioMenuComponent} from './componentes-gestion-menu/calendario-menu/calendario-menu.component';
 import {AltaMenuComponent} from './componentes-gestion-menu/alta-menu/alta-menu.component';
 import {EditHabitacionComponent} from './componentes-gestion-habitaciones/edit-habitacion/edit-habitacion.component';
+import {MenuResidenteComponent} from './menu-residente/menu-residente.component';
+import {ListaAnotarseComidaComponent} from './lista-anotarse-comida/lista-anotarse-comida.component';
+import {ConfiguracionComponent} from './configuracion/configuracion.component';
 
 const routes: Routes = [
-  {path: '', component: AltaMenuComponent},
+  {path: '', component: PaginaInicioComponent},
   {path: 'personal', component: PersonalComponent},
   {path: 'residentes', component: ResidentesComponent},
   {path: 'habitaciones', component: HabitacionesComponent},
@@ -29,9 +32,12 @@ const routes: Routes = [
   {path: 'select-residente',component:SelectResidentesComponent},
   {path: 'alta-habitacion', component:AltaHabitacionComponent},
   {path: 'menu-cocinera', component: MenuCocineraComponent},
-  {path: 'calendario-menu', component: CalendarioMenuComponent},
+  {path: 'menu-mensual', component: CalendarioMenuComponent},
   {path: 'alta-menu', component: AltaMenuComponent},
-  {path: 'modificar-habitacion', component: EditHabitacionComponent}
+  {path: 'modificar-habitacion', component: EditHabitacionComponent},
+  {path: 'menu-residente', component: MenuResidenteComponent},
+  {path: 'lista-anotarse-comida', component: ListaAnotarseComidaComponent},
+  {path: 'configuracion', component: ConfiguracionComponent},
 
 
 ];

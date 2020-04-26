@@ -3,11 +3,11 @@ import {faUtensilSpoon,faBookOpen} from '@fortawesome/free-solid-svg-icons';
 import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-menu-cocinera',
-  templateUrl: './menu-cocinera.component.html',
-  styleUrls: ['./menu-cocinera.component.css']
+  selector: 'app-menu-residente',
+  templateUrl: './menu-residente.component.html',
+  styleUrls: ['./menu-residente.component.css']
 })
-export class MenuCocineraComponent implements OnInit {
+export class MenuResidenteComponent implements OnInit {
   iconoComida = faUtensilSpoon;
   iconoAnotar = faBookOpen;
 
@@ -16,11 +16,12 @@ export class MenuCocineraComponent implements OnInit {
 
   ngOnInit() {
   }
-  irGestionComidas() {
-    this.router.navigate(['alta-menu']);
-  }
+
   irVerComidas() {
     this.router.navigate(['menu-mensual']);
   }
 
+  irAnotarseComidas() {
+    this.router.navigate(['lista-anotarse-comida']);
+  }
 }

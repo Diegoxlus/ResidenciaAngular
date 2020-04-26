@@ -2,9 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CabeceraComponent } from './cabecera-component/cabecera-component';
-import { PieComponentComponent } from './pie/pie.component';
-import { PaginaInicioComponent } from './pagina-inicio/pagina-inicio-component';
+import { CabeceraComponent } from './componentes-iniciales/cabecera-component/cabecera-component';
+import { PieComponentComponent } from './componentes-iniciales/pie/pie.component';
+import { PaginaInicioComponent } from './componentes-iniciales/pagina-inicio/pagina-inicio-component';
 import { HabitacionesComponent } from './componentes-gestion-habitaciones/habitaciones/habitaciones.component';
 import { ResidentesComponent } from './componentes-gestion-usuarios/residentes/residentes.component';
 import {HttpClientModule} from '@angular/common/http';
@@ -33,11 +33,16 @@ import { MenuCocineraComponent } from './menu-cocinera/menu-cocinera.component';
 import { CalendarioMenuComponent } from './componentes-gestion-menu/calendario-menu/calendario-menu.component';
 import { FullCalendarModule} from '@fullcalendar/angular';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { ModalComidaComponent } from './modal-comida/modal-comida.component';
 import { AltaMenuComponent } from './componentes-gestion-menu/alta-menu/alta-menu.component';
 import {MyDateAdapter} from '../assets/my-date-adapter';
 import {DatePipe} from '@angular/common';
 import { EditHabitacionComponent } from './componentes-gestion-habitaciones/edit-habitacion/edit-habitacion.component';
+import { MenuResidenteComponent } from './menu-residente/menu-residente.component';
+import { AsistenciaComidaComponent } from './asistencia-comida/asistencia-comida.component';
+import { ListaAnotarseComidaComponent } from './lista-anotarse-comida/lista-anotarse-comida.component';
+import { ConfiguracionComponent } from './configuracion/configuracion.component';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+import { DialogoInformativoComponent } from './dialogo-informativo/dialogo-informativo.component';
 
 @NgModule({
   declarations: [
@@ -61,9 +66,13 @@ import { EditHabitacionComponent } from './componentes-gestion-habitaciones/edit
     SelectResidentesComponent,
     MenuCocineraComponent,
     CalendarioMenuComponent,
-    ModalComidaComponent,
     AltaMenuComponent,
     EditHabitacionComponent,
+    MenuResidenteComponent,
+    AsistenciaComidaComponent,
+    ListaAnotarseComidaComponent,
+    ConfiguracionComponent,
+    DialogoInformativoComponent,
 
   ],
   imports: [
@@ -82,6 +91,7 @@ import { EditHabitacionComponent } from './componentes-gestion-habitaciones/edit
     MatSelectModule,
     MatCheckboxModule,
     FullCalendarModule,
+    NgxMaterialTimepickerModule.setLocale('es-ES'),
     NgbModule
   ],
   exports: [
@@ -89,6 +99,6 @@ import { EditHabitacionComponent } from './componentes-gestion-habitaciones/edit
   ],
   providers: [DatosUsuarioService,{provide: MAT_DATE_LOCALE , useValue: 'es-ES'},{provide: DateAdapter, useClass: MyDateAdapter},DatePipe],
   bootstrap: [AppComponent],
-  entryComponents: [DialogoConfirmacionComponent]
+  entryComponents: [DialogoConfirmacionComponent,DialogoInformativoComponent]
 })
 export class AppModule { }

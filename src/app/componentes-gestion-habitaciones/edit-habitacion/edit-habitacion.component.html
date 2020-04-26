@@ -29,10 +29,10 @@
     <div *ngIf="(this.datosHabitaciones.habitacion.residente1 || this.datosHabitaciones.habitacion.residente2)&& this.hayResidentes" class="alert alert-warning alert-dismissible">
       <a href="#" (click)="this.hayResidentes=false" class="close" data-dismiss="alert" aria-label="close">&times;</a>
       <p><strong >Los residentes en esta habitación son:</strong></p>
-      <p  *ngIf="this.datosHabitaciones.habitacion.residente1"> <button (click)="eliminarResidente(this.datosHabitaciones.habitacion.numero,this.datosHabitaciones.habitacion.residente1)" type="button" class="btn btn-dark"><fa-icon class="iconoEliminarResidente" [icon]="eliminarRes1"></fa-icon></button>
+      <p  *ngIf="this.datosHabitaciones.habitacion.residente1"> <button (click)="this.openConfirmationDialog(this.datosHabitaciones.habitacion.numero,this.datosHabitaciones.habitacion.residente1)" type="button" class="btn btn-dark"><fa-icon class="iconoEliminarResidente" [icon]="eliminarRes1"></fa-icon></button>
         <strong class="ml-2">Residente: </strong> {{this.datosHabitaciones.habitacion.residente1}}</p>
 
-      <p *ngIf="this.datosHabitaciones.habitacion.residente2"><button (click)="eliminarResidente(this.datosHabitaciones.habitacion.numero,this.datosHabitaciones.habitacion.residente2)" type="button" class="btn btn-dark"><fa-icon class="iconoEliminarResidente" [icon]="eliminarRes2"></fa-icon></button>
+      <p *ngIf="this.datosHabitaciones.habitacion.residente2"><button (click)="this.openConfirmationDialog(this.datosHabitaciones.habitacion.numero,this.datosHabitaciones.habitacion.residente2)" type="button" class="btn btn-dark"><fa-icon class="iconoEliminarResidente" [icon]="eliminarRes2"></fa-icon></button>
         <strong class="ml-2">Residente: </strong> {{this.datosHabitaciones.habitacion.residente2}}</p>
     </div>
 

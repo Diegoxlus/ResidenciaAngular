@@ -6,6 +6,9 @@ import {HabitacionService} from '../../servicios/habitacion.service';
 import {Router} from '@angular/router';
 import {DatosHabitacionService} from '../../servicios/datos-habitacion.service';
 import {faUserMinus} from '@fortawesome/free-solid-svg-icons/faUserMinus';
+import {DialogoConfirmacionComponent} from '../../dialogo-confirmacion/dialogo-confirmacion.component';
+import {MatDialog, MatDialogRef} from '@angular/material';
+import {UsuarioService} from '../../servicios/usuario.service';
 
 @Component({
   selector: 'app-edit-habitacion',
@@ -13,9 +16,8 @@ import {faUserMinus} from '@fortawesome/free-solid-svg-icons/faUserMinus';
   styleUrls: ['./edit-habitacion.component.css']
 })
 export class EditHabitacionComponent implements AfterViewInit, OnInit {
-  // @ts-ignore
-  @ViewChild(SelectResidentesComponent)
-  private selectResidentes: SelectResidentesComponent;
+  @ViewChild(SelectResidentesComponent,{static:true}) selectResidentes;
+  dialogRef: MatDialogRef<DialogoConfirmacionComponent>;
   eliminarRes1 = faUserMinus;
   eliminarRes2 = faUserMinus;
   habitacion: Habitacion;
@@ -37,8 +39,9 @@ export class EditHabitacionComponent implements AfterViewInit, OnInit {
     disponibleAlta: new FormControl(true, [])
   });
 
-  constructor(private habitacionService: HabitacionService,private datosHabitaciones: DatosHabitacionService,private router: Router){
+  constructor(public usuaroService: UsuarioService,private habitacionService: HabitacionService,private datosHabitaciones: DatosHabitacionService,private router: Router,public dialog: MatDialog){
     this.habitacion = datosHabitaciones.habitacion;
+    this.selectResidentes = new SelectResidentesComponent(this.usuaroService);
   }
 
 
@@ -83,10 +86,11 @@ export class EditHabitacionComponent implements AfterViewInit, OnInit {
   }
 
   private pasarValoresFormulario() {
+    console.log(this.habitacion.tipo);
     this.numeroAlta.setValue(this.habitacion.numero);
     this.tipoAlta.setValue(this.habitacion.tipo);
+    console.log("TIPO DEL EDIT" +this.habitacion.tipo);
     this.selectResidentes.tipo = this.habitacion.tipo;
-
     if(this.habitacion.disponible.value!=null){
       this.disponibleAlta.setValue(this.habitacion.disponible);
 
@@ -136,8 +140,11 @@ export class EditHabitacionComponent implements AfterViewInit, OnInit {
   }
 
   cambioTipo(value: any) {
+    console.log("CAMBIO DE TIPO");
+    console.log(value);
     this.selectResidentes.tipo = value;
     this.selectResidentes.changed();
+
   }
 
   eliminarResidente(numero: any, residente: any) {
@@ -155,5 +162,19 @@ export class EditHabitacionComponent implements AfterViewInit, OnInit {
         console.log(error);
       }
     )
+  }
+
+  openConfirmationDialog(numero: any, residente: any) {
+    this.dialogRef = this.dialog.open(DialogoConfirmacionComponent, {
+      disableClose: false
+    });
+    this.dialogRef.componentInstance.confirmMessage = "Estas seguro de que quieres eliminar a "+ residente +" de la habitacion " + numero;
+
+    this.dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+        this.eliminarResidente(numero,residente);
+      }
+      this.dialogRef = null;
+    });
   }
 }

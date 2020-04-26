@@ -1,5 +1,6 @@
 
-<div class="container">
+<div class="container mt-4">
+
   <full-calendar
     defaultView="dayGridMonth"
     deepChangeDetection="true"
@@ -9,4 +10,10 @@
     [weekends]="false"
     [events]="this.eventos"
   ></full-calendar>
+
+  <div class="d-flex justify-content-around mt-4">
+    <button (click)="nuevaComida()" type="submit" class=" col-md-3 btn btn-success mt-2">Añadir</button>
+    <button (click)="volver()" type="submit" class=" col-md-3 btn btn-danger mt-2">Volver</button>
+
+  </div>
 </div>

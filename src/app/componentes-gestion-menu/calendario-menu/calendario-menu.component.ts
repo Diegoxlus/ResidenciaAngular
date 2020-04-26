@@ -1,15 +1,7 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {Calendar} from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import esLocale from '@fullCalendar/core/locales/es'
-import interactionPlugin from '@fullcalendar/interaction';
-import listPlugin from '@fullcalendar/list';
-import timeGridPlugin from '@fullcalendar/timegrid';
 import {Router} from '@angular/router';
-
-import {NgbModal,ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-import {viewClassName} from '@angular/compiler';
-import {ModalComidaComponent} from '../../modal-comida/modal-comida.component';
 import {MenuService} from '../../servicios/menu.service';
 import {Menu} from '../../models/menu';
 
@@ -53,4 +45,11 @@ export class CalendarioMenuComponent implements OnInit{
     }
   }
 
+  volver() {
+    this.router.navigate(['menu-cocinera']);
+  }
+
+  nuevaComida() {
+    this.router.navigate(['alta-menu']);
+  }
 }

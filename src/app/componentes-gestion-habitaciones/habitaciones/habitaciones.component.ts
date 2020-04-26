@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MatTableDataSource} from '@angular/material';
 import {DialogoConfirmacionComponent} from '../../dialogo-confirmacion/dialogo-confirmacion.component';
-import {Usuario} from '../../models/usuario';
 import {faInfoCircle, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
 import {Router} from '@angular/router';
 import {Habitacion} from '../../models/habitacion';
@@ -27,7 +26,7 @@ export class HabitacionesComponent implements OnInit {
     this.habitaciones = new Array<Habitacion>();
   }
 
-  openConfirmationDialog(habitacion:Habitacion) {
+  openConfirmationDialogE(habitacion:Habitacion) {
     this.dialogRef = this.dialog.open(DialogoConfirmacionComponent, {
       disableClose: false
     });
@@ -46,8 +45,6 @@ export class HabitacionesComponent implements OnInit {
       result => {
         for (let habitacion of result){
           this.habitaciones.push(new Habitacion(habitacion.numero,habitacion.tipo,habitacion.residente1,habitacion.residente2,habitacion.disponible));
-          //this.habitaciones.push(result);
-
         }
         console.log(this.habitaciones);
         this.dataSource = new MatTableDataSource(this.habitaciones);

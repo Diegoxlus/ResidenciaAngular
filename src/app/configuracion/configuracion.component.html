@@ -1,0 +1,51 @@
+<form id="configuracionAltaForm" [formGroup]="FormularioAlta" class=" justify-content-center w-75" (ngSubmit)="onSubmit()">
+
+  <div class="ml-2 row">
+    <label class="col-12 margen-picker " for="comidaPicker">Hora comida</label>
+
+    <input  id="comidaPicker" formControlName="horaComida" [format]="24" [ngxTimepicker]="toggleComidaTimepicker" class="form-control col-4"  [disableClick]="true" readonly>
+    <ngx-material-timepicker-toggle  [for]="toggleComidaTimepicker"></ngx-material-timepicker-toggle>
+    <ngx-material-timepicker #toggleComidaTimepicker></ngx-material-timepicker>
+    </div>
+
+  <div class="ml-2 mt-2 row">
+    <label class="col-12 margen-picker " for="comidaPicker">Hora cena</label>
+
+    <input  formControlName="horaCena" id="cenaPicker" [format]="24" [ngxTimepicker]="toggleCenaTimepicker" class="form-control col-4" [disableClick]="true"  readonly>
+    <ngx-material-timepicker-toggle  [for]="toggleCenaTimepicker"></ngx-material-timepicker-toggle>
+    <ngx-material-timepicker #toggleCenaTimepicker></ngx-material-timepicker>
+  </div>
+
+  <div class="ml-2 mt-2 row">
+    <label class="col-12 margen-picker " >Hora limite comida</label>
+    <input  class="form-control col-4" formControlName="limiteComida" type="number" >
+    <div class="col-12 margen-picker" *ngIf="(limiteComida.invalid) || limiteComida.dirty">
+      <small *ngIf="limiteComida.errors" class="text-danger">El numero limite no es valido</small>
+    </div>
+  </div>
+
+  <div class="ml-2 mb-4 mt-2 row">
+    <label class="col-12 margen-picker " >Hora limite cena</label>
+    <input  class="form-control col-4" [value]="this.limiteCena.value" formControlName="limiteCena" type="number">
+    <div class="col-12 margen-picker" *ngIf="(limiteCena.invalid) || limiteCena.dirty">
+      <small *ngIf="limiteCena.errors" class="text-danger">El numero limite no es valido</small>
+    </div>
+  </div>
+
+
+  <div *ngIf="registroCorrecto" [ngClass]="{'transition': registroCorrecto}"  id="registroCorrecto" class="alert alert-success">
+    <a href="#" (click)="resetearIntento()" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Cifiguración guardada</strong>.
+  </div>
+
+  <div *ngIf="registroIncorrecto" class="alert alert-danger">
+    <a href="#" (click)="resetearIntento()" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Error: </strong>{{msgError}}.
+  </div>
+
+  <div class="d-flex justify-content-around mt-4">
+    <button (click)="editarConfiguracion()" type="submit" class=" col-md-3 btn btn-success mt-2">Añadir</button>
+    <button (click)="volver()" type="button" class=" col-md-3 btn btn-danger mt-2">Volver</button>
+
+  </div>
+</form>

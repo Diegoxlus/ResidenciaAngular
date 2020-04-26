@@ -24,7 +24,7 @@ export class HabitacionService {
   }
 
   eliminarHabitacion(numero: any): Observable<any> {
-      return this.http.delete(this.url+"/habitacion/"+numero,{responseType:'json'});
+      return this.http.delete(this.url+"/"+numero,{responseType:'json'});
   }
 
   registrarHabitacion(nuevaHabitacion: Habitacion) : Observable<any> {

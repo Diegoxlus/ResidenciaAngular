@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {DatePipe} from '@angular/common';
 import {MenuService} from '../../servicios/menu.service';
 import {Menu} from '../../models/menu';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class AltaMenuComponent implements OnInit {
   registroIncorrecto: boolean = false;
   msgError:String;
 
-  public FormularioAlta = new FormGroup({
+  public FormularioAltaMenu = new FormGroup({
     comida: new FormControl('', [
       Validators.pattern("^[a-zA-Z0-9 ñÑ\\-_]*$"
       )]),
@@ -32,7 +33,7 @@ export class AltaMenuComponent implements OnInit {
 
   private sfecha:string;
 
-  constructor(private menuService: MenuService, public datepipe: DatePipe) {
+  constructor(private menuService: MenuService, public datepipe: DatePipe,private router: Router) {
     this.existeComida = false;
     this.nuevoMenu = new Menu();
 
@@ -44,15 +45,15 @@ export class AltaMenuComponent implements OnInit {
   }
 
   get comida(){
-    return this.FormularioAlta.get('comida');
+    return this.FormularioAltaMenu.get('comida');
   }
 
   get cena(){
-    return this.FormularioAlta.get('cena');
+    return this.FormularioAltaMenu.get('cena');
   }
 
   get fecha(){
-    return this.FormularioAlta.get('fecha');
+    return this.FormularioAltaMenu.get('fecha');
   }
 
   filtro = (d: Date): boolean => {
@@ -109,5 +110,9 @@ export class AltaMenuComponent implements OnInit {
   resetearIntento() {
     this.registroCorrecto=false;
     this.registroIncorrecto = false;
+  }
+
+  volver() {
+    this.router.navigate(['menu-cocinera']);
   }
 }

@@ -1,4 +1,4 @@
-<form id="menuAltaForm" [formGroup]="FormularioAlta" class=" justify-content-center w-75" (ngSubmit)="onSubmit()">
+<form id="menuAltaForm" [formGroup]="FormularioAltaMenu" class=" justify-content-center w-75" (ngSubmit)="onSubmit()">
 
   <div class="form-group">
     <label for="comidaMenu">Comida</label>
@@ -11,17 +11,17 @@
   <div class="form-group">
     <label for="cenaMenu">Cena</label>
     <input [class.ng-invalid-input]="(cena.invalid && cena.touched)" type="text" formControlName="cena" class="form-control ng-valid-input" id="cenaMenu">
-    <div *ngIf="(cena.invalid && cena.touched) || cena.dirty">
+    <div *ngIf="(cena.invalid && cena.touched) || cena.dirty ">
       <small *ngIf="cena.errors?.pattern" class="text-danger">La cena no es valida</small>
     </div>
   </div>
 
   <div class="form-group">
     <mat-form-field>
-    <input matInput [matDatepickerFilter]="filtro" [class.ng-invalid-input]="(fecha.invalid && fecha.touched) || !fecha.value" (dateChange)="comprobarComidas()" formControlName="fecha" class="form-control ng-valid-input" [matDatepicker]="menuDatepicker" id="menuDatepicker" >
+    <input readonly matInput [matDatepickerFilter]="filtro" [class.ng-invalid-input]="(fecha.invalid && fecha.touched) || !fecha.value" (dateChange)="comprobarComidas()" formControlName="fecha" class="form-control ng-valid-input" [matDatepicker]="menuDatepicker" id="menuDatepicker" >
     <mat-datepicker-toggle matSuffix [for]="menuDatepicker"></mat-datepicker-toggle>
     <mat-datepicker touchUi="true" color="accent" #menuDatepicker></mat-datepicker>
-    <div *ngIf="(fecha.invalid && fecha.touched) || fecha.dirty">
+    <div *ngIf="(fecha.invalid) || fecha.dirty">
       <small *ngIf="fecha.errors?.required" class="text-danger">La fecha es obligatoria</small>
     </div>
     </mat-form-field>
@@ -44,8 +44,10 @@
     <strong>Error: </strong>{{msgError}}.
   </div>
 
-  <div class="mt-4">
+  <div class="d-flex justify-content-around mt-4">
     <button (click)="altaMenu()" type="submit" class=" col-md-3 btn btn-success mt-2">Añadir</button>
+    <button (click)="volver()" type="button" class=" col-md-3 btn btn-danger mt-2">Volver</button>
+
   </div>
 </form>
 

@@ -1,0 +1,45 @@
+  <div class="container">
+
+  <mat-form-field>
+    <label>Filtro</label>
+    <input class="form-control" matInput (keyup)="applyFilter($event)">
+  </mat-form-field>
+
+  <div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" class="w-100">
+
+    <!-- Position Column -->
+    <ng-container class="col-3" matColumnDef="Dia">
+      <th mat-header-cell *matHeaderCellDef>Dia</th>
+      <td mat-cell *matCellDef="let asistencia"> {{asistencia.dia}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container class="col-3" matColumnDef="Comida">
+      <th mat-header-cell *matHeaderCellDef> Comida </th>
+      <td mat-cell *matCellDef="let asistencia">{{asistencia.menu_comida}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container  class="col-3 " matColumnDef="Cena">
+      <th mat-header-cell *matHeaderCellDef> Cena</th>
+      <td mat-cell *matCellDef="let asistencia">{{asistencia.menu_cena}}</td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container class="col-1 " matColumnDef="Anotarse">
+      <th  mat-header-cell *matHeaderCellDef> Anotarse </th>
+      <td mat-cell *matCellDef="let asistencia">
+        <button *ngIf="asistencia.come==0 || asistencia.come==null" (click)="this.inscribirseComida(asistencia.dia)" type="button" class="col-12 btn btn-success mt-1 ">Anotarse comida</button>
+        <button *ngIf="asistencia.come==1" (click)="this.desinscribirseComida(asistencia.dia)" type="button" class="col-12 btn btn-danger mt-1 ">Desanotarse comida</button>
+
+        <button *ngIf="asistencia.cena==0 || asistencia.cena==null" (click)="this.inscribirseCena(asistencia.dia)" type="button" class="col-12 btn btn-success mt-2 mb-1">Anotarse cena</button>
+        <button *ngIf="asistencia.cena==1" (click)="this.desinscribirseCena(asistencia.dia)" type="button" class="col-12 btn btn-danger mt-2 mb-1">Desanotarse cena</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  </div>
+  </div>
