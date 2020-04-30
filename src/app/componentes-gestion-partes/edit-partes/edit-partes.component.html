@@ -1,0 +1,48 @@
+<div class="container ">
+  <h1 id="tituloAlta" class="w-75">Nuevo parte</h1>
+  <form id="habitacionAltaForm" [formGroup]="FormularioAlta" class=" justify-content-center w-75" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <mat-form-field class="w-75" [class.mat-form-field-invalid]="!this.motivo.touched" >
+        <label>Gravedad</label>
+        <mat-select   [(value)]="selected"   formControlName="gravedad">
+          <mat-option  [value]=0>Leve</mat-option>
+          <mat-option  [value]=1>Grave</mat-option>
+          <mat-option  [value]=2>Muy Grave</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+
+      <mat-form-field class="form-group w-75">
+        <mat-label>Residente</mat-label>
+        <input matInput readonly [value]="this.parte.nombreResidente+' '+this.parte.apellidosResidente" formControlName="residenteAlta" >
+      </mat-form-field>
+
+
+
+    <mat-form-field class="form-group w-100">
+      <mat-label>Motivo</mat-label>
+      <textarea class="w-100" [value]="parte.motivo" formControlName="motivo" matInput placeholder="Escribe aqui el motivo..."></textarea>
+    </mat-form-field>
+
+
+    <div *ngIf="registroCorrecto" [ngClass]="{'transition': registroCorrecto}"  id="registroCorrecto" class="alert alert-success">
+      <a href="#" (click)="resetearIntento()" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong>Parte registrado</strong>.
+    </div>
+
+    <div *ngIf="registroIncorrecto" class="alert alert-danger">
+      <a href="#" (click)="resetearIntento()" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong>Error: </strong>{{msgError}}.
+    </div>
+
+
+    <div class="mt-4">
+      <button (click)="editarParte()" type="submit" class=" col-md-3 btn btn-success mt-2">Editar</button>
+      <button type="button" class=" col-md-3 offset-md-2 btn btn-warning mt-2" (click)="router.navigate(['/lista-partes'])">Volver</button>
+    </div>
+  </form>
+
+</div>
+

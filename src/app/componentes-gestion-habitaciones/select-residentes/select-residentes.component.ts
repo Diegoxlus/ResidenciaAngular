@@ -22,7 +22,7 @@ export class SelectResidentesComponent implements OnInit, AfterViewInit, OnDestr
 
   /** control for the MatSelect filter keyword multi-selection */
   public usuarioMultiFilterCtrl: FormControl = new FormControl();
-  @Input('tipo') tipo: number;
+  @Input('tipo') tipo: number = 0;
   /** list of banks filtered by search keyword */
   public filteredUsuarioMulti: ReplaySubject<Usuario[]> = new ReplaySubject<Usuario[]>(1);
 

@@ -1,5 +1,8 @@
-<h1 mat-dialog-title>Confirmación de borrado</h1>
-<div mat-dialog-content>{{mensage}}</div>
+<h1 mat-dialog-title>{{titulo}}</h1>
+<div mat-dialog-content >
+    {{mensage}}
+
+</div>
 <div class="mt-4" mat-dialog-actions>
-  <button class="btn btn-danger ml-4"  mat-button (click)="dialogRef.close(false)">Cancelar</button>
+  <button class="btn btn-danger"  mat-button (click)="dialogRef.close(false)">Cerrar</button>
 </div>

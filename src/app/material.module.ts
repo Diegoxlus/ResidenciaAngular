@@ -1,11 +1,14 @@
 // material.module.ts
 
 import { NgModule } from '@angular/core';
-import { MatDatepickerModule,
+import {
+  MatDatepickerModule,
   MatNativeDateModule,
   MatFormFieldModule,
-  MatInputModule } from '@angular/material';
+  MatInputModule, MatPaginatorModule
+} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {CustomMatPaginatorIntl} from './servicios/custom-matpaginator-intl.service';
 
 @NgModule({
   imports: [
@@ -22,7 +25,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatInputModule,
     BrowserAnimationsModule
   ],
-  providers: [ MatDatepickerModule ],
+  providers: [MatDatepickerModule ],
 })
 
 export class MaterialModule {}

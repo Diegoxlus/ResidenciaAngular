@@ -120,8 +120,11 @@ export class CabeceraComponent implements OnInit {
       result => {
         console.log(result);
         if (result === true) {
-          this.router.navigate(['/menu-directora']);
+          window.sessionStorage.setItem('emailLogin', this.usuarioLogin.email);
+          window.sessionStorage.setItem('pass', this.usuarioLogin.pass);
+          this.router.navigate(['/menu-residente']);
           $('#modalRegisterForm').modal('toggle');
+
         } else {
 
           this.usuarioLogin.email = '';

@@ -135,6 +135,7 @@ export class EditHabitacionComponent implements AfterViewInit, OnInit {
   }
 
   ngOnInit(): void {
+
     this.pasarValoresFormulario();
 
   }

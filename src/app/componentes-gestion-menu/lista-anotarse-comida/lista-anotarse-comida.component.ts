@@ -2,11 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MatTableDataSource} from '@angular/material';
 import {faInfoCircle, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
 import {Router} from '@angular/router';
-import {AsistenciaService} from '../servicios/asistencia.service';
-import {Asistencia} from '../models/asistencia';
-import {Usuario} from '../models/usuario';
-import {DialogoConfirmacionComponent} from '../dialogo-confirmacion/dialogo-confirmacion.component';
-import {DialogoInformativoComponent} from '../dialogo-informativo/dialogo-informativo.component';
+import {AsistenciaService} from '../../servicios/asistencia.service';
+import {Partes} from '../../models/partes';
+import {DialogoInformativoComponent} from '../../dialogo-informativo/dialogo-informativo.component';
 
 
 
@@ -18,15 +16,15 @@ import {DialogoInformativoComponent} from '../dialogo-informativo/dialogo-inform
 export class ListaAnotarseComidaComponent implements OnInit {
 
   displayedColumns: string[] = ['Dia', 'Comida', 'Cena', 'Anotarse'];
-  asistencia : Array<Asistencia>;
-  dataSource : MatTableDataSource<Asistencia>;
+  asistencia : Array<Partes>;
+  dataSource : MatTableDataSource<Partes>;
   dialogRef: MatDialogRef<DialogoInformativoComponent>;
   detalles = faInfoCircle;
   eliminar = faTrashAlt;
 
   constructor(private asistenciaService:AsistenciaService,private router: Router,public dialog: MatDialog) {
-    this.asistencia = new Array<Asistencia>();
-    this.dataSource = new MatTableDataSource<Asistencia>();
+    this.asistencia = new Array<Partes>();
+    this.dataSource = new MatTableDataSource<Partes>();
   }
 
 
@@ -34,7 +32,7 @@ export class ListaAnotarseComidaComponent implements OnInit {
     this.asistenciaService.getAsistenciaUsuario().subscribe(
       asistencias => {
         for (let asistencia of asistencias){
-          this.asistencia.push(new Asistencia('',asistencia.dia,asistencia.come,asistencia.cena,'','',asistencia.menu_comida,asistencia.menu_cena))
+          this.asistencia.push(new Partes('',asistencia.dia,asistencia.come,asistencia.cena,'','',asistencia.menu_comida,asistencia.menu_cena))
         }
         this.dataSource.data = this.asistencia;
       }
@@ -100,7 +98,7 @@ export class ListaAnotarseComidaComponent implements OnInit {
     this.asistenciaService.getAsistenciaUsuario().subscribe(
       asistencias => {
         for (let asistencia of asistencias){
-          this.asistencia.push(new Asistencia('',asistencia.dia,asistencia.come,asistencia.cena,'','',asistencia.menu_comida,asistencia.menu_cena))
+          this.asistencia.push(new Partes('',asistencia.dia,asistencia.come,asistencia.cena,'','',asistencia.menu_comida,asistencia.menu_cena))
         }
         this.dataSource.data = this.asistencia;
       }
@@ -112,6 +110,7 @@ export class ListaAnotarseComidaComponent implements OnInit {
       disableClose: false
     });
     this.dialogRef.componentInstance.mensage = mensaje;
+    this.dialogRef.componentInstance.titulo = "Tarde!!";
 
     this.dialogRef.afterClosed().subscribe(result => {
       this.dialogRef = null;

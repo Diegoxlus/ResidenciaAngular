@@ -1,4 +1,4 @@
-export class Asistencia {
+export class Partes {
   private _residente ?;
   private _dia ?;
   private _come ?;

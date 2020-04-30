@@ -32,10 +32,10 @@ export class MenuDirectoraComponent implements OnInit {
     this.router.navigate(['/habitaciones']);
   }
   irGestionPartes() {
-    this.router.navigate(['/partes']);
+    this.router.navigate(['/lista-partes']);
   }
   irGestionNoticias() {
-    this.router.navigate(['/noticias']);
+    this.router.navigate(['/gestion-noticias']);
   }
 
   irConfiguracion() {

@@ -34,6 +34,6 @@ export class AsistenciaService {
   }
   desinscribirseCena(dia): Observable<any>{
     let headers = new HttpHeaders().append('Authorization', 'Basic ' + btoa(sessionStorage.getItem('emailLogin') + ':' + sessionStorage.getItem('pass')));
-    return this.http.get(this.url+'+'+'desinscribirse-cenar'+'/'+dia,{headers, responseType: 'json'});
+    return this.http.get(this.url+'/'+'desinscribirse-cenar'+'/'+dia,{headers, responseType: 'json'});
   }
 }

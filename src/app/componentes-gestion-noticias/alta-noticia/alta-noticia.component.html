@@ -1,0 +1,33 @@
+<div class="container ">
+  <h1 id="tituloAlta" class="w-75">Nueva noticia</h1>
+  <form id="noticiaAltaForm" [formGroup]="FormularioAlta" class=" justify-content-center w-75" (ngSubmit)="onSubmit()">
+
+    <mat-form-field class="form-group w-100">
+      <mat-label>Titulo noticia</mat-label>
+      <input formControlName="titulo" matInput placeholder="Titulo...">
+    </mat-form-field>
+
+    <mat-form-field class="form-group w-100">
+      <mat-label>Contenido noticia</mat-label>
+      <textarea formControlName="descripcion" matInput placeholder="Escribe aqui el motivo..."></textarea>
+    </mat-form-field>
+
+    <div *ngIf="registroCorrecto" [ngClass]="{'transition': registroCorrecto}"  id="registroCorrecto" class="alert alert-success">
+      <a href="#" (click)="resetearIntento()" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong>Noticia publicada</strong>.
+    </div>
+
+    <div *ngIf="registroIncorrecto" class="alert alert-danger">
+      <a href="#" (click)="resetearIntento()" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong>Error: </strong>{{msgError}}.
+    </div>
+
+
+    <div class="mt-4">
+      <button (click)="altaNoticia()" type="submit" class=" col-md-3 btn btn-success mt-2">Registrar</button>
+      <button type="button" class=" col-md-3 offset-md-2 btn btn-warning mt-2" (click)="router.navigate(['/gestion-noticias'])">Volver</button>
+    </div>
+  </form>
+
+</div>
+

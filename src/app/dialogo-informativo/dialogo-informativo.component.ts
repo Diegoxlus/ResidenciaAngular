@@ -10,6 +10,7 @@ export class DialogoInformativoComponent{
 
   constructor(public dialogRef: MatDialogRef<DialogoInformativoComponent>) {}
   public mensage:string;
+  public titulo : string;
 
 
 

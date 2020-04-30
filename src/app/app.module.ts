@@ -11,14 +11,21 @@ import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import { MaterialModule } from './material.module';
 import { PersonalComponent } from './componentes-gestion-usuarios/personal/personal.component';
-import { PagosComponent } from './pagos/pagos.component';
 import { AltaPersonaComponent } from './componentes-gestion-usuarios/alta-persona/alta-persona.component';
 import { MenuDirectoraComponent } from './menu-directora/menu-directora.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {pipeCargo} from './pippes/pipeCargo';
 import {FiltroTabla} from './pippes/filtro';
 import {CdkTableModule} from '@angular/cdk/table';
-import {DateAdapter, MAT_DATE_LOCALE, MatCheckboxModule, MatOptionModule, MatSelectModule, MatTableModule} from '@angular/material';
+import {
+  DateAdapter,
+  MAT_DATE_LOCALE, MAT_FORM_FIELD_DEFAULT_OPTIONS,
+  MatCheckboxModule,
+  MatOptionModule,
+  MatPaginatorModule,
+  MatSelectModule,
+  MatTableModule
+} from '@angular/material';
 import {TrabajadoresComponent} from './componentes-gestion-usuarios/trabajadores/trabajadores.component';
 import { DialogoConfirmacionComponent } from './dialogo-confirmacion/dialogo-confirmacion.component';
 import {ReactiveFormsModule} from '@angular/forms';
@@ -39,10 +46,20 @@ import {DatePipe} from '@angular/common';
 import { EditHabitacionComponent } from './componentes-gestion-habitaciones/edit-habitacion/edit-habitacion.component';
 import { MenuResidenteComponent } from './menu-residente/menu-residente.component';
 import { AsistenciaComidaComponent } from './asistencia-comida/asistencia-comida.component';
-import { ListaAnotarseComidaComponent } from './lista-anotarse-comida/lista-anotarse-comida.component';
+import { ListaAnotarseComidaComponent } from './componentes-gestion-menu/lista-anotarse-comida/lista-anotarse-comida.component';
 import { ConfiguracionComponent } from './configuracion/configuracion.component';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import { DialogoInformativoComponent } from './dialogo-informativo/dialogo-informativo.component';
+import { AltaParteComponent } from './componentes-gestion-partes/alta-parte/alta-parte.component';
+import { ListaPartesComponent } from './componentes-gestion-partes/lista-partes/lista-partes.component';
+import { EditPartesComponent } from './componentes-gestion-partes/edit-partes/edit-partes.component';
+import { ListaNoticiasComponent } from './componentes-gestion-noticias/lista-noticias/lista-noticias.component';
+import { EditNoticiaComponent } from './componentes-gestion-noticias/edit-noticia/edit-noticia.component';
+import { AltaNoticiaComponent } from './componentes-gestion-noticias/alta-noticia/alta-noticia.component';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+import { ListaNoticiasResidenteComponent } from './componentes-gestion-noticias/lista-noticias-residente/lista-noticias-residente.component';
+
+
 
 @NgModule({
   declarations: [
@@ -53,7 +70,6 @@ import { DialogoInformativoComponent } from './dialogo-informativo/dialogo-infor
     HabitacionesComponent,
     ResidentesComponent,
     PersonalComponent,
-    PagosComponent,
     AltaPersonaComponent,
     MenuDirectoraComponent,
     pipeCargo,
@@ -73,6 +89,13 @@ import { DialogoInformativoComponent } from './dialogo-informativo/dialogo-infor
     ListaAnotarseComidaComponent,
     ConfiguracionComponent,
     DialogoInformativoComponent,
+    AltaParteComponent,
+    ListaPartesComponent,
+    EditPartesComponent,
+    ListaNoticiasComponent,
+    EditNoticiaComponent,
+    AltaNoticiaComponent,
+    ListaNoticiasResidenteComponent,
 
   ],
   imports: [
@@ -92,13 +115,17 @@ import { DialogoInformativoComponent } from './dialogo-informativo/dialogo-infor
     MatCheckboxModule,
     FullCalendarModule,
     NgxMaterialTimepickerModule.setLocale('es-ES'),
-    NgbModule
+    NgbModule,
+    MatPaginatorModule
   ],
   exports: [
     FiltroTabla
   ],
-  providers: [DatosUsuarioService,{provide: MAT_DATE_LOCALE , useValue: 'es-ES'},{provide: DateAdapter, useClass: MyDateAdapter},DatePipe],
+  providers: [{ provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }, DatosUsuarioService,{provide: MAT_DATE_LOCALE , useValue: 'es-ES'},{provide: DateAdapter, useClass: MyDateAdapter},DatePipe],
   bootstrap: [AppComponent],
-  entryComponents: [DialogoConfirmacionComponent,DialogoInformativoComponent]
+  entryComponents: [ListaNoticiasComponent,DialogoConfirmacionComponent,DialogoInformativoComponent]
 })
 export class AppModule { }
+
+platformBrowserDynamic().bootstrapModule(AppModule)
+  .catch(err => console.error(err));

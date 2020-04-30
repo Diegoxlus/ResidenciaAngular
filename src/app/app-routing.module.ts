@@ -4,7 +4,6 @@ import {PaginaInicioComponent} from './componentes-iniciales/pagina-inicio/pagin
 import {HabitacionesComponent} from './componentes-gestion-habitaciones/habitaciones/habitaciones.component';
 import {ResidentesComponent} from './componentes-gestion-usuarios/residentes/residentes.component';
 import {PersonalComponent} from './componentes-gestion-usuarios/personal/personal.component';
-import {PagosComponent} from './pagos/pagos.component';
 import {MenuDirectoraComponent} from './menu-directora/menu-directora.component';
 import {AltaPersonaComponent} from './componentes-gestion-usuarios/alta-persona/alta-persona.component';
 import {ResidenteEditComponent} from './componentes-gestion-usuarios/residente-edit/residente-edit.component';
@@ -16,15 +15,22 @@ import {CalendarioMenuComponent} from './componentes-gestion-menu/calendario-men
 import {AltaMenuComponent} from './componentes-gestion-menu/alta-menu/alta-menu.component';
 import {EditHabitacionComponent} from './componentes-gestion-habitaciones/edit-habitacion/edit-habitacion.component';
 import {MenuResidenteComponent} from './menu-residente/menu-residente.component';
-import {ListaAnotarseComidaComponent} from './lista-anotarse-comida/lista-anotarse-comida.component';
+import {ListaAnotarseComidaComponent} from './componentes-gestion-menu/lista-anotarse-comida/lista-anotarse-comida.component';
 import {ConfiguracionComponent} from './configuracion/configuracion.component';
+import {ListaPartesComponent} from './componentes-gestion-partes/lista-partes/lista-partes.component';
+import {AltaParteComponent} from './componentes-gestion-partes/alta-parte/alta-parte.component';
+import {EditPartesComponent} from './componentes-gestion-partes/edit-partes/edit-partes.component';
+import {AltaNoticiaComponent} from './componentes-gestion-noticias/alta-noticia/alta-noticia.component';
+import {EditNoticiaComponent} from './componentes-gestion-noticias/edit-noticia/edit-noticia.component';
+import {ListaNoticiasComponent} from './componentes-gestion-noticias/lista-noticias/lista-noticias.component';
+import {ListaNoticiasResidenteComponent} from './componentes-gestion-noticias/lista-noticias-residente/lista-noticias-residente.component';
 
 const routes: Routes = [
-  {path: '', component: PaginaInicioComponent},
+  {path: '', component: ListaNoticiasResidenteComponent},
+  {path: 'alta-noticias', component: AltaNoticiaComponent},
   {path: 'personal', component: PersonalComponent},
   {path: 'residentes', component: ResidentesComponent},
   {path: 'habitaciones', component: HabitacionesComponent},
-  {path: 'pagos', component: PagosComponent},
   {path: 'menu-directora', component: MenuDirectoraComponent},
   {path: 'alta-personal', component: AltaPersonaComponent},
   {path: 'modificar-residente', component: ResidenteEditComponent},
@@ -38,6 +44,13 @@ const routes: Routes = [
   {path: 'menu-residente', component: MenuResidenteComponent},
   {path: 'lista-anotarse-comida', component: ListaAnotarseComidaComponent},
   {path: 'configuracion', component: ConfiguracionComponent},
+  {path: 'lista-partes', component: ListaPartesComponent},
+  {path: 'alta-parte', component: AltaParteComponent},
+  {path: 'editar-parte', component: EditPartesComponent},
+  {path: 'alta-noticia', component: AltaNoticiaComponent},
+  {path: 'editar-noticia', component: EditNoticiaComponent},
+  {path: 'gestion-noticias', component: ListaNoticiasComponent},
+  {path: 'lista-noticias', component: ListaNoticiasResidenteComponent}
 
 
 ];
