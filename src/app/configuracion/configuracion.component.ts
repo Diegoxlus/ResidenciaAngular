@@ -29,7 +29,9 @@ export class ConfiguracionComponent implements OnInit {
     horaComida: new FormControl('', [
       ]),
     horaCena: new FormControl('', [
-      ])
+      ]),
+    registro: new FormControl('',[
+    ])
   });
 
 
@@ -46,13 +48,13 @@ export class ConfiguracionComponent implements OnInit {
           this.registroIncorrecto = true;
         }
         else{
-          this.configuaracion = new Configuracion(result.id,result.hora_comida,result.hora_cena,result.limite_hora_comida,result.limite_hora_cena)
+          this.configuaracion = new Configuracion(result.id,result.hora_comida,result.hora_cena,result.limite_hora_comida,result.limite_hora_cena,result.registro)
           console.log(this.configuaracion.hora_cena.substring(0,5));
           this.limiteComida.setValue(this.configuaracion.limite_hora_comida);
           this.limiteCena.setValue(this.configuaracion.limite_hora_cena);
-          console.log(this.configuaracion.limiteComida)
           this.horaComida.setValue(this.configuaracion.hora_comida.substring(0,5));
           this.horaCena.setValue(this.configuaracion.hora_cena.substring(0,5));
+          this.registro.setValue(this.configuaracion.registro);
         }
       }
     )
@@ -74,6 +76,11 @@ export class ConfiguracionComponent implements OnInit {
 
   get limiteCena(){
     return this.FormularioAlta.get('limiteCena');
+  }
+
+  get registro(){
+    return this.FormularioAlta.get('registro');
+
   }
 
 
@@ -98,7 +105,7 @@ export class ConfiguracionComponent implements OnInit {
 
   editarConfiguracion() {
     this.resetearIntento();
-    let configuracion = new Configuracion('',this.horaComida.value,this.horaCena.value,this.limiteComida.value,this.limiteCena.value);
+    let configuracion = new Configuracion('',this.horaComida.value,this.horaCena.value,this.limiteComida.value,this.limiteCena.value,this.registro.value);
     this.configuracionService.editarConfiguracion(configuracion).subscribe(
       result => {
           this.registroCorrecto = true;

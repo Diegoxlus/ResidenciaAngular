@@ -12,7 +12,7 @@ import {Router} from '@angular/router';
 })
 export class TrabajadorEditComponent implements OnInit {
   trabajador: Usuario;
-  roles = ['Director/a','Secretario/a', 'Cocinero/a', 'Residente/a'];
+  roles = [ 'Residente/a', 'Cocinero/a','Secretario/a','Director/a'];
   registroCorrecto : boolean = false;
   registroIncorrecto : boolean = false;
   msgError: string;
@@ -132,6 +132,7 @@ export class TrabajadorEditComponent implements OnInit {
     this.fechaEdit.setValue(this.trabajador.f_nac);
     this.emailEdit.setValue(this.trabajador.email);
     this.rolEdit.setValue(this.trabajador.rol);
+    console.log(this.trabajador.rol);
   }
 
   private pasarValoresAlUsuario() {

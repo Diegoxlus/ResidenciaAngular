@@ -27,8 +27,8 @@
           <div class="md-form mb-2">
             <i class="fas fa-unlock-alt	"></i>
             <label data-error="wrong" data-success="right" for="defaultForm-pass">Contraseña</label>
-            <input  [ngClass]="!FormularioLogin.get('contrasenaLogin').invalid ? 'ng-valid-input': 'ng-invalid-input'"   name="pass" type="password" id="defaultForm-pass"
-                   class="form-control ng-invalid-input " formControlName="contrasenaLogin">
+            <input  [ngClass]="contrasenaFormLogin.invalid ? 'ng-invalid-input form-control':'ng-valid-input form-control'"   name="pass" type="password" id="defaultForm-pass"
+                    formControlName="contrasenaLogin">
             <div *ngIf="(contrasenaFormLogin.invalid && contrasenaFormLogin.touched) || contrasenaFormLogin.dirty">
               <small *ngIf="contrasenaFormLogin.errors?.required" class="text-danger">La contraseña es necesario</small>
               <small *ngIf="contrasenaFormLogin.errors?.pattern" class="text-danger">La contraseña debe teneral menos un dígito, al menos una minúscula y al menos una mayúscula, debe tener al entre 8 y 16 caracteres</small>
@@ -46,7 +46,7 @@
 
         </div>
         <div class="modal-footer d-flex justify-content-center">
-          <button type="button" (click)="login()" class="btn btn-outline-success">Login</button>
+          <button [disabled]="FormularioLogin.invalid" type="button" (click)="login()" class="btn btn-outline-success">Acceder</button>
         </div>
       </div>
     </form>
@@ -116,7 +116,7 @@
 
       <div class="form-group">
         <label for="contraseña">Contraseña</label>
-        <input [ngClass]="!contrasenaRegistro.invalid ? 'ng-valid-input': 'ng-invalid-input'" type="text" formControlName="contrasenaRegistro" class="form-control ng-valid-input" id="contraseña"  name="pass">
+        <input [ngClass]="!contrasenaRegistro.invalid ? 'ng-valid-input form-control': 'ng-invalid-input form-control'" type="text" formControlName="contrasenaRegistro"  id="contraseña"  name="pass">
         <div *ngIf="(contrasenaRegistro.invalid && contrasenaRegistro.touched) || contrasenaRegistro.dirty">
           <small *ngIf="contrasenaRegistro.errors?.required" class="text-danger">La contraseña es obligatoria</small>
           <small *ngIf="contrasenaRegistro.errors?.pattern" class="text-danger">La contraseña debe teneral menos un dígito, al menos una minúscula y al menos una mayúscula, debe tener al entre 8 y 16 caracteres</small>
@@ -129,8 +129,8 @@
         </div>
 
       <div class="modal-footer d-flex justify-content-center">
-        <button [class.disabled]="FormularioRegistro.invalid" (click)="registrar()" type="submit" class=" col- btn btn-success">Registrar</button>
-        <button type="button" class=" col- offset-sm-1 btn btn-warning" (click)="router.navigate(['/personal'])">Volver</button>
+        <button [disabled]="FormularioRegistro.invalid" (click)="registrar()" type="submit" class=" col- btn btn-success">Registrar</button>
+        <button (click)="cerrarModal()" type="button" class=" col- offset-sm-1 btn btn-warning">Volver</button>
       </div>
       </div>
     </form>
@@ -145,9 +145,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="logo">
     <a class="navbar-brand" href="#">
-      <img src="../../../assets/logo.svg" alt="">
+      <img src="../../../assets/logo.png" [height]="100" [width]="120" alt="">
     </a>
-    <h6>Rede de residencias xuvenís</h6>
   </div>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
@@ -160,19 +159,13 @@
       <li class="nav-item active">
         <a class="nav-link" href="javascript:void(0);" *ngIf="usuarioLogin.rol==0 && usuarioLogin.logueado==true" (click)="router.navigate(['/menu-directora'])">Inicio</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Residencias</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Novas</a>
-      </li>
     </ul>
     <span class="navbar-text">
 
             <button *ngIf="!usuarioLogin.logueado" type="button" class="btn btn-outline-light my-2 my-sm-0 mr-2" data-toggle="modal"
                     data-target="#modalLoginForm">Acceso</button>
-            <button *ngIf="!usuarioLogin.logueado"  type="button" class="btn btn-outline-light my-2 my-sm-0" data-toggle="modal"
-                    data-target="#modalRegisterForm">Rexístrate</button>
+            <button *ngIf="!usuarioLogin.logueado && this.configuracion.registro==1"  type="button" class="btn btn-outline-light my-2 my-sm-0" data-toggle="modal"
+                    data-target="#modalRegisterForm">Registrate</button>
 
             <button *ngIf="usuarioLogin.logueado" (click)="exit()"  type="button" class="btn btn-danger my-2 my-sm-0">Salir</button>
     </span>

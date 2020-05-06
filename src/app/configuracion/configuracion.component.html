@@ -35,13 +35,19 @@
 
   <div *ngIf="registroCorrecto" [ngClass]="{'transition': registroCorrecto}"  id="registroCorrecto" class="alert alert-success">
     <a href="#" (click)="resetearIntento()" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    <strong>Cifiguración guardada</strong>.
+    <strong>Configuración guardada</strong>.
   </div>
 
   <div *ngIf="registroIncorrecto" class="alert alert-danger">
     <a href="#" (click)="resetearIntento()" class="close" data-dismiss="alert" aria-label="close">&times;</a>
     <strong>Error: </strong>{{msgError}}.
   </div>
+
+  <div class="ml-2 mb-4 mt-2 row">
+    <label class="col-12 margen-picker " >Activar registro residentes</label>
+    <mat-checkbox formControlName="registro"></mat-checkbox>
+  </div>
+
 
   <div class="d-flex justify-content-around mt-4">
     <button (click)="editarConfiguracion()" type="submit" class=" col-md-3 btn btn-success mt-2">Añadir</button>

@@ -60,6 +60,8 @@ export class AltaParteComponent implements OnInit {
     }
   }
 
+
+
   onSubmit() {
     console.log(this.parte);
   }

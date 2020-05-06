@@ -4,14 +4,16 @@ export class Configuracion {
   private _hora_cena ?;
   private _limite_hora_comida ?;
   private _limite_hora_cena ?;
+  private _registro ?;
 
 
-  constructor(id ?, hora_comida ?, hora_cena ?, limite_hora_comida ?, limite_hora_cena ?) {
+  constructor(id ?, hora_comida ?, hora_cena ?, limite_hora_comida ?, limite_hora_cena ?,registro ?) {
     this._id = id;
     this._hora_comida = hora_comida;
     this._hora_cena = hora_cena;
     this._limite_hora_comida = limite_hora_comida;
     this._limite_hora_cena = limite_hora_cena;
+    this._registro = registro;
   }
 
 
@@ -53,5 +55,14 @@ export class Configuracion {
 
   set limite_hora_cena(value) {
     this._limite_hora_cena = value;
+  }
+
+
+  get registro() {
+    return this._registro;
+  }
+
+  set registro(value) {
+    this._registro = value;
   }
 }

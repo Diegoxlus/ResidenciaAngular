@@ -5,10 +5,9 @@ import {
   MatDatepickerModule,
   MatNativeDateModule,
   MatFormFieldModule,
-  MatInputModule, MatPaginatorModule
+  MatInputModule,
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {CustomMatPaginatorIntl} from './servicios/custom-matpaginator-intl.service';
 
 @NgModule({
   imports: [

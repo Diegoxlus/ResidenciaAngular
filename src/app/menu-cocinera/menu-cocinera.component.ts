@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {faUtensilSpoon,faBookOpen} from '@fortawesome/free-solid-svg-icons';
 import {Router} from '@angular/router';
+import {faEdit} from '@fortawesome/free-solid-svg-icons/faEdit';
 
 @Component({
   selector: 'app-menu-cocinera',
@@ -10,6 +11,7 @@ import {Router} from '@angular/router';
 export class MenuCocineraComponent implements OnInit {
   iconoComida = faUtensilSpoon;
   iconoAnotar = faBookOpen;
+  iconoInscribir= faEdit;
 
   constructor( private router: Router) {
   }
@@ -23,4 +25,8 @@ export class MenuCocineraComponent implements OnInit {
     this.router.navigate(['menu-mensual']);
   }
 
+  irGestionAsistencia() {
+    this.router.navigate(['lista-asistencia']);
+
+  }
 }

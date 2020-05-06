@@ -24,9 +24,15 @@ import {AltaNoticiaComponent} from './componentes-gestion-noticias/alta-noticia/
 import {EditNoticiaComponent} from './componentes-gestion-noticias/edit-noticia/edit-noticia.component';
 import {ListaNoticiasComponent} from './componentes-gestion-noticias/lista-noticias/lista-noticias.component';
 import {ListaNoticiasResidenteComponent} from './componentes-gestion-noticias/lista-noticias-residente/lista-noticias-residente.component';
+import {AltaPagoComponent} from './componentes-gestion-pagos/alta-pago/alta-pago.component';
+import {ListaPagosResidenteComponent} from './componentes-gestion-pagos/lista-pagos-residente/lista-pagos-residente.component';
+import {ListaPagosComponent} from './componentes-gestion-pagos/lista-pagos/lista-pagos.component';
+import {ListaAsistenciaComidaComponent} from './componentes-gestion-menu/lista-asistencia-comida/lista-asistencia-comida.component';
+import {MenuSecretariaComponent} from './menu-secretaria/menu-secretaria.component';
 
 const routes: Routes = [
-  {path: '', component: ListaNoticiasResidenteComponent},
+  {path: '', component: PaginaInicioComponent},
+  {path: 'alta-pago', component: AltaPagoComponent},
   {path: 'alta-noticias', component: AltaNoticiaComponent},
   {path: 'personal', component: PersonalComponent},
   {path: 'residentes', component: ResidentesComponent},
@@ -50,7 +56,11 @@ const routes: Routes = [
   {path: 'alta-noticia', component: AltaNoticiaComponent},
   {path: 'editar-noticia', component: EditNoticiaComponent},
   {path: 'gestion-noticias', component: ListaNoticiasComponent},
-  {path: 'lista-noticias', component: ListaNoticiasResidenteComponent}
+  {path: 'lista-noticias', component: ListaNoticiasResidenteComponent},
+  {path: 'mis-pagos', component: ListaPagosResidenteComponent},
+  {path: 'lista-pagos', component: ListaPagosComponent},
+  {path: 'lista-asistencia' ,component: ListaAsistenciaComidaComponent},
+  {path: 'menu-secretaria', component: MenuSecretariaComponent}
 
 
 ];

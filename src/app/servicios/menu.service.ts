@@ -14,6 +14,7 @@ export class MenuService {
 
   getMenus() : Observable<any>{
     let headers = new HttpHeaders().append('Content-Type', 'application/json');
+
     return this.http.get(this.url,{headers, responseType: 'json'});
   }
 
@@ -25,7 +26,8 @@ export class MenuService {
   añadirMenu(nuevoMenu: Menu): Observable<any> {
     let json = JSON.stringify(nuevoMenu);
     let parametros = "menu="+json;
-    let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
+    let headers = new HttpHeaders().append('Content-Type','application/x-www-form-urlencoded')
+      .append('Authorization', 'Basic ' + btoa(sessionStorage.getItem('emailLogin') + ':' + sessionStorage.getItem('pass')));
     return this.http.post(this.url, parametros, {headers: headers,responseType:'json'});
   }
 }

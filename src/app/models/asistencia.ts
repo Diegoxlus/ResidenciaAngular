@@ -1,4 +1,4 @@
-export class Partes {
+export class Asistencia {
   private _residente ?;
   private _dia ?;
   private _come ?;
@@ -7,8 +7,10 @@ export class Partes {
   private _asiste_cena ?;
   private _menu_comida ?;
   private _menu_cena?;
+  private _nombre?;
+  private _apellidos?;
 
-  constructor(residente ?, dia ?, come ?, cena ?, asiste_comida ?, asiste_cena ?, menu_comida ?, menu_cena ?) {
+  constructor(residente ?, dia ?, come ?, cena ?, asiste_comida ?, asiste_cena ?, menu_comida ?, menu_cena ?, nombre?, apellidos?) {
     this._residente = residente;
     this._dia = dia;
     this._come = come;
@@ -17,6 +19,8 @@ export class Partes {
     this._asiste_cena = asiste_cena;
     this._menu_comida = menu_comida; //Empleado para los JOINS de asistencia_menu
     this._menu_cena = menu_cena;  // Empleado para los JOINS de asistencia_menu
+    this._nombre = nombre;
+    this._apellidos = apellidos;
   }
 
   get residente() {
@@ -81,5 +85,21 @@ export class Partes {
 
   set menu_cena(value) {
     this._menu_cena = value;
+  }
+
+  get nombre() {
+    return this._nombre;
+  }
+
+  set nombre(value) {
+    this._nombre = value;
+  }
+
+  get apellidos() {
+    return this._apellidos;
+  }
+
+  set apellidos(value) {
+    this._apellidos = value;
   }
 }

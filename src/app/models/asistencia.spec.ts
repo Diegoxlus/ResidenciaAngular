@@ -1,7 +1,7 @@
-import { Partes } from './partes';
+import { Asistencia } from './asistencia';
 
-describe('Partes', () => {
+describe('Asistencia', () => {
   it('should create an instance', () => {
-    expect(new Partes()).toBeTruthy();
+    expect(new Asistencia()).toBeTruthy();
   });
 });

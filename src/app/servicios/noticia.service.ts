@@ -18,19 +18,22 @@ export class NoticiaService {
     console.log(noticia);
     let json = JSON.stringify(noticia);
     let parametros = "noticia="+json;
-    let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
+    let headers = new HttpHeaders().append('Content-Type','application/x-www-form-urlencoded')
+      .append('Authorization', 'Basic ' + btoa(sessionStorage.getItem('emailLogin') + ':' + sessionStorage.getItem('pass')));
     return this.http.post(this.url, parametros, {headers: headers,responseType:'json'});
   }
 
   public getNoticias() : Observable<any> {
-    let headers = new HttpHeaders().append('Content-Type', 'application/json');
+    let headers = new HttpHeaders().append('Content-Type', 'application/json')
+      .append('Authorization', 'Basic ' + btoa(sessionStorage.getItem('emailLogin') + ':' + sessionStorage.getItem('pass')));
     return this.http.get(this.url,{headers, responseType: 'json'});
   }
 
   public editarNoticia(noticia: Noticia) {
     let json = JSON.stringify(noticia);
     let parametros = "noticia="+json;
-    let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
+    let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded')
+      .append('Authorization', 'Basic ' + btoa(sessionStorage.getItem('emailLogin') + ':' + sessionStorage.getItem('pass')));
     return this.http.post(this.url+'/'+'editar', parametros, {headers: headers,responseType:'json'});
 
   }
@@ -38,7 +41,8 @@ export class NoticiaService {
   eliminarNoticia(id) : Observable<any> {
     console.log("si");
     console.log(id);
-    let headers = new HttpHeaders().append('Content-Type', 'application/json');
+    let headers = new HttpHeaders().append('Content-Type', 'application/json')
+      .append('Authorization', 'Basic ' + btoa(sessionStorage.getItem('emailLogin') + ':' + sessionStorage.getItem('pass')));
     return this.http.delete(this.url+'/'+'eliminar'+'/'+id,{headers:headers,responseType:'json'});
   }
 

@@ -3,6 +3,8 @@ import {UsuarioService} from '../../servicios/usuario.service';
 import {Usuario} from '../../models/usuario';
 import {Router} from '@angular/router';
 import {FormControl,FormGroup,Validators} from '@angular/forms';
+import {ConfiguracionService} from '../../servicios/configuracion.service';
+import {Configuracion} from '../../models/configuracion';
 
 
 declare var $: any;
@@ -17,6 +19,7 @@ export class CabeceraComponent implements OnInit {
   private usuarioRegistro: Usuario;
   private intentoFallidoLogin:boolean;
   private intentoFallidoRegistro:boolean;
+  private configuracion : Configuracion;
 
   public FormularioLogin = new FormGroup({
     emailLogin: new FormControl('', [
@@ -57,17 +60,28 @@ export class CabeceraComponent implements OnInit {
   });
   msgError: String;
 
-  constructor(private usuarioService: UsuarioService, private router: Router) {
+  constructor(private usuarioService: UsuarioService, private router: Router, private configuracionService: ConfiguracionService) {
     this.usuarioLogin = new Usuario(null, null, null, null);
     this.usuarioRegistro = new Usuario("", "", null, null,null,null,null);
     this.intentoFallidoLogin=false;
     this.intentoFallidoRegistro=false;
+    this.configuracion = new Configuracion();
   }
 
   ngOnInit() {
+
+    this.configuracionService.getConfiguracion().subscribe(
+      result=>{
+        this.configuracion = new Configuracion(result.id,result.hora_comida,result.hora_cena,result.limite_hora_comida,result.limite_hora_cena,result.registro)
+      },error=>{
+
+      }
+    );
+
     if (!this.usuarioLogin.logueado) {
       this.router.navigate(['']);
     }
+
   }
  
   login() {
@@ -87,6 +101,9 @@ export class CabeceraComponent implements OnInit {
           if(this.usuarioLogin.rol == 0){
             this.router.navigate(['/menu-directora']);
           }
+          if(this.usuarioLogin.rol == 1){
+            this.router.navigate(['/menu-secretaria']);
+          }
           if( this.usuarioLogin.rol == 2){
             this.router.navigate(['/menu-cocinera'])
           }
@@ -98,7 +115,7 @@ export class CabeceraComponent implements OnInit {
           this.intentoFallidoLogin=true;
           this.usuarioLogin.email = '';
           this.usuarioLogin.pass = '';
-          console.log("MMMMM");
+
         }
 
       },
@@ -119,20 +136,16 @@ export class CabeceraComponent implements OnInit {
     this.usuarioService.registrar(this.usuarioRegistro).subscribe(
       result => {
         console.log(result);
-        if (result === true) {
-          window.sessionStorage.setItem('emailLogin', this.usuarioLogin.email);
-          window.sessionStorage.setItem('pass', this.usuarioLogin.pass);
-          this.router.navigate(['/menu-residente']);
+
           $('#modalRegisterForm').modal('toggle');
+          window.sessionStorage.setItem('emailLogin', this.usuarioRegistro.email);
+          window.sessionStorage.setItem('pass', this.usuarioRegistro.pass);
+          this.router.navigate(['/menu-residente']);
 
-        } else {
-
-          this.usuarioLogin.email = '';
-          this.usuarioLogin.pass = '';
-        }
 
       },
       error => {
+
         this.msgError = error.error;
         this.intentoFallidoRegistro=true;
       })
@@ -141,11 +154,11 @@ export class CabeceraComponent implements OnInit {
 
   exit() {
     this.usuarioLogin.logueado = false;
+    this.usuarioLogin = new Usuario();
     window.sessionStorage.clear();
+    this.ngOnInit();
     this.router.navigate(['']);
   }
-  get diagnostic() { return JSON.stringify(this.usuarioRegistro); }
-
 
   resetearIntento() {
     this.intentoFallidoLogin=false;
@@ -205,4 +218,8 @@ export class CabeceraComponent implements OnInit {
 
   }
 
+  cerrarModal() {
+    $('#modalRegisterForm').modal('toggle');
+
+  }
 }

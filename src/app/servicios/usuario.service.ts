@@ -31,21 +31,22 @@ export class UsuarioService {
     let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
     return this.http.post(this.url, parametros, {headers: headers,responseType:'json'});
   }
-
+  /*
   getResidentes(): Observable<any> {
     let headers = new HttpHeaders().append('Content-Type', 'application/json');
     return this.http.get(this.url+"/trabajador",{headers, responseType: 'json'});
   }
+  */
+
 
   getResidentesHabitacion(): Observable<any> {
-    console.log(sessionStorage.getItem('emailLogin'));
-    console.log(sessionStorage.getItem('pass'));
      let headers = new HttpHeaders().append('Authorization', 'Basic ' + btoa(sessionStorage.getItem('emailLogin') + ':' + sessionStorage.getItem('pass')));
-    return this.http.get(this.url+"/residente/habitacion",{headers, responseType: 'json'});
+     return this.http.get(this.url+"/residente/habitacion",{headers, responseType: 'json'});
   }
 
   getTrabajadores(): Observable<any> {
-    let headers = new HttpHeaders().append('Content-Type', 'application/json');
+    let headers = new HttpHeaders().append('Content-Type', 'application/json')
+      .append('Authorization', 'Basic ' + btoa(sessionStorage.getItem('emailLogin') + ':' + sessionStorage.getItem('pass')));
     return this.http.get(this.url+"/trabajador",{headers, responseType: 'json'});
   }
 
@@ -57,25 +58,29 @@ export class UsuarioService {
   }
 
   eliminarTrabajador(email: string): Observable<any> {
-    return this.http.delete(this.url+"/trabajador/"+email,{responseType:'text'});
+    let headers = new HttpHeaders().append('Authorization', 'Basic ' + btoa(sessionStorage.getItem('emailLogin') + ':' + sessionStorage.getItem('pass')));
+    return this.http.delete(this.url+"/trabajador/"+email,{headers,responseType:'text'});
   }
 
 
   eliminarResidente(email: string): Observable<any> {
-    return this.http.delete(this.url+"/residente/"+email,{responseType:'text'});
+    let headers = new HttpHeaders().append('Authorization', 'Basic ' + btoa(sessionStorage.getItem('emailLogin') + ':' + sessionStorage.getItem('pass')));
+    return this.http.delete(this.url+"/residente/"+email,{headers,responseType:'text'});
   }
 
   modificarResidente(residente: Usuario) {
     let json = JSON.stringify(residente);
     let parametros = "residente="+json;
-    let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
+    let headers = new HttpHeaders().append('Content-Type','application/x-www-form-urlencoded')
+      .append('Authorization', 'Basic ' + btoa(sessionStorage.getItem('emailLogin') + ':' + sessionStorage.getItem('pass')));
     return this.http.post(this.url+"/residente/"+residente.email, parametros, {headers: headers,responseType:'json'});
   }
 
   modificarTrabajador(trabajador: Usuario) {
     let json = JSON.stringify(trabajador);
     let parametros = "trabajador="+json;
-    let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
+    let headers = new HttpHeaders().append('Content-Type','application/x-www-form-urlencoded')
+      .append('Authorization', 'Basic ' + btoa(sessionStorage.getItem('emailLogin') + ':' + sessionStorage.getItem('pass')));
     return this.http.post(this.url+"/trabajador/"+trabajador.email, parametros, {headers: headers,responseType:'json'});
   }
 }

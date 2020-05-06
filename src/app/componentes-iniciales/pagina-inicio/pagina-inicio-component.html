@@ -1,8 +1,40 @@
 <div class="container">
-
-<h3 id="tituloSlider">Conoce nuestras instalaciones</h3>
-<div class="row col-12 text-center bxslider ml-4">
-  <div *ngFor="let slide of sliders"><img class="imSlider" [src]="slide.url">{{slide.url}}</div>
+  <div class="row mt-4 justify-content-around">
+    <div class="col-5 mt-">
+  <div class="card">
+    <img src="../../../assets/comida.jpg" [height]="200" class="card-img-top" alt="...">
+    <div class="card-body">
+      <p class="card-text">No es necesario tirar la comida, RJG te ofrece la posibilidad de cocinar la comida justa para los residentes que se anoten a las comidas </p>
+    </div>
+  </div>
+    </div>
+<div class="col-5 mt-4">
+  <div class="card">
+    <img src="/../../assets/dinero.jpg" [height]="200" class="card-img-top" alt="...">
+    <div class="card-body">
+      <p class="card-text">Gestiona los pagos mensuales de manera sencilla, comprueba los comprobantes de pago que envian los residentes.</p>
+    </div>
+  </div>
 </div>
+
+    <div class="col-5 mt-4">
+    <div class="card">
+    <img src="/../../assets/estudiantes.jpg" [height]="200" class="card-img-top" alt="...">
+    <div class="card-body">
+      <p class="card-text">Gestiona a los resides y las habitaciones de una forma muy comoda, ten todo bajo control.</p>
+    </div>
+  </div>
+    </div>
+
+    <div class="col-5 mt-4">
+      <div class="card">
+        <img src="/../../assets/noticias.jpg" [height]="200" class="card-img-top" alt="...">
+        <div class="card-body">
+          <p class="card-text">Manten informados a los residentes. RJG dispone de un apartado de noticias muy sencillo y útil.  </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>
 

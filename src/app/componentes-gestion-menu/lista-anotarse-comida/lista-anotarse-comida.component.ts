@@ -3,7 +3,7 @@ import {MatDialog, MatDialogRef, MatTableDataSource} from '@angular/material';
 import {faInfoCircle, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
 import {Router} from '@angular/router';
 import {AsistenciaService} from '../../servicios/asistencia.service';
-import {Partes} from '../../models/partes';
+import {Asistencia} from '../../models/asistencia';
 import {DialogoInformativoComponent} from '../../dialogo-informativo/dialogo-informativo.component';
 
 
@@ -16,15 +16,15 @@ import {DialogoInformativoComponent} from '../../dialogo-informativo/dialogo-inf
 export class ListaAnotarseComidaComponent implements OnInit {
 
   displayedColumns: string[] = ['Dia', 'Comida', 'Cena', 'Anotarse'];
-  asistencia : Array<Partes>;
-  dataSource : MatTableDataSource<Partes>;
+  asistencia : Array<Asistencia>;
+  dataSource : MatTableDataSource<Asistencia>;
   dialogRef: MatDialogRef<DialogoInformativoComponent>;
   detalles = faInfoCircle;
   eliminar = faTrashAlt;
 
   constructor(private asistenciaService:AsistenciaService,private router: Router,public dialog: MatDialog) {
-    this.asistencia = new Array<Partes>();
-    this.dataSource = new MatTableDataSource<Partes>();
+    this.asistencia = new Array<Asistencia>();
+    this.dataSource = new MatTableDataSource<Asistencia>();
   }
 
 
@@ -32,7 +32,7 @@ export class ListaAnotarseComidaComponent implements OnInit {
     this.asistenciaService.getAsistenciaUsuario().subscribe(
       asistencias => {
         for (let asistencia of asistencias){
-          this.asistencia.push(new Partes('',asistencia.dia,asistencia.come,asistencia.cena,'','',asistencia.menu_comida,asistencia.menu_cena))
+          this.asistencia.push(new Asistencia('',asistencia.dia,asistencia.come,asistencia.cena,'','',asistencia.menu_comida,asistencia.menu_cena))
         }
         this.dataSource.data = this.asistencia;
       }
@@ -98,7 +98,7 @@ export class ListaAnotarseComidaComponent implements OnInit {
     this.asistenciaService.getAsistenciaUsuario().subscribe(
       asistencias => {
         for (let asistencia of asistencias){
-          this.asistencia.push(new Partes('',asistencia.dia,asistencia.come,asistencia.cena,'','',asistencia.menu_comida,asistencia.menu_cena))
+          this.asistencia.push(new Asistencia('',asistencia.dia,asistencia.come,asistencia.cena,'','',asistencia.menu_comida,asistencia.menu_cena))
         }
         this.dataSource.data = this.asistencia;
       }

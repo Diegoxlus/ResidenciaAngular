@@ -19,7 +19,7 @@ import {FiltroTabla} from './pippes/filtro';
 import {CdkTableModule} from '@angular/cdk/table';
 import {
   DateAdapter,
-  MAT_DATE_LOCALE, MAT_FORM_FIELD_DEFAULT_OPTIONS,
+  MAT_DATE_LOCALE, MAT_FORM_FIELD_DEFAULT_OPTIONS, MatButtonModule,
   MatCheckboxModule,
   MatOptionModule,
   MatPaginatorModule,
@@ -58,7 +58,12 @@ import { EditNoticiaComponent } from './componentes-gestion-noticias/edit-notici
 import { AltaNoticiaComponent } from './componentes-gestion-noticias/alta-noticia/alta-noticia.component';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import { ListaNoticiasResidenteComponent } from './componentes-gestion-noticias/lista-noticias-residente/lista-noticias-residente.component';
-
+import { AltaPagoComponent } from './componentes-gestion-pagos/alta-pago/alta-pago.component';
+import {MonthPickerModel, MonthpickerComponent} from './monthpicker/monthpicker.component';
+import { ListaPagosResidenteComponent } from './componentes-gestion-pagos/lista-pagos-residente/lista-pagos-residente.component';
+import { ListaPagosComponent } from './componentes-gestion-pagos/lista-pagos/lista-pagos.component';
+import { MenuSecretariaComponent } from './menu-secretaria/menu-secretaria.component';
+import { ListaAsistenciaComidaComponent } from './componentes-gestion-menu/lista-asistencia-comida/lista-asistencia-comida.component';
 
 
 @NgModule({
@@ -96,6 +101,12 @@ import { ListaNoticiasResidenteComponent } from './componentes-gestion-noticias/
     EditNoticiaComponent,
     AltaNoticiaComponent,
     ListaNoticiasResidenteComponent,
+    AltaPagoComponent,
+    MonthpickerComponent,
+    ListaPagosResidenteComponent,
+    ListaPagosComponent,
+    MenuSecretariaComponent,
+    ListaAsistenciaComidaComponent,
 
   ],
   imports: [
@@ -116,7 +127,8 @@ import { ListaNoticiasResidenteComponent } from './componentes-gestion-noticias/
     FullCalendarModule,
     NgxMaterialTimepickerModule.setLocale('es-ES'),
     NgbModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatButtonModule
   ],
   exports: [
     FiltroTabla

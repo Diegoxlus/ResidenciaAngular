@@ -34,7 +34,7 @@ export class MenuResidenteComponent implements OnInit {
   }
 
   irGestionPagosResidente() {
-    this.router.navigate(['gestion-pagos-residente']);
+    this.router.navigate(['mis-pagos']);
 
   }
 }

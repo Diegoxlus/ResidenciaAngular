@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Partes} from '../../models/partes';
+import {Asistencia} from '../../models/asistencia';
 import {MatDialog, MatDialogRef, MatTableDataSource, PageEvent} from '@angular/material';
 import {DialogoInformativoComponent} from '../../dialogo-informativo/dialogo-informativo.component';
 import {faInfoCircle, faTrashAlt} from '@fortawesome/free-solid-svg-icons';

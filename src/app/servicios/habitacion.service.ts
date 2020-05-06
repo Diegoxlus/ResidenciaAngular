@@ -17,33 +17,34 @@ export class HabitacionService {
   }
 
   getHabitaciones(): Observable<any> {
-    console.log(sessionStorage.getItem('emailLogin'));
-    console.log(sessionStorage.getItem('pass'));
     let headers = new HttpHeaders().append('Authorization', 'Basic ' + btoa(sessionStorage.getItem('emailLogin') + ':' + sessionStorage.getItem('pass')));
     return this.http.get(this.url,{headers, responseType: 'json'});
   }
 
   eliminarHabitacion(numero: any): Observable<any> {
-      return this.http.delete(this.url+"/"+numero,{responseType:'json'});
+    let headers = new HttpHeaders().append('Authorization', 'Basic ' + btoa(sessionStorage.getItem('emailLogin') + ':' + sessionStorage.getItem('pass')));
+    return this.http.delete(this.url+"/"+numero,{headers,responseType:'json'});
   }
 
   registrarHabitacion(nuevaHabitacion: Habitacion) : Observable<any> {
     let json = JSON.stringify(nuevaHabitacion);
     let parametros = "habitacion="+json;
-    let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
+    let headers = new HttpHeaders().append('Content-Type','application/x-www-form-urlencoded')
+      .append('Authorization', 'Basic ' + btoa(sessionStorage.getItem('emailLogin') + ':' + sessionStorage.getItem('pass')));
     return this.http.post(this.url, parametros, {headers: headers,responseType:'json'});
   }
 
   eliminarResidenteHabitacion(numero: any, residente: any) : Observable<any> {
-    return this.http.delete(this.url+"/"+numero+'/'+residente,{responseType:'json'});
+    let headers = new HttpHeaders().append('Authorization', 'Basic ' + btoa(sessionStorage.getItem('emailLogin') + ':' + sessionStorage.getItem('pass')));
+    return this.http.delete(this.url+"/"+numero+'/'+residente,{headers,responseType:'json'});
 
   }
-
 
   editarHabitacion(habitacion: Habitacion) {
     let json = JSON.stringify(habitacion);
     let parametros = "habitacion="+json;
-    let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
+    let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded')
+      .append('Authorization', 'Basic ' + btoa(sessionStorage.getItem('emailLogin') + ':' + sessionStorage.getItem('pass')));;
     return this.http.post(this.url+'/'+habitacion.numero, parametros, {headers: headers,responseType:'json'});
   }
 }
