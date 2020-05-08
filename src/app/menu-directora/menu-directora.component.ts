@@ -7,6 +7,7 @@ import {faNewspaper} from '@fortawesome/free-solid-svg-icons';
 import {Router} from '@angular/router';
 import {faMoneyCheckAlt} from '@fortawesome/free-solid-svg-icons/faMoneyCheckAlt';
 import {faEdit} from '@fortawesome/free-solid-svg-icons/faEdit';
+import {faCalendarCheck} from '@fortawesome/free-solid-svg-icons/faCalendarCheck';
 
 
 @Component({
@@ -22,6 +23,7 @@ export class MenuDirectoraComponent implements OnInit {
   iconoConfiguracion = faCogs;
   iconoPagos = faMoneyCheckAlt;
   iconoInscribir = faEdit;
+  iconoFinde = faCalendarCheck;
 
   constructor( private router: Router) {
   }
@@ -54,5 +56,9 @@ export class MenuDirectoraComponent implements OnInit {
   irGestionAsistencia() {
     this.router.navigate(['/lista-asistencia']);
 
+  }
+
+  irVerFinde() {
+    this.router.navigate(['/lista-permanencia']);
   }
 }

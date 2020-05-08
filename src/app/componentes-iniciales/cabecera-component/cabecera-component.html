@@ -116,7 +116,7 @@
 
       <div class="form-group">
         <label for="contraseña">Contraseña</label>
-        <input [ngClass]="!contrasenaRegistro.invalid ? 'ng-valid-input form-control': 'ng-invalid-input form-control'" type="text" formControlName="contrasenaRegistro"  id="contraseña"  name="pass">
+        <input [ngClass]="!contrasenaRegistro.invalid ? 'ng-valid-input form-control': 'ng-invalid-input form-control'" type="password" formControlName="contrasenaRegistro"  id="contraseña"  name="pass">
         <div *ngIf="(contrasenaRegistro.invalid && contrasenaRegistro.touched) || contrasenaRegistro.dirty">
           <small *ngIf="contrasenaRegistro.errors?.required" class="text-danger">La contraseña es obligatoria</small>
           <small *ngIf="contrasenaRegistro.errors?.pattern" class="text-danger">La contraseña debe teneral menos un dígito, al menos una minúscula y al menos una mayúscula, debe tener al entre 8 y 16 caracteres</small>

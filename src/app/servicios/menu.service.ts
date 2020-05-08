@@ -13,13 +13,16 @@ export class MenuService {
   }
 
   getMenus() : Observable<any>{
-    let headers = new HttpHeaders().append('Content-Type', 'application/json');
+    let headers = new HttpHeaders().append('Content-Type', 'application/json')
+      .append('Authorization', 'Basic ' + btoa(sessionStorage.getItem('emailLogin') + ':' + sessionStorage.getItem('pass')));
 
     return this.http.get(this.url,{headers, responseType: 'json'});
   }
 
   getMenuDia(dia:String): Observable<any>{
-    let headers = new HttpHeaders().append('Content-Type', 'application/json');
+    let headers = new HttpHeaders().append('Content-Type', 'application/json')
+      .append('Authorization', 'Basic ' + btoa(sessionStorage.getItem('emailLogin') + ':' + sessionStorage.getItem('pass')));
+
     return this.http.get(this.url+'/'+dia,{headers, responseType: 'json'});
   }
 
@@ -28,6 +31,6 @@ export class MenuService {
     let parametros = "menu="+json;
     let headers = new HttpHeaders().append('Content-Type','application/x-www-form-urlencoded')
       .append('Authorization', 'Basic ' + btoa(sessionStorage.getItem('emailLogin') + ':' + sessionStorage.getItem('pass')));
-    return this.http.post(this.url, parametros, {headers: headers,responseType:'json'});
+    return this.http.post(this.url, parametros, {headers,responseType:'json'});
   }
 }

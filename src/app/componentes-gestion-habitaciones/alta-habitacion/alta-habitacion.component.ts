@@ -25,7 +25,7 @@ export class AltaHabitacionComponent implements OnInit {
     numeroAlta: new FormControl('', [
       Validators.required,
       Validators.pattern("[0-9]*")]),
-    tipoAlta: new FormControl('', [
+    tipoAlta: new FormControl('0', [
       Validators.required,
 
       ]),

@@ -8,7 +8,8 @@ export class pipeCargo implements PipeTransform {
     if(numero==1) return "Secretario/a";
     if(numero==2) return "Cocinero/a";
     if(numero==3) return "Residente/a";
-
+    if(numero==4) return "Portero/a";
+    
   }
 
 }

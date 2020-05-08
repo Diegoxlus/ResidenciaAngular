@@ -16,8 +16,7 @@ export class ConfiguracionService {
   }
 
   getConfiguracion() : Observable<any> {
-    let headers = new HttpHeaders().append('Authorization', 'Basic ' + btoa(sessionStorage.getItem('emailLogin') + ':' + sessionStorage.getItem('pass')));
-    return this.http.get(this.url,{headers, responseType: 'json'});
+    return this.http.get(this.url,{ responseType: 'json'});
   }
 
   editarConfiguracion(configuracion) : Observable<any>{

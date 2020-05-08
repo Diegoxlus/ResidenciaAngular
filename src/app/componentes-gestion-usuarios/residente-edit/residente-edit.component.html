@@ -50,7 +50,7 @@
 
     <div class="form-group">
       <label for="contraseña">Contraseña</label>
-      <input [class.ng-invalid-input]="(contrasenaEdit.invalid && contrasenaEdit.touched)" type="text" formControlName="contrasenaEdit" class="form-control ng-valid-input" id="contraseña"  name="pass">
+      <input [class.ng-invalid-input]="(contrasenaEdit.invalid && contrasenaEdit.touched)" type="password" formControlName="contrasenaEdit" class="form-control ng-valid-input" id="contraseña"  name="pass">
       <div *ngIf="(contrasenaEdit.invalid && contrasenaEdit.touched) || contrasenaEdit.dirty">
         <small *ngIf="contrasenaEdit.errors?.pattern" class="text-danger">La contraseña debe teneral menos un dígito, al menos una minúscula y al menos una mayúscula, debe tener al entre 8 y 16 caracteres</small>
       </div>
@@ -63,7 +63,7 @@
     <div class="form-group">
       <label for="power">Rol</label>
       <select class="form-control" id="power"  name="rol" formControlName="rolEdit" >
-        <option *ngFor="let roloption of roles; index as i" [attr.selected]="residente.rol==i" [value]=i >{{roloption}} </option>
+        <option *ngFor="let roloption of roles; index as i" [selected]="residente.rol==i" [value]=i >{{roloption}} </option>
       </select>
     </div>
 

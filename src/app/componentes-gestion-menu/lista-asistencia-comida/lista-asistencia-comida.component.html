@@ -1,0 +1,126 @@
+<div class="container mt-4">
+  <div class="row ml-sm-1 ml-0 mr-sm-1 mr-0 mb-4 justify-content-around">
+    <button (click)="this.opcion=0;this.refresh()" [className]="this.opcion==0 ? 'btn-success  col-sm-3  mt-2 btn btn-lg': 'btn-outline-primary  col-sm-3  mt-2 btn btn-lg'" type="button" >Comida</button>
+    <button (click)="this.opcion=1;this.refresh()" type="button" [className]="this.opcion==1 ? 'btn-success  col-sm-3  mt-2 btn btn-lg': 'btn-outline-primary  col-sm-3  mt-2 btn btn-lg'">Cena</button>
+    <button (click)="this.opcion=2;this.refresh()" type="button" [className]="this.opcion==2 ? 'btn-success  col-sm-3  mt-2 btn btn-lg': 'btn-outline-primary  col-sm-3  mt-2 btn btn-lg'">Completo</button>
+  </div>
+
+
+
+<div class="row">
+  <mat-form-field class="col-md-6">
+    <label>Filtro</label>
+    <input matInput (keyup)="applyFilter($event)">
+  </mat-form-field>
+
+  <mat-form-field class="col-md-6 mt-3">
+    <input readonly matInput [matDatepickerFilter]="filtro" (dateChange)="cambiarLista()" [(ngModel)]="this.fecha"  [matDatepicker]="menuDatepicker" id="menuDatepicker" >
+    <mat-datepicker-toggle matSuffix [for]="menuDatepicker"></mat-datepicker-toggle>
+    <mat-datepicker touchUi="true"  #menuDatepicker></mat-datepicker>
+  </mat-form-field>
+
+</div>
+
+
+  <div *ngIf="opcion==0" class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" class="w-100">
+
+      <!-- Position Column -->
+      <ng-container class="col-3" matColumnDef="Residente">
+        <th mat-header-cell *matHeaderCellDef>Residente</th>
+        <td mat-cell *matCellDef="let asistencia">{{asistencia.nombre + ' '+ asistencia.apellidos}}</td>
+      </ng-container>
+
+
+      <ng-container class="col-3" matColumnDef="Asiste comida">
+        <th mat-header-cell *matHeaderCellDef> Asiste comida </th>
+        <td mat-cell *matCellDef="let asistencia">
+          <button (click)="this.asisteComida(asistencia)" class="btn btn-success w-50"><fa-icon  [icon]="correcto"></fa-icon></button>
+
+        </td>
+      </ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="this.displayedColumnsOP0"></tr>
+      <tr mat-row *matRowDef="let row; columns: this.displayedColumnsOP0;"></tr>
+    </table>
+  </div>
+
+  <div *ngIf="opcion==1" class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" class="w-100">
+
+      <!-- Position Column -->
+      <ng-container class="col-3" matColumnDef="Residente">
+        <th mat-header-cell *matHeaderCellDef>Residente</th>
+        <td mat-cell *matCellDef="let asistencia">{{asistencia.nombre + ' '+ asistencia.apellidos}}</td>
+      </ng-container>
+
+
+      <ng-container class="col-3" matColumnDef="Asiste cena">
+        <th mat-header-cell *matHeaderCellDef> Asiste cena </th>
+        <td mat-cell *matCellDef="let asistencia">
+          <button (click)="this.asisteCena(asistencia)" class="btn btn-success w-50"><fa-icon  [icon]="correcto"></fa-icon></button>
+        </td>
+      </ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="this.displayedColumnsOP1"></tr>
+      <tr mat-row *matRowDef="let row; columns: this.displayedColumnsOP1;"></tr>
+    </table>
+  </div>
+
+  <div *ngIf="opcion==2" class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" class="w-100">
+
+      <!-- Position Column -->
+      <ng-container class="" matColumnDef="Residente">
+        <th mat-header-cell *matHeaderCellDef>Residente</th>
+        <td mat-cell *matCellDef="let asistencia">{{asistencia.nombre + ' '+ asistencia.apellidos}}</td>
+      </ng-container>
+
+
+      <ng-container class="" matColumnDef="Comió">
+        <th mat-header-cell *matHeaderCellDef> Comio </th>
+        <td mat-cell *matCellDef="let asistencia">
+          <button *ngIf="asistencia.asiste_comida==1 && asistencia.come==1 " class="btn btn-success "><fa-icon  [icon]="correcto"></fa-icon></button>
+          <button *ngIf="asistencia.asiste_comida==0 && asistencia.come==1 " class="btn btn-danger "><fa-icon  [icon]="incorrecto"></fa-icon></button>
+          <button *ngIf="asistencia.come==0" class="btn btn-warning "><fa-icon  [icon]="noAnotado"></fa-icon></button>
+
+        </td>
+      </ng-container>
+
+      <ng-container class="" matColumnDef="Cenó">
+        <th mat-header-cell *matHeaderCellDef> Cenó </th>
+        <td mat-cell *matCellDef="let asistencia">
+          <button *ngIf="asistencia.asiste_cena==1 && asistencia.cena==1" class="btn btn-success"><fa-icon  [icon]="correcto"></fa-icon></button>
+          <button *ngIf="asistencia.asiste_cena==0 && asistencia.cena==1" class="btn btn-danger"><fa-icon  [icon]="incorrecto"></fa-icon></button>
+          <button *ngIf="asistencia.cena==0" class="btn btn-warning "><fa-icon  [icon]="noAnotado"></fa-icon></button>
+
+        </td>
+      </ng-container>
+
+      <ng-container class="" matColumnDef="A.Comida">
+        <th mat-header-cell *matHeaderCellDef> A.Comida </th>
+        <td mat-cell *matCellDef="let asistencia">
+          <button (click)="this.asisteComida(asistencia)" *ngIf="asistencia.asiste_comida==0" class="btn btn-success"><fa-icon  [icon]="correcto"> </fa-icon> Anotar</button>
+          <button (click)="this.noAsisteComida(asistencia)" *ngIf="asistencia.asiste_comida==1" class="btn btn-danger "><fa-icon  [icon]="incorrecto"></fa-icon> Desanotar</button>
+
+        </td>
+      </ng-container>
+
+      <ng-container class="" matColumnDef="A.Cena">
+        <th mat-header-cell *matHeaderCellDef> A.Cena </th>
+        <td mat-cell *matCellDef="let asistencia">
+          <button (click)="this.asisteCena(asistencia)" *ngIf="asistencia.asiste_cena==0" class="btn btn-success "><fa-icon  [icon]="correcto"></fa-icon> Anotar</button>
+          <button (click)="this.noAsisteCena(asistencia)" *ngIf="asistencia.asiste_cena==1" class="btn btn-danger "><fa-icon  [icon]="incorrecto"></fa-icon> Desanotar</button>
+
+        </td>
+      </ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="this.displayedColumnsOP2"></tr>
+      <tr mat-row *matRowDef="let row; columns: this.displayedColumnsOP2;"></tr>
+    </table>
+  </div>
+
+</div>

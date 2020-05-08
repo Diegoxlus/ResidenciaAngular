@@ -14,7 +14,7 @@
     <div class="form-group">
       <mat-form-field class="w-75" [class.mat-form-field-invalid]="!this.tipoAlta.touched" >
         <label>Tipo</label>
-        <mat-select (selectionChange)="cambioTipo(this.tipoAlta.value)"  formControlName="tipoAlta">
+        <mat-select value="0"  (selectionChange)="cambioTipo(this.tipoAlta.value)"  formControlName="tipoAlta">
           <mat-option  [value]=0>Individual</mat-option>
           <mat-option  [value]=1>Doble</mat-option>
         </mat-select>

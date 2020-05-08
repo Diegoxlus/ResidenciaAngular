@@ -24,7 +24,7 @@ import {animate, style, transition, trigger} from '@angular/animations';
 })
 export class AltaPersonaComponent {
   nuevoUsuario: Usuario;
-  roles = ['Director/a','Secretario/a', 'Cocinero/a', 'Residente/a'];
+  roles = ['Director/a','Secretario/a', 'Cocinero/a', 'Residente/a', 'Portero/a'];
   registroCorrecto : boolean = false;
   registroIncorrecto : boolean = false;
   msgError: string;
@@ -68,6 +68,7 @@ export class AltaPersonaComponent {
     this.pasarValoresAlUsuario();
     this.usuarioService.registroManual(this.nuevoUsuario).subscribe(data=>{
           this.registroCorrecto=true;
+          this.FormularioAlta.reset();
 
       },error =>{
         this.registroIncorrecto = true;

@@ -26,7 +26,7 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 })
 export class ResidenteEditComponent implements OnInit {
   residente: Usuario;
-  roles = ['Director/a','Secretario/a', 'Cocinero/a', 'Residente/a'];
+  roles = ['Director/a','Secretario/a', 'Cocinero/a', 'Residente/a', 'Portero/a'];
   registroCorrecto : boolean = false;
   registroIncorrecto : boolean = false;
   msgError: string;

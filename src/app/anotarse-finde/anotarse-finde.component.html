@@ -1,0 +1,29 @@
+
+<form id="menuAltaFinde" [formGroup]="FormularioAltaFinde" class=" justify-content-center w-75">
+  <div class="form-group">
+    <mat-form-field id="fecha">
+      <input  [min]="this.minDate" readonly matInput [matDatepickerFilter]="filtro" [class.ng-invalid-input]="(fecha.invalid && fecha.touched) || !fecha.value" formControlName="fecha" class="form-control ng-valid-input" [matDatepicker]="menuDatepicker" id="menuDatepicker" >
+      <mat-datepicker-toggle matSuffix [for]="menuDatepicker"></mat-datepicker-toggle>
+      <mat-datepicker touchUi="true" color="accent" #menuDatepicker></mat-datepicker>
+      <div *ngIf="(fecha.invalid) || fecha.dirty">
+        <small *ngIf="fecha.errors?.required" class="text-danger">La fecha es obligatoria</small>
+      </div>
+    </mat-form-field>
+  </div>
+
+  <div *ngIf="registroCorrecto" [ngClass]="{'transition': registroCorrecto}"  id="registroCorrecto" class="alert alert-success">
+    <a href="#" (click)="resetearIntento()" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Permanencia registrada</strong>.
+  </div>
+
+  <div *ngIf="registroIncorrecto" class="alert alert-danger">
+    <a href="#" (click)="resetearIntento()" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Error: </strong>{{msgError}}.
+  </div>
+
+  <div class="d-flex justify-content-around mt-4">
+    <button [disabled]="!this.FormularioAltaFinde.valid" (click)="altaPermanencia()" type="submit" class=" col-12 col-md-3 btn btn-success mt-2">Añadir</button>
+    <button (click)="volver()" type="button" class=" col-12 col-md-3 btn btn-danger mt-2">Volver</button>
+
+  </div>
+</form>

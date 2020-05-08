@@ -17,7 +17,7 @@
   </div>
 
   <div class="form-group">
-    <mat-form-field>
+    <mat-form-field id="fecha">
     <input readonly matInput [matDatepickerFilter]="filtro" [class.ng-invalid-input]="(fecha.invalid && fecha.touched) || !fecha.value" (dateChange)="comprobarComidas()" formControlName="fecha" class="form-control ng-valid-input" [matDatepicker]="menuDatepicker" id="menuDatepicker" >
     <mat-datepicker-toggle matSuffix [for]="menuDatepicker"></mat-datepicker-toggle>
     <mat-datepicker touchUi="true" color="accent" #menuDatepicker></mat-datepicker>

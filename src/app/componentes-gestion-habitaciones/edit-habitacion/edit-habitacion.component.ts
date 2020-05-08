@@ -113,7 +113,7 @@ export class EditHabitacionComponent implements AfterViewInit, OnInit {
       this.habitacion.residente1 = this.selectResidentes.selecionResidentes[0].email;
     }
     else{
-      this.habitacion.residente1=this.datosHabitaciones.habitacion.residente1;
+      this.habitacion.residente1= null;
     }
     // @ts-ignore
     if(this.selectResidentes.selecionResidentes[1]!=undefined && this.selectResidentes.selecionResidentes[1]!=undefined){
@@ -121,7 +121,7 @@ export class EditHabitacionComponent implements AfterViewInit, OnInit {
       this.habitacion.residente2 = this.selectResidentes.selecionResidentes[1].email;
     }
     else{
-      this.habitacion.residente2=this.datosHabitaciones.habitacion.residente2;
+      this.habitacion.residente2=null;
     }
     this.habitacion.disponible = this.disponibleAlta.value;
   }

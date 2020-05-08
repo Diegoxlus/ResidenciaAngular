@@ -29,6 +29,10 @@ import {ListaPagosResidenteComponent} from './componentes-gestion-pagos/lista-pa
 import {ListaPagosComponent} from './componentes-gestion-pagos/lista-pagos/lista-pagos.component';
 import {ListaAsistenciaComidaComponent} from './componentes-gestion-menu/lista-asistencia-comida/lista-asistencia-comida.component';
 import {MenuSecretariaComponent} from './menu-secretaria/menu-secretaria.component';
+import {AnotarseFindeComponent} from './anotarse-finde/anotarse-finde.component';
+import {ListaPermanenciaFindeComponent} from './lista-permanencia-finde/lista-permanencia-finde.component';
+import {ListaPermanenciaPropiaFindeComponent} from './lista-permanencia-propia-finde/lista-permanencia-propia-finde.component';
+import {MenuPorteroComponent} from './menu-portero/menu-portero.component';
 
 const routes: Routes = [
   {path: '', component: PaginaInicioComponent},
@@ -60,7 +64,13 @@ const routes: Routes = [
   {path: 'mis-pagos', component: ListaPagosResidenteComponent},
   {path: 'lista-pagos', component: ListaPagosComponent},
   {path: 'lista-asistencia' ,component: ListaAsistenciaComidaComponent},
-  {path: 'menu-secretaria', component: MenuSecretariaComponent}
+  {path: 'menu-secretaria', component: MenuSecretariaComponent},
+  {path: 'alta-permanencia', component: AnotarseFindeComponent},
+  {path: 'lista-permanencia', component: ListaPermanenciaFindeComponent},
+  {path: 'mi-permanencia', component: ListaPermanenciaPropiaFindeComponent},
+  {path: 'menu-portero', component: MenuPorteroComponent}
+
+
 
 
 ];

@@ -41,6 +41,7 @@ export class SelectResidentesComponent implements OnInit, AfterViewInit, OnDestr
   ngOnInit() {
 
     this.usuarioService.getResidentesHabitacion().subscribe(result=>{
+      console.log(result);
       for (let residente of result){
         this.residentes.push(new Usuario(residente.nombre,residente.apellidos,residente.email,null,null,null,null,residente.numero));
       }
@@ -93,7 +94,7 @@ export class SelectResidentesComponent implements OnInit, AfterViewInit, OnDestr
   }
 
   protected filterBanksMulti() {
-    if (!this.residentes || this.usuarioMultiCtrl.value.length>1) {
+    if (this.usuarioMultiCtrl!=null && (!this.residentes || this.usuarioMultiCtrl.value.length>1)) {
       return;
     }
     // get the search keyword

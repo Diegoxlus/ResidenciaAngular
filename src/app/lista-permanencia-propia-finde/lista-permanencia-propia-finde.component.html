@@ -1,0 +1,26 @@
+<div class="container mt-4">
+  <button (click)="this.router.navigate(['alta-permanencia'])" type="button" class="col-12 btn btn-success mt-2 mb-3">Nueva permanencia</button>
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="Dia">
+        <th mat-header-cell *matHeaderCellDef> Dia </th>
+        <td mat-cell *matCellDef="let permanencia"> {{permanencia.dia}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="Cancelar">
+        <th mat-header-cell *matHeaderCellDef> Cancelar </th>
+        <td mat-cell *matCellDef="let permanencia">
+          <button (click)="this.openConfirmationDialogE(permanencia)" class="btn btn-danger col-12 mb-1 mt-1"><fa-icon [icon]="eliminar"></fa-icon>  </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[20,40,80]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>

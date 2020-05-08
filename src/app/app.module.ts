@@ -45,7 +45,6 @@ import {MyDateAdapter} from '../assets/my-date-adapter';
 import {DatePipe} from '@angular/common';
 import { EditHabitacionComponent } from './componentes-gestion-habitaciones/edit-habitacion/edit-habitacion.component';
 import { MenuResidenteComponent } from './menu-residente/menu-residente.component';
-import { AsistenciaComidaComponent } from './asistencia-comida/asistencia-comida.component';
 import { ListaAnotarseComidaComponent } from './componentes-gestion-menu/lista-anotarse-comida/lista-anotarse-comida.component';
 import { ConfiguracionComponent } from './configuracion/configuracion.component';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
@@ -64,6 +63,12 @@ import { ListaPagosResidenteComponent } from './componentes-gestion-pagos/lista-
 import { ListaPagosComponent } from './componentes-gestion-pagos/lista-pagos/lista-pagos.component';
 import { MenuSecretariaComponent } from './menu-secretaria/menu-secretaria.component';
 import { ListaAsistenciaComidaComponent } from './componentes-gestion-menu/lista-asistencia-comida/lista-asistencia-comida.component';
+import { AnotarseFindeComponent } from './anotarse-finde/anotarse-finde.component';
+import { ListaPermanenciaFindeComponent } from './lista-permanencia-finde/lista-permanencia-finde.component';
+import { ListaPermanenciaPropiaFindeComponent } from './lista-permanencia-propia-finde/lista-permanencia-propia-finde.component';
+import { MenuPorteroComponent } from './menu-portero/menu-portero.component';
+import {pipe} from 'rxjs';
+import { HabitacionPipe } from './pippes/habitacion.pipe';
 
 
 @NgModule({
@@ -90,7 +95,6 @@ import { ListaAsistenciaComidaComponent } from './componentes-gestion-menu/lista
     AltaMenuComponent,
     EditHabitacionComponent,
     MenuResidenteComponent,
-    AsistenciaComidaComponent,
     ListaAnotarseComidaComponent,
     ConfiguracionComponent,
     DialogoInformativoComponent,
@@ -107,6 +111,11 @@ import { ListaAsistenciaComidaComponent } from './componentes-gestion-menu/lista
     ListaPagosComponent,
     MenuSecretariaComponent,
     ListaAsistenciaComidaComponent,
+    AnotarseFindeComponent,
+    ListaPermanenciaFindeComponent,
+    ListaPermanenciaPropiaFindeComponent,
+    MenuPorteroComponent,
+    HabitacionPipe,
 
   ],
   imports: [
@@ -128,12 +137,15 @@ import { ListaAsistenciaComidaComponent } from './componentes-gestion-menu/lista
     NgxMaterialTimepickerModule.setLocale('es-ES'),
     NgbModule,
     MatPaginatorModule,
-    MatButtonModule
+    MatButtonModule,
+    
   ],
   exports: [
-    FiltroTabla
+    FiltroTabla,
+    pipeCargo,
+    HabitacionPipe
   ],
-  providers: [{ provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }, DatosUsuarioService,{provide: MAT_DATE_LOCALE , useValue: 'es-ES'},{provide: DateAdapter, useClass: MyDateAdapter},DatePipe],
+  providers: [HabitacionPipe,pipeCargo,{provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }, DatosUsuarioService,{provide: MAT_DATE_LOCALE , useValue: 'es-ES'},{provide: DateAdapter, useClass: MyDateAdapter},DatePipe],
   bootstrap: [AppComponent],
   entryComponents: [ListaNoticiasComponent,DialogoConfirmacionComponent,DialogoInformativoComponent]
 })

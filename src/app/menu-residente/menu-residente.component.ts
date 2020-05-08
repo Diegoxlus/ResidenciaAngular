@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {faUtensilSpoon, faBookOpen, faNewspaper} from '@fortawesome/free-solid-svg-icons';
 import {Router} from '@angular/router';
 import {faMoneyCheckAlt} from '@fortawesome/free-solid-svg-icons/faMoneyCheckAlt';
+import {faCalendarCheck} from '@fortawesome/free-solid-svg-icons/faCalendarCheck';
 
 @Component({
   selector: 'app-menu-residente',
@@ -12,7 +13,8 @@ export class MenuResidenteComponent implements OnInit {
   iconoComida = faUtensilSpoon;
   iconoAnotar = faBookOpen;
   iconoNoticia = faNewspaper;
-  iconoPago  = faMoneyCheckAlt
+  iconoPago  = faMoneyCheckAlt;
+  iconoFinde = faCalendarCheck;
 
   constructor( private router: Router) {
   }
@@ -35,6 +37,11 @@ export class MenuResidenteComponent implements OnInit {
 
   irGestionPagosResidente() {
     this.router.navigate(['mis-pagos']);
+
+  }
+
+  irVerPermanencia() {
+    this.router.navigate(['mi-permanencia']);
 
   }
 }

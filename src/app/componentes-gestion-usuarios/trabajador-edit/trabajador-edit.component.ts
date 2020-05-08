@@ -12,7 +12,7 @@ import {Router} from '@angular/router';
 })
 export class TrabajadorEditComponent implements OnInit {
   trabajador: Usuario;
-  roles = [ 'Residente/a', 'Cocinero/a','Secretario/a','Director/a'];
+  roles = ['Director/a','Secretario/a', 'Cocinero/a', 'Residente/a', 'Portero/a'];
   registroCorrecto : boolean = false;
   registroIncorrecto : boolean = false;
   msgError: string;

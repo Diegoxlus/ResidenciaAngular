@@ -110,6 +110,9 @@ export class CabeceraComponent implements OnInit {
           if( this.usuarioLogin.rol == 3){
             this.router.navigate(['/menu-residente'])
           }
+          if( this.usuarioLogin.rol == 4){
+            this.router.navigate(['/menu-portero'])
+          }
           $('#modalLoginForm').modal('toggle');
         } else {
           this.intentoFallidoLogin=true;
@@ -140,6 +143,7 @@ export class CabeceraComponent implements OnInit {
           $('#modalRegisterForm').modal('toggle');
           window.sessionStorage.setItem('emailLogin', this.usuarioRegistro.email);
           window.sessionStorage.setItem('pass', this.usuarioRegistro.pass);
+          this.usuarioLogin.logueado=true;
           this.router.navigate(['/menu-residente']);
 
 

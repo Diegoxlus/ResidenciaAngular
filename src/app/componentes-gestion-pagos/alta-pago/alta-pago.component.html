@@ -1,0 +1,29 @@
+<div class="container">
+<form id="pagoAltaForm" action="">
+  <monthpicker (change)="onChange($event)" [locale]="'es'"></monthpicker>
+  <div>
+
+    <div class="custom-file mt-2">
+      <input  #fileInput (change)="fileProgress($event)" type="file" class="custom-file-input" id="customFile">
+      <label lang="es" class="custom-file-label" for="customFile"><span *ngIf="fileName">{{fileName}}</span></label>
+    </div>
+
+
+  </div>
+
+  <div *ngIf="registroCorrecto" [ngClass]="{'transition': registroCorrecto}"  id="registroCorrecto" class="alert alert-success mt-2 mb-2">
+    <a href="#" (click)="resetearIntento()" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Pago registrado</strong>.
+  </div>
+
+  <div *ngIf="registroIncorrecto" class="alert alert-danger mt-2 mb-2">
+    <a href="#" (click)="resetearIntento()" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Error: </strong>{{msgError}}.
+  </div>
+
+  <button type="button" (click)="enviar()" class="btn btn-success mt-2 ml-2">Enviar</button>
+  <button (click)="this.router.navigate(['/mis-pagos'])" type="button" class="btn btn-danger mt-2 ml-2">Volver</button>
+
+</form>
+</div>
+

@@ -21,7 +21,7 @@
   <!-- Weight Column -->
   <ng-container  class="col-3 " matColumnDef="Cargo">
     <th mat-header-cell *matHeaderCellDef> Cargo </th>
-    <td mat-cell *matCellDef="let trabajador"> {{this.pipeRol(trabajador)}} </td>
+    <td mat-cell *matCellDef="let trabajador"> {{this.pipeCargo.transform(trabajador.rol)}} </td>
   </ng-container>
 
   <!-- Symbol Column -->

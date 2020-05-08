@@ -10,6 +10,7 @@ import {DatosUsuarioService} from '../../servicios/datos-usuario.service';
 import {Observable} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {DialogoConfirmacionComponent} from '../../dialogo-confirmacion/dialogo-confirmacion.component';
+import {pipeCargo} from '../../pippes/pipeCargo';
 
 
 
@@ -30,7 +31,8 @@ export class TrabajadoresComponent implements OnInit,AfterViewInit{
   detalles = faInfoCircle;
   eliminar = faTrashAlt;
 
-  constructor(private usuarioService:UsuarioService,private datosUsuario :DatosUsuarioService,private router: Router,public dialog: MatDialog) {
+
+  constructor(private pipeCargo: pipeCargo,private usuarioService:UsuarioService,private datosUsuario :DatosUsuarioService,private router: Router,public dialog: MatDialog) {
     this.trabajadores = new Array<Usuario>();
   }
 
@@ -73,15 +75,6 @@ export class TrabajadoresComponent implements OnInit,AfterViewInit{
     });
   }
 
-  private pipeRol(trabajador: Usuario) : String {
-    switch (trabajador.rol) {
-      case 0: return "Director/a";
-      case 1: return "Secretario/a";
-      case 2: return "Cocinero/a";
-      case 3: return "Residente/a";
-
-    }
-  }
 
   irAEditarTrabajador(trabajador: Usuario): void{
     console.log(trabajador);

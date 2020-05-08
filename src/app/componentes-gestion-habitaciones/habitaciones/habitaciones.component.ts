@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 import {Habitacion} from '../../models/habitacion';
 import {HabitacionService} from '../../servicios/habitacion.service';
 import {DatosHabitacionService} from '../../servicios/datos-habitacion.service';
+import {HabitacionPipe} from '../../pippes/habitacion.pipe';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class HabitacionesComponent implements OnInit {
   detalles = faInfoCircle;
   eliminar = faTrashAlt;
 
-  constructor(private habitacionService:HabitacionService,private router: Router,public dialog: MatDialog, private datosHabitacion: DatosHabitacionService ) {
+  constructor(public habitacionPipe:HabitacionPipe,private habitacionService:HabitacionService,private router: Router,public dialog: MatDialog, private datosHabitacion: DatosHabitacionService ) {
     this.habitaciones = new Array<Habitacion>();
   }
 
