@@ -1,6 +1,9 @@
-import { Component, Input } from '@angular/core';
-import {MatDialog,MatDialogRef} from '@angular/material';
+import { Component } from '@angular/core';
+import {MatDialogRef} from '@angular/material';
 
+/**
+ * Componente que permite crear un Dialogo de confirmación, que se puede importar en otros componentes.
+ */
 @Component({
   selector: 'app-dialogo-confirmacion',
   templateUrl: './dialogo-confirmacion.component.html',

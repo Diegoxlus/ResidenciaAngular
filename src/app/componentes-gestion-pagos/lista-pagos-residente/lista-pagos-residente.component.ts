@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MatTableDataSource} from '@angular/material';
 import {DialogoInformativoComponent} from '../../dialogo-informativo/dialogo-informativo.component';
 import {Router} from '@angular/router';
-import {DialogoConfirmacionComponent} from '../../dialogo-confirmacion/dialogo-confirmacion.component';
 import {faDownload} from '@fortawesome/free-solid-svg-icons/faDownload';
 import {PagoService} from '../../servicios/pago.service';
 import {Pago} from '../../models/pago';
@@ -16,24 +15,57 @@ import {faTimesCircle} from '@fortawesome/free-solid-svg-icons/faTimesCircle';
   styleUrls: ['./lista-pagos-residente.component.css']
 })
 export class ListaPagosResidenteComponent implements OnInit {
-
+  /**
+   * Columnas empleadas en la tabla de pagos
+   */
   displayedColumns: string[] = ['Mes', 'Realizado','Verificado',"Descargar"];
+  /**
+   * Array donde se almacenan los pagos
+   */
   pagos : Array<Pago>;
+  /**
+   * Variable empleada para pasara el array de pagos a la tabla.
+   */
   dataSource : MatTableDataSource<Pago>;
+  /**
+   * Variable empleada para mostrar el dialogo de error
+   */
   dialogRef: MatDialogRef<DialogoInformativoComponent>;
-  dialogRef2: any ;
+
+  /**
+   * Icono descargar pago
+   */
   descargar = faDownload;
+  /**
+   * Icono pago pendiente
+   */
   espera = faClock;
+  /**
+   * Icono pago correcto
+   */
   correcto = faCheckCircle;
+  /**
+   * Icono pago incorrecto
+   */
   incorrecto = faTimesCircle;
 
-
-  constructor(private pagoService:PagoService,private router: Router,public dialog: MatDialog) {
+  /**
+   * Constructor del componente, se instancia:
+   * pagoService: Servicio para comunicarnos con la API REST
+   * dialog: Empleado para mostrar el dialogo error
+   * router: Para navegar entre componentes
+   * @param pagoService
+   * @param router
+   * @param dialog
+   */
+  constructor(private pagoService:PagoService,public router: Router,public dialog: MatDialog) {
     this.pagos = new Array<Pago>();
     this.dataSource = new MatTableDataSource<Pago>();
   }
 
-
+  /**
+   * En el ngOnInit obtenemos los pagos que pertenecen al residente y rellenamos el array pagos.
+   */
   ngOnInit(): void {
     this.pagoService.getPagoResidente().subscribe(
       pagos => {
@@ -41,12 +73,13 @@ export class ListaPagosResidenteComponent implements OnInit {
           this.pagos.push(new Pago(pago.id,pago.residente,pago.dia,pago.extension,pago.mes,pago.correcto,'',''));
         }
         this.dataSource.data = this.pagos;
-        console.log(pagos);
       }
     )
   }
 
-
+  /**
+   * Vuelve a llenar el array de pagos.
+   */
   refresh() {
     this.pagos = [];
     this.pagoService.getPagoResidente().subscribe(
@@ -60,7 +93,10 @@ export class ListaPagosResidenteComponent implements OnInit {
   }
 
 
-
+  /**
+   * Abre el dialogo de error en el caso de que se produzca un error al eliminar el pago.
+   * @param error
+   */
   abrirDialogoInfoError(error) {
     this.dialogRef = this.dialog.open(DialogoInformativoComponent, {
       disableClose: false,
@@ -74,13 +110,19 @@ export class ListaPagosResidenteComponent implements OnInit {
   }
 
 
-
-
+  /**
+   * Filtro para buscar por los campos de la tabla
+   * @param event
+   */
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  /**
+   * Permite descargar un pago que realizado por el residente.
+   * @param pago
+   */
   descargarPago(pago: Pago) {
     this.pagoService.descargarPago(pago).subscribe(
       result=>{

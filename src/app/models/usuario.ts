@@ -1,17 +1,65 @@
-import {Optional} from '@angular/core';
+/**
+ * Modelo para instanciar Usuarios los atributos comienzan por _ por convenio, ya que son privados.
+ */
 
 export class Usuario {
+  /**
+   * Contiene el nombre del usuario.
+   */
   private _nombre?: string;
+  /**
+   * Contiene el email del usuario.
+   */
   private _email?: string;
+  /**
+   * Contiene los apellidos del usuario.
+   */
   private _apellidos?: string;
+  /**
+   * Contiene la contraseña del usuario.
+   */
   private _pass?: string;
+  /**
+   * Atributo booleano que indica si el residente está logueado en el sistema o no:
+   * false: No está logueado.
+   * true: Si está logueado.
+   */
   private _logueado?: boolean;
+  /**
+   * Contiene el dni de usuario.
+   */
   private _dni?: string;
+  /**
+   * Contiene la fecha de nacimiento del usuario.
+   */
   private _f_nac?: string;
+  /**
+   * Contiene el rol del usuario:
+   * 0: Directora
+   * 1: Secretaria
+   * 2: Cocinera
+   * 3: Residente
+   * 4: Portero
+   */
   private _rol?: any;
+  /**
+   * Contiene el número a la que pertenezca un usuario residente. En caso de que sea un trabajador, este
+   * valor no se instanciará.
+   */
   private _habitacion?: number;
 
-
+  /**
+   * Todos los parametros son opcionales, asi podemos generar una instancia de la clase Usuario a nuestro gusto,
+   * en el caso de que no nos interese algun atributo, basta con no instanciarlo cuando creamos el objeto.
+   * @param nombre
+   * @param apellidos
+   * @param email
+   * @param contrasena
+   * @param dni
+   * @param f_nac
+   * @param rol
+   * @param habitacion
+   */
   constructor(nombre?: string, apellidos?: string, email?: string , contrasena?: string , dni?: string, f_nac?: string , rol?: any, habitacion?:number ) {
     this._nombre = nombre;
     this._email = email;
@@ -102,6 +150,9 @@ export class Usuario {
     this._habitacion = value;
   }
 
+  /**
+   * Comprueba que un usuario sea valido para enviarlo a la API REST
+   */
   public validoParcial(): boolean {
     let correcto: boolean;
     correcto = true;

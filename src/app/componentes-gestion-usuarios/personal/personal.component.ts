@@ -1,35 +1,31 @@
-import { Component, OnInit, Output,EventEmitter,Input } from '@angular/core';
+import { Component} from '@angular/core';
 import {Router} from '@angular/router';
-import {Usuario} from '../../models/usuario';
-import {UsuarioService} from '../../servicios/usuario.service';
-import {pipeCargo} from '../../pippes/pipeCargo';
 
+
+/**
+ * Este componente se encarga de mostrar el componente que lista residentes o el que lista trabajadores.
+ */
 
 @Component({
   selector: 'app-personal',
   templateUrl: './personal.component.html',
   styleUrls: ['./personal.component.css']
 })
-export class PersonalComponent implements OnInit {
-  residentes: Array<Usuario>;
-  trabajadores: Array<Usuario>;
-  public searchString: string;
+export class PersonalComponent{
+
+  /**
+   * Variable booleana, si vista es igual a true, se muestra el componente de los residentes.
+   * Si vista es igual a false, se muestra el componente de los trabajadaores.
+   */
   vista: boolean; //Vista a true para los residentes
 
-  constructor(private usuarioService:UsuarioService,private router: Router) {
-    this.residentes = new Array<Usuario>();
-    this.trabajadores = new Array<Usuario>();
+  /**
+   * Constructor del componente, se instancia:
+   * vista se inicializa a true, por lo tanto se va a mostrar siempre el componente de residentes.
+   * @param router
+   */
+  constructor(public router: Router) {
     this.vista=true;
   }
 
-  ngOnInit() {
-
-
-
-  }
-
-
-  eliminar(email: string) {
-    console.log(email);
-  }
 }

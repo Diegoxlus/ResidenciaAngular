@@ -5,6 +5,9 @@ import {Router} from '@angular/router';
 import {ConfiguracionService} from '../servicios/configuracion.service';
 import {Configuracion} from '../models/configuracion';
 
+/**
+ * Componente que controla la configuración.
+ */
 
 @Component({
   selector: 'app-configuracion',
@@ -12,11 +15,26 @@ import {Configuracion} from '../models/configuracion';
   styleUrls: ['./configuracion.component.css']
 })
 export class ConfiguracionComponent implements OnInit {
+  /**
+   * Variable booleana, en caso de que el registro sea correcto se establece a true.
+   */
   registroCorrecto: boolean = false;
+  /**
+   * Variable booleana, en caso de que el registro sea incorrecto se establece a true.
+   */
   registroIncorrecto: boolean = false;
+  /**
+   * Variable que contiene el mensaje de error que devuelve la API REST.
+   */
   msgError:String;
+  /**
+   * Variable empleada para almacenar la configuración.
+   */
   private configuaracion;
-
+  /**
+   * FormGroup que contiene los requisitios que tiene que cumplir el formulario, es decir es empleado
+   * para validar los campos del formulario y acceder a estos.
+   */
   public FormularioAlta = new FormGroup({
     limiteComida: new FormControl('', [
       Validators.maxLength(2),
@@ -34,11 +52,23 @@ export class ConfiguracionComponent implements OnInit {
     ])
   });
 
-
-  constructor(private configuracionService: ConfiguracionService, public datepipe: DatePipe,private router: Router) {
+  /**
+   * Constructor del componente, se instancia:
+   * configuracionService: Permite comunicarnos con la API REST para obtener o editar la configuración.
+   * datepipe: Permite realizar transformaciones con la fecha.
+   * router: Permite navegar entre componentes.
+   * @param configuracionService
+   * @param datepipe
+   * @param router
+   */
+  constructor(private configuracionService: ConfiguracionService, public datepipe: DatePipe,public router: Router) {
 
   }
 
+  /**
+   * Permite obtener la configuración, en caso de que no exista, muestra un mensaje de que no existe una configuración.
+   * En el caso de que si que exista, rellena los campos del formulario con los valores de la configuración.
+   */
   ngOnInit() {
 
     this.configuracionService.getConfiguracion().subscribe(
@@ -62,47 +92,61 @@ export class ConfiguracionComponent implements OnInit {
 
   }
 
+  /**
+   * Permite acceder al campo hora comida del formulario.
+   */
   get horaComida(){
     return this.FormularioAlta.get('horaComida');
   }
 
+  /**
+   * Permite acceder al campo hora cena del formulario.
+   */
   get horaCena() {
     return this.FormularioAlta.get('horaCena');
   }
 
+  /**
+   * Permite acceder al campo limite hora comida del formulario.
+   */
   get limiteComida(){
     return this.FormularioAlta.get('limiteComida');
   }
 
+  /**
+   * Permite acceder al campo limite hora comida del formulario.
+   */
   get limiteCena(){
     return this.FormularioAlta.get('limiteCena');
   }
 
+  /**
+   * Permite acceder al campo registro del formulario.
+   */
   get registro(){
     return this.FormularioAlta.get('registro');
 
   }
 
 
-  filtro = (d: Date): boolean => {
-    const day = d.getDay();
-    // Prevent Saturday and Sunday from being selected.
-    return day !== 0 && day !== 6;
-  };
-
-  onSubmit() {
-
-  }
-
+  /**
+   * Permite resetear los mensajes del formulario, establecion los valores de registro a false.
+   */
   resetearIntento() {
     this.registroCorrecto=false;
     this.registroIncorrecto = false;
   }
 
+  /**
+   * Permite volver al menu de la directora.
+   */
   volver() {
     this.router.navigate(['menu-directora']);
   }
 
+  /**
+   * Edita la configuración, en el caso de que no exista la crea.
+   */
   editarConfiguracion() {
     this.resetearIntento();
     let configuracion = new Configuracion('',this.horaComida.value,this.horaCena.value,this.limiteComida.value,this.limiteCena.value,this.registro.value);

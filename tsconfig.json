@@ -22,5 +22,13 @@
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
     "strictInjectionParameters": true
-  }
+  },
+  "exclude": [
+    "src/test.ts",
+    "src/**/*.spec.ts",
+    "src/app/monthpicker/**",
+    "src/app.po.ts",
+    "src/environments/**"
+
+  ]
 }

@@ -19,7 +19,7 @@
       <!-- Name Column -->
       <ng-container class="col-3" matColumnDef="Gravedad">
         <th mat-header-cell *matHeaderCellDef> Gravedad </th>
-        <td mat-cell *matCellDef="let parte">{{parte.gravedad}} </td>
+        <td mat-cell *matCellDef="let parte">{{parte.gravedad | gravedadPipe}} </td>
       </ng-container>
 
       <!-- Symbol Column -->

@@ -1,6 +1,6 @@
 <div class="container ">
   <h1 id="tituloEdit" class="w-75">Editar a {{this.nombreEdit.value}} {{this.apellidosEdit.value}}</h1>
-  <form id="residenteEditForm" [formGroup]="FormularioEdit" class=" justify-content-center w-75" (ngSubmit)="onSubmit()">
+  <form id="residenteEditForm" [formGroup]="FormularioEdit" class=" justify-content-center w-75">
 
     <div class="form-group">
       <label for="nombre">Nombre</label>
@@ -79,7 +79,7 @@
 
 
     <div class="mt-4">
-      <button (click)="modificarResidente()" type="submit" class=" col-md-3 btn btn-success mt-2">Registrar</button>
+      <button [disabled]="FormularioEdit.invalid" (click)="modificarResidente()" type="submit" class=" col-md-3 btn btn-success mt-2">Registrar</button>
       <button type="button" class=" col-md-3 offset-md-2 btn btn-warning mt-2" (click)="router.navigate(['/personal'])">Volver</button>
     </div>
   </form>

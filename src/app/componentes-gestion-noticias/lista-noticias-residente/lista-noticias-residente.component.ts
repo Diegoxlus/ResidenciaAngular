@@ -1,35 +1,63 @@
-import {AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
-import {MatDialog, MatDialogRef, MatPaginator, MatTableDataSource, PageEvent} from '@angular/material';
+import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
+import {MatDialog, MatDialogRef, MatPaginator, MatTableDataSource} from '@angular/material';
 import {Noticia} from '../../models/noticia';
 import {NoticiaService} from '../../servicios/noticia.service';
 import {faInfo} from '@fortawesome/free-solid-svg-icons/faInfo';
-import {faTrashAlt} from '@fortawesome/free-solid-svg-icons/faTrashAlt';
 import {DialogoInformativoComponent} from '../../dialogo-informativo/dialogo-informativo.component';
-import {DialogoConfirmacionComponent} from '../../dialogo-confirmacion/dialogo-confirmacion.component';
-import {faEdit} from '@fortawesome/free-solid-svg-icons/faEdit';
 import {Router} from '@angular/router';
-import {DatosNoticiaService} from '../../servicios/datos-noticia.service';
 
+/**
+ * Componente empleado para que los residentes puedan ver las noticias.
+ */
 @Component({
   selector: 'app-lista-noticias-residente',
   templateUrl: './lista-noticias-residente.component.html',
   styleUrls: ['./lista-noticias-residente.component.css']
 })
 export class ListaNoticiasResidenteComponent implements OnInit{
-
+  /**
+   * Columnas empleadas en la tabla.
+   */
   displayedColumns: string[] = ['Fecha', 'Titulo', 'Detalles'];
+  /**
+   * Array de noticias que se obtienen de la API REST.
+   */
   arrayNoticias: Array<Noticia>;
+  /**
+   * datos que se van a mostrar en la tabla, las noticias.
+   */
   dataSource = new MatTableDataSource<Noticia>();
+  /**
+   * Icono de detalles.
+   */
   detalles = faInfo;
 
+  /**
+   * Dialogo informativo empleado para ver los detalles de la noticia.
+   */
   dialogRef: MatDialogRef<DialogoInformativoComponent>;
-
+  /**
+   * Componente hijo, un paginador para dividir la tabla de noticias.
+   */
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
-  constructor(private cdr : ChangeDetectorRef,private router: Router,private datosNoticiaService: DatosNoticiaService,private noticiaService: NoticiaService, public dialog: MatDialog){
+  /**
+   * Constructor del componente
+   * cdr: Empleado para detectar cambios en el paginator.
+   * router: Para navegar entre componentes.
+   * dialog: Para mostrar el dialogo informativo.
+   * @param cdr
+   * @param router
+   * @param noticiaService
+   * @param dialog
+   */
+  constructor(private cdr : ChangeDetectorRef,private router: Router,private noticiaService: NoticiaService, public dialog: MatDialog){
     this.arrayNoticias = new Array<Noticia>()
   }
-
+  /**
+   * Obtenemos las noticias que ya existen en el sistema y las almacenamos en un array de noticias.
+   * Inicializamos y cambiamos el string del paginator para que aparezca en español.
+   */
   ngOnInit() {
     this.noticiaService.getNoticias().subscribe(
       noticias=>{
@@ -46,7 +74,10 @@ export class ListaNoticiasResidenteComponent implements OnInit{
       }
     );
   }
-
+  /**
+   * Abrimos el dialogo informativo para poder ver de forma detallada la noticia.
+   * @param noticia
+   */
   abrirDialogoInformarivo(noticia: Noticia) {
     this.dialogRef = this.dialog.open(DialogoInformativoComponent, {
       disableClose: false,

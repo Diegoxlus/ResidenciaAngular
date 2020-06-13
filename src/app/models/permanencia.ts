@@ -1,12 +1,42 @@
+/**
+ * Modelo para instanciar Permanencias los atributos comienzan por _ por convenio, ya que son privados.
+ */
 export class Permanencia {
+  /**
+   * Contiene el id de la permanencia.
+   */
   private _id ?;
+  /**
+   * Contiene el email del residente al que pertenece la permanencia del fin de semana.
+   */
   private _residente ?;
+  /**
+   * Contiene el dia en el que va a permanecer el residente en la residencia.
+   */
   private _dia?;
+  /**
+   * Contiene el nombre del residente que va a permanecer en la residencia el fin de semana.
+   */
   private _nombre?;
+  /**
+   * Contiene los apellidos del residente que va a permanecer en la residencia el fin de semana.
+   */
   private _apellidos?;
+  /**
+   * Contiene el número de la habitación en la que está el residente.
+   */
   private _habitacion?;
 
-
+  /**
+   * Todos los parametros son opcionales, asi podemos generar una instancia de la clase Permanencia a nuestro gusto,
+   * en el caso de que no nos interese algun atributo, basta con no instanciarlo cuando creamos el objeto.
+   * @param id
+   * @param residente
+   * @param dia
+   * @param nombre
+   * @param apellidos
+   * @param habitacion
+   */
   constructor(id ?, residente ?, dia ?,nombre ?, apellidos ?, habitacion ?) {
     this._id = id;
     this._residente = residente;

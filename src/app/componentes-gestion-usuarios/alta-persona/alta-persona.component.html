@@ -1,6 +1,6 @@
 <div class="container ">
   <h1 id="tituloAlta" class="w-75">Nuevo personal</h1>
-  <form id="personalAltaForm" [formGroup]="FormularioAlta" class=" justify-content-center w-75" (ngSubmit)="onSubmit()">
+  <form id="personalAltaForm" [formGroup]="FormularioAlta" class=" justify-content-center w-75">
 
     <div class="form-group">
       <label for="nombre">Nombre</label>
@@ -21,7 +21,7 @@
     </div>
 
     <div class="form-group">
-      <label for="email">Fecha nacimiento</label>
+      <label for="fNac">Fecha nacimiento</label>
       <input [class.ng-invalid-input]="(fechaAlta.invalid && fechaAlta.touched) || !fechaAlta.value" type="date" formControlName="fNacAlta" class="form-control ng-valid-input" id="fNac" name="fNac" >
       <div *ngIf="(fechaAlta.invalid && fechaAlta.touched) || fechaAlta.dirty">
         <small *ngIf="fechaAlta.errors?.required" class="text-danger">La fecha es obligatoria</small>
@@ -30,12 +30,14 @@
 
     <div class="form-group">
       <label for="dni">DNI</label>
-      <input [class.ng-invalid-input]="(dniAlta.invalid && dniAlta.touched) || !dniAlta.value" type="text" class="form-control ng-valid-input" id="dni" name="dni" formControlName="dniAlta">
-      <div *ngIf="(dniAlta.invalid && dniAlta.touched)">
+      <input [class.ng-invalid-input]="validarDni(dniAlta.value)==false" type="text" class="form-control ng-valid-input" id="dni" name="dni" formControlName="dniAlta">
+      <div *ngIf="(dniAlta.invalid && dniAlta.touched) || dniAlta.dirty || validarDni(dniAlta.value)">
         <small *ngIf="dniAlta.errors?.required" class="text-danger">El DNI es necesario</small>
         <small *ngIf="dniAlta.errors?.pattern" class="text-danger">El DNI no es valido</small>
+        <small *ngIf="!validarDni(dniAlta.value) && !dniAlta.errors?.pattern && !dniAlta.errors?.required" class="text-danger">La letra del DNI no es valida</small>
 
       </div>
+
 
     </div>
 
@@ -43,7 +45,7 @@
       <label for="email">Email</label>
       <input [class.ng-invalid-input]="(emailAlta.invalid && emailAlta.touched) || !emailAlta.value" type="text"  class="form-control ng-valid-input" formControlName="emailAlta" id="email" name="email">
       <div *ngIf="(emailAlta.invalid && emailAlta.touched) || emailAlta.dirty">
-        <small *ngIf="emailAlta.errors?.required" class="text-danger">La fecha es obligatoria</small>
+        <small *ngIf="emailAlta.errors?.required" class="text-danger">El dni es obligatorio</small>
       </div>
     </div>
 
@@ -78,7 +80,7 @@
 
 
     <div class="mt-4">
-      <button [disabled]="FormularioAlta.invalid" (click)="altaResidente()" type="submit" class=" col-md-3 btn btn-success mt-2">Registrar</button>
+      <button [disabled]="FormularioAlta.invalid" (click)="altaPersonal()" type="submit" class=" col-md-3 btn btn-success mt-2">Registrar</button>
       <button type="button" class=" col-md-3 offset-md-2 btn btn-warning mt-2" (click)="router.navigate(['/personal'])">Volver</button>
     </div>
   </form>

@@ -1,15 +1,74 @@
+/**
+ * Modelo para instanciar Asistencias los atributos comienzan por _ por convenio, ya que son privados.
+ */
 export class Asistencia {
+  /**
+   * Guarda el email del residente
+   */
   private _residente ?;
+
+  /**
+   * Dia en el que el residente realiza la asistencia
+   */
   private _dia ?;
+
+  /**
+   * Guarda el valor 0 en caso de que no coma, guarda el valor 1 en caso de que si coma
+   */
   private _come ?;
+
+  /**
+   * Guarda el valor 0 en caso de que no cene, guarda el valor 1 en caso de que si cene
+   */
   private _cena ?;
+
+  /**
+   * Guarda el valor 0 en caso de que no asista a la comida, guarda el valor 1 en caso de que si asista a la comida
+   */
   private _asiste_comida ?;
+
+  /**
+   * Guarda el valor 0 en caso de que no asista a la cena, guarda el valor 1 en caso de que si asista a la cena
+   */
   private _asiste_cena ?;
+
+  /**
+   * Guarda la comida que hay en el menú.
+   */
   private _menu_comida ?;
+
+  /**
+   * Guarda la cena que hay en el menú.
+   */
   private _menu_cena?;
+
+  /**
+   * Guarda el nombre del usuario que asiste a la comida o a la cena. Util en caso de querer obtener
+   * este parametro de la API REST.
+   */
   private _nombre?;
+
+  /**
+   * Guarda los apellidos del usuario que asiste a la comida o a la cena. Util en caso de querer obtener
+   * este parametro de la API REST.
+   */
   private _apellidos?;
 
+
+  /**
+   * Todos los parametros son opcionales, asi podemos generar una instancia de la clase Asistencia a nuestro gusto,
+   * en el caso de que no nos interese algun atributo, basta con no instanciarlo cuando creamos el objeto.
+   * @param residente
+   * @param dia
+   * @param come
+   * @param cena
+   * @param asiste_comida
+   * @param asiste_cena
+   * @param menu_comida
+   * @param menu_cena
+   * @param nombre
+   * @param apellidos
+   */
   constructor(residente ?, dia ?, come ?, cena ?, asiste_comida ?, asiste_cena ?, menu_comida ?, menu_cena ?, nombre?, apellidos?) {
     this._residente = residente;
     this._dia = dia;

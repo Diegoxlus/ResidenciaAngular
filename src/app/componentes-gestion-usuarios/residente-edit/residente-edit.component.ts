@@ -4,7 +4,11 @@ import {UsuarioService} from '../../servicios/usuario.service';
 import {Usuario} from '../../models/usuario';
 import {DatosUsuarioService} from '../../servicios/datos-usuario.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {animate, state, style, transition, trigger} from '@angular/animations';
+import {animate, style, transition, trigger} from '@angular/animations';
+
+/**
+ * Componente que permite editar un residente.
+ */
 
 @Component({
   selector: 'app-residente-edit',
@@ -25,12 +29,30 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 
 })
 export class ResidenteEditComponent implements OnInit {
+  /**
+   * Usuario que vamos a editar
+   */
   residente: Usuario;
+  /**
+   * Roles del sistema
+   */
   roles = ['Director/a','Secretario/a', 'Cocinero/a', 'Residente/a', 'Portero/a'];
+  /**
+   * Variable booleana, en caso de que el registro sea correcto se establece a true.
+   */
   registroCorrecto : boolean = false;
+  /**
+   * Variable booleana, en caso de que el registro sea incorrecto se establece a true.
+   */
   registroIncorrecto : boolean = false;
+  /**
+   * Variable que contiene el mensaje de error que devuelve la API REST.
+   */
   msgError: string;
-
+  /**
+   * FormGroup que contiene los requisitios que tiene que cumplir el formulario, es decir es empleado
+   * para validar los campos del formulario y acceder a estos.
+   */
   public FormularioEdit = new FormGroup({
     nombreEdit: new FormControl('', [
       Validators.required,
@@ -58,27 +80,42 @@ export class ResidenteEditComponent implements OnInit {
     )
   });
 
-  constructor(private datos: DatosUsuarioService,private usuarioService: UsuarioService ,private router: Router){
+  /**
+   * Constructor del componente, se instancia:
+   * datos: Contiene los datos del usuario que se selecciono en el componente residentes para editar.
+   * usuarioService: Permite counicarnos con la API REST para editar el residente.
+   * router: Permite navegar entre componentes.
+   * @param datos
+   * @param usuarioService
+   * @param router
+   */
+
+  constructor(private datos: DatosUsuarioService,private usuarioService: UsuarioService ,public router: Router){
     this.residente = new Usuario(this.datos.usuario.nombre,this.datos.usuario.apellidos,this.datos.usuario.email,'',this.datos.usuario.dni,this.datos.usuario.f_nac,this.datos.usuario.rol);
   }
 
-
+  /**
+   * Al iniciar el componente pasamos los valores del servicio que contiene los datos al formulario.
+   */
   ngOnInit() {
 
-    console.log(this.residente);
     this.pasarValoresFormulario();
 
 
   }
 
-
+  /**
+   * Permite modificar el residente del sistema.
+   */
   modificarResidente() {
     this.pasarValoresAlUsuario();
     this.usuarioService.modificarResidente(this.residente).subscribe(data=>{
       if(data==true){
+      this.registroIncorrecto=false;
       this.registroCorrecto=true;
       }
     },error =>{
+      this.registroCorrecto = false;
       this.registroIncorrecto = true;
       this.msgError = error.error;
 
@@ -86,36 +123,53 @@ export class ResidenteEditComponent implements OnInit {
     );
   }
 
-  onSubmit() {
-    console.log(this.residente);
-  }
-
+  /**
+   * Permite obtener el campo nombre del formulario
+   */
   get nombreEdit(){
     return this.FormularioEdit.get('nombreEdit');
   }
+  /**
+   * Permite obtener el campo apellidos del formulario
+   */
   get apellidosEdit(){
     return this.FormularioEdit.get('apellidosEdit');
   }
+  /**
+   * Permite obtener el campo fecha del formulario
+   */
   get fechaEdit(){
     return this.FormularioEdit.get('fNacEdit');
   }
-
+  /**
+   * Permite obtener el campo DNI del formulario
+   */
   get dniEdit(){
     return this.FormularioEdit.get('dniEdit');
   }
-
+  /**
+   * Permite obtener el campo contraseña del formulario
+   */
   get contrasenaEdit(){
     return this.FormularioEdit.get('contrasenaEdit');
   }
-
+  /**
+   * Permite obtener el campo email del formulario
+   */
   get emailEdit(){
     return this.FormularioEdit.get('emailEdit');
   }
-
+  /**
+   * Permite obtener el campo rol del formulario
+   */
   get rolEdit(){
     return this.FormularioEdit.get('rolEdit');
   }
 
+  /**
+   * Permite validar si la letra del DNI es correcta.
+   * @param value
+   */
   validarDni(value): boolean{
 
     var validChars = 'TRWAGMYFPDXBNJZSQVHLCKET';
@@ -136,6 +190,9 @@ export class ResidenteEditComponent implements OnInit {
 
   }
 
+  /**
+   * Permite pasar los valores del residente al formulario. Útil cuando se crea el componente.
+   */
   private pasarValoresFormulario() {
     this.nombreEdit.setValue(this.residente.nombre);
     this.apellidosEdit.setValue(this.residente.apellidos);
@@ -145,6 +202,9 @@ export class ResidenteEditComponent implements OnInit {
     this.rolEdit.setValue(this.residente.rol);
   }
 
+  /**
+   * Permite pasar los valores del formulario al residente, útil cuando se quiere enviar para modificar.
+   */
   private pasarValoresAlUsuario() {
     this.residente.nombre = this.nombreEdit.value;
     this.residente.apellidos = this.apellidosEdit.value;
@@ -153,6 +213,9 @@ export class ResidenteEditComponent implements OnInit {
     this.residente.rol = this.rolEdit.value;
   }
 
+  /**
+   * Permite resetear los mensajes del formulario, establecion los valores de registro a false.
+   */
   resetearIntento() {
     this.registroCorrecto=false;
     this.registroIncorrecto = false;

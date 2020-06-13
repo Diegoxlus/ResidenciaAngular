@@ -69,6 +69,7 @@ import { ListaPermanenciaPropiaFindeComponent } from './lista-permanencia-propia
 import { MenuPorteroComponent } from './menu-portero/menu-portero.component';
 import {pipe} from 'rxjs';
 import { HabitacionPipe } from './pippes/habitacion.pipe';
+import { GravedadPipePipe } from './pippes/gravedad-pipe.pipe';
 
 
 @NgModule({
@@ -116,6 +117,7 @@ import { HabitacionPipe } from './pippes/habitacion.pipe';
     ListaPermanenciaPropiaFindeComponent,
     MenuPorteroComponent,
     HabitacionPipe,
+    GravedadPipePipe,
 
   ],
   imports: [
@@ -145,7 +147,7 @@ import { HabitacionPipe } from './pippes/habitacion.pipe';
     pipeCargo,
     HabitacionPipe
   ],
-  providers: [HabitacionPipe,pipeCargo,{provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }, DatosUsuarioService,{provide: MAT_DATE_LOCALE , useValue: 'es-ES'},{provide: DateAdapter, useClass: MyDateAdapter},DatePipe],
+  providers: [GravedadPipePipe,HabitacionPipe,pipeCargo,{provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }, DatosUsuarioService,{provide: MAT_DATE_LOCALE , useValue: 'es-ES'},{provide: DateAdapter, useClass: MyDateAdapter},DatePipe],
   bootstrap: [AppComponent],
   entryComponents: [ListaNoticiasComponent,DialogoConfirmacionComponent,DialogoInformativoComponent]
 })

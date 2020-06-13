@@ -6,21 +6,46 @@ import {FormControl,FormGroup,Validators} from '@angular/forms';
 import {ConfiguracionService} from '../../servicios/configuracion.service';
 import {Configuracion} from '../../models/configuracion';
 
-
+/**
+ * Variable Jquery.
+ */
 declare var $: any;
 
+/**
+ * Componente que controla la cabecera.
+ */
 @Component({
   selector: 'app-cabecera',
   templateUrl: './cabecera-component.html',
   styleUrls: ['./cabecera-component.css']
 })
 export class CabeceraComponent implements OnInit {
-  private usuarioLogin: Usuario;
-  private usuarioRegistro: Usuario;
-  private intentoFallidoLogin:boolean;
-  private intentoFallidoRegistro:boolean;
-  private configuracion : Configuracion;
+  /**
+   * Almacena el usuario que hace login.
+   */
+  public usuarioLogin: Usuario;
+  /**
+   * Almacena el usuario que se quiere registrar.
+   */
+  public usuarioRegistro: Usuario;
 
+  /**
+   * Variable booleana, en caso de que el login sea incorrecto se establece a true.
+   */
+  public intentoFallidoLogin:boolean;
+
+  /**
+   * Variable booleana, en caso de que el registro sea incorrecto se establece a true.
+   */
+  public intentoFallidoRegistro:boolean;
+  /**
+   * Variable que contiene la configuración del sistema.
+   */
+  public configuracion : Configuracion;
+  /**
+   * FormGroup que contiene los requisitios que tiene que cumplir el formulario, es decir es empleado
+   * para validar los campos del formulario y acceder a estos.
+   */
   public FormularioLogin = new FormGroup({
     emailLogin: new FormControl('', [
       Validators.required,
@@ -33,7 +58,10 @@ export class CabeceraComponent implements OnInit {
     ]
     )
   });
-
+  /**
+   * FormGroup que contiene los requisitios que tiene que cumplir el formulario, es decir es empleado
+   * para validar los campos del formulario y acceder a estos.
+   */
   public FormularioRegistro = new FormGroup({
     nombreRegistro: new FormControl('', [
       Validators.required,
@@ -58,9 +86,24 @@ export class CabeceraComponent implements OnInit {
       ]
     )
   });
+
+
+  /**
+   * Variable que contiene el mensaje de error que devuelve la API REST.
+   */
   msgError: String;
 
-  constructor(private usuarioService: UsuarioService, private router: Router, private configuracionService: ConfiguracionService) {
+  /**
+   * Constructor del componente, se instancia:
+   * usuarioService: Permite realizar el login y registro conectandose con la API REST.
+   * router: Permite navegar entre componentes,
+   * configuracionService: Permite obtener la configuración del sistema con la finalidad de saber si
+   * está habilitado el registro.
+   * @param usuarioService
+   * @param router
+   * @param configuracionService
+   */
+  constructor(private usuarioService: UsuarioService, public router: Router, private configuracionService: ConfiguracionService) {
     this.usuarioLogin = new Usuario(null, null, null, null);
     this.usuarioRegistro = new Usuario("", "", null, null,null,null,null);
     this.intentoFallidoLogin=false;
@@ -68,6 +111,10 @@ export class CabeceraComponent implements OnInit {
     this.configuracion = new Configuracion();
   }
 
+  /**
+   * Al crear el componente obtenemos la configuración del sistema.
+   * También se verifica si el usuario no esta logueado, en ese caso se redirecciona al componente inicial.
+   */
   ngOnInit() {
 
     this.configuracionService.getConfiguracion().subscribe(
@@ -83,7 +130,14 @@ export class CabeceraComponent implements OnInit {
     }
 
   }
- 
+
+  /**
+   * Permite que un usuario haga login en el sistema. Si el codigo de respuesta es 200 significa que
+   * el el login fue correcto, por lo tanto ya podemos asignar los valores que devuelve la API
+   * REST a nuestro usuario.
+   * También se guardo el email y la contraseña en el sessionStorage, con la finalidad de enviarlos en
+   * peteciones a servicios que requieran autenticación y autorización de rol.
+   */
   login() {
     this.usuarioService.login(this.emailFormLogin.value, this.contrasenaFormLogin.value).subscribe(
       result => {
@@ -128,6 +182,11 @@ export class CabeceraComponent implements OnInit {
     ;
   }
 
+  /**
+   * Se registra un usuario en el sistema, si el registro es correcto se guarda el valor en usuarioRegistro y en
+   * sessionStorage, con la misma finalidad que con el login.
+   * También se redirecciona al menú de Residente.
+   */
   registrar() {
     this.usuarioRegistro.nombre= this.nombreRegistro.value;
     this.usuarioRegistro.apellidos = this.apellidosRegistro.value;
@@ -156,6 +215,11 @@ export class CabeceraComponent implements OnInit {
     ;
   }
 
+  /**
+   * Metodo que se ejecuta cuando pulsamos en el boton de salir de la cabecera.
+   * Limpia todos los datos del usuario en el componente y en el sessionStorage.
+   * Realiza una redirección a la página de inicio.
+   */
   exit() {
     this.usuarioLogin.logueado = false;
     this.usuarioLogin = new Usuario();
@@ -163,7 +227,9 @@ export class CabeceraComponent implements OnInit {
     this.ngOnInit();
     this.router.navigate(['']);
   }
-
+  /**
+   * Permite resetear los mensajes del formulario, establecion los valores de registro a false.
+   */
   resetearIntento() {
     this.intentoFallidoLogin=false;
     this.intentoFallidoRegistro=false;
@@ -171,37 +237,57 @@ export class CabeceraComponent implements OnInit {
 
   }
 
+  /**
+   * Permite obtener el campo email del formulario de login.
+   */
   get emailFormLogin(){
     return this.FormularioLogin.get('emailLogin');
   }
-
+  /**
+   * Permite obtener el campo contraseña del formulario de login.
+   */
   get contrasenaFormLogin(){
     return this.FormularioLogin.get('contrasenaLogin');
   }
-
+  /**
+   * Permite obtener el campo DNI del formulario de registro.
+   */
   get dniRegistro(){
     return this.FormularioRegistro.get('dniRegistro');
   }
+  /**
+   * Permite obtener el campo nombre del formulario de registro.
+   */
   get nombreRegistro(){
     return this.FormularioRegistro.get('nombreRegistro');
   }
-
+  /**
+   * Permite obtener el campo apellidos del formulario de registro.
+   */
   get apellidosRegistro(){
     return this.FormularioRegistro.get('apellidosRegistro');
   }
-
+  /**
+   * Permite obtener el campo fecha del formulario de registro.
+   */
   get fechaRegistro(){
     return this.FormularioRegistro.get('fNacRegistro');
   }
-
+  /**
+   * Permite obtener el campo email del formulario de registro.
+   */
   get emailRegistro(){
     return this.FormularioRegistro.get('emailRegistro');
   }
-
+  /**
+   * Permite obtener el campo contraseña del formulario de registro.
+   */
   get contrasenaRegistro(){
     return this.FormularioRegistro.get('contrasenaRegistro');
   }
-
+  /**
+   * Permite obtener el campo email del formulario
+   */
    validarDni(value): boolean{
 
     var validChars = 'TRWAGMYFPDXBNJZSQVHLCKET';
@@ -222,6 +308,9 @@ export class CabeceraComponent implements OnInit {
 
   }
 
+  /**
+   * Permite cerrar el modal de registro, empleamos selector de JQUERY.
+   */
   cerrarModal() {
     $('#modalRegisterForm').modal('toggle');
 

@@ -1,6 +1,6 @@
 <div class="container ">
   <h1 id="tituloAlta" class="w-75">Nueva noticia</h1>
-  <form id="noticiaAltaForm" [formGroup]="FormularioAlta" class=" justify-content-center w-75" (ngSubmit)="onSubmit()">
+  <form id="noticiaAltaForm" [formGroup]="FormularioAlta" class=" justify-content-center w-75">
 
     <mat-form-field class="form-group w-100">
       <mat-label>Titulo noticia</mat-label>
@@ -14,7 +14,7 @@
 
     <div *ngIf="registroCorrecto" [ngClass]="{'transition': registroCorrecto}"  id="registroCorrecto" class="alert alert-success">
       <a href="#" (click)="resetearIntento()" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-      <strong>Noticia publicada</strong>.
+      <strong>Noticia editada y publicada de nuevo</strong>.
     </div>
 
     <div *ngIf="registroIncorrecto" class="alert alert-danger">

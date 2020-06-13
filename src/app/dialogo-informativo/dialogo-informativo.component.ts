@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import {MatDialogRef} from '@angular/material';
 
+/**
+ * Componente que permite crear un Dialogo informativo, que se puede importar en otros componentes.
+ */
 @Component({
   selector: 'app-dialogo-informativo',
   templateUrl: './dialogo-informativo.component.html',
