@@ -74,7 +74,7 @@ export class ListaPartesComponent implements OnInit {
           this.partes.push(new Parte(parte.id,parte.residente,parte.gravedad,parte.motivo,parte.nombre,parte.apellidos));
         }
         this.dataSource.data = this.partes;
-        console.log(this.dataSource);
+        (this.dataSource);
       }
     )
   }
@@ -99,7 +99,7 @@ export class ListaPartesComponent implements OnInit {
    * @param parte
    */
   abrirDialogoInformarivo(parte) {
-    console.log(parte);
+    (parte);
     this.dialogRef = this.dialog.open(DialogoInformativoComponent, {
       disableClose: false,
 

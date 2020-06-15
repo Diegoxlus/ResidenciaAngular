@@ -104,14 +104,14 @@ export class AnotarseFindeComponent{
      * Variable local, se crea un objeto Date, con la fecha del DatePicker.
      */
     let fecha = new Date(this.fecha.value);
-    console.log(fecha);
+
     this.sfecha = this.datepipe.transform(fecha,'yyyy-MM-dd').toString();
-    console.log(this.sfecha);
+
     this.nuevaPermanencia.dia = this.sfecha;
     this.permanenciaService.addPermanencia(this.nuevaPermanencia).subscribe(
       result=>{
         this.registroCorrecto=true;
-        console.log(result);
+
       },error=>{
         this.msgError = error.error;
         this.registroIncorrecto=true;

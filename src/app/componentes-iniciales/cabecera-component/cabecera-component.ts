@@ -42,6 +42,10 @@ export class CabeceraComponent implements OnInit {
    * Variable que contiene la configuración del sistema.
    */
   public configuracion : Configuracion;
+
+  valorDni: any = false;
+
+  realizarValidacion = true;
   /**
    * FormGroup que contiene los requisitios que tiene que cumplir el formulario, es decir es empleado
    * para validar los campos del formulario y acceder a estos.
@@ -71,7 +75,7 @@ export class CabeceraComponent implements OnInit {
       Validators.pattern("^([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\\']+[\\s])+([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\\'])+[\\s]?([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\\'])?$")]),
     dniRegistro: new FormControl('', [
       Validators.required,
-      Validators.pattern("^[0-9]{8,8}[A-Za-z]$")]),
+      Validators.pattern("^[0-9]{8,8}[A-Za-z]$"),]),
     emailRegistro: new FormControl('', [
       Validators.required,
       Validators.pattern("^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$")]),
@@ -197,7 +201,7 @@ export class CabeceraComponent implements OnInit {
     this.usuarioRegistro.rol=3;
     this.usuarioService.registrar(this.usuarioRegistro).subscribe(
       result => {
-        console.log(result);
+        (result);
 
           $('#modalRegisterForm').modal('toggle');
           window.sessionStorage.setItem('emailLogin', this.usuarioRegistro.email);
@@ -233,7 +237,7 @@ export class CabeceraComponent implements OnInit {
   resetearIntento() {
     this.intentoFallidoLogin=false;
     this.intentoFallidoRegistro=false;
-    console.log(this.intentoFallidoLogin);
+    (this.intentoFallidoLogin);
 
   }
 
@@ -288,22 +292,27 @@ export class CabeceraComponent implements OnInit {
   /**
    * Permite obtener el campo email del formulario
    */
-   validarDni(value): boolean{
+  validarDni(value): boolean{
+    if(this.realizarValidacion == true && value!=null){
+      var validChars = 'TRWAGMYFPDXBNJZSQVHLCKET';
+      var nifRexp = /^[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKET]$/i;
+      (value);
+      this.valorDni = value.toUpperCase();
 
-    var validChars = 'TRWAGMYFPDXBNJZSQVHLCKET';
-    var nifRexp = /^[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKET]$/i;
-    var str = value.toString().toUpperCase();
+      if (!nifRexp.test(this.valorDni)) return false;
 
-    if (!nifRexp.test(str)) return false;
+      var nie = this.valorDni
+        .replace(/^[X]/, '0')
+        .replace(/^[Y]/, '1')
+        .replace(/^[Z]/, '2');
 
-    var nie = str
-      .replace(/^[X]/, '0')
-      .replace(/^[Y]/, '1')
-      .replace(/^[Z]/, '2');
-
-    var letter = str.substr(-1);
-    var charIndex = parseInt(nie.substr(0, 8)) % 23;
-    return validChars.charAt(charIndex) === letter;
+      var letter = this.valorDni.substr(-1);
+      var charIndex = parseInt(nie.substr(0, 8)) % 23;
+      return validChars.charAt(charIndex) === letter;
+    }
+    else{
+      return false;
+    }
 
 
   }

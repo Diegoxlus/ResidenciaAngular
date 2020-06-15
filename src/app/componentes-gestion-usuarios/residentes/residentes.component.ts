@@ -82,7 +82,7 @@ export class ResidentesComponent implements OnInit {
   ngOnInit(): void {
     this.usuarioService.getResidentesHabitacion().subscribe(
       result => {
-        console.log(result);
+        (result);
         for (let residente of result){
           this.residentes.push(residente);
         }
@@ -90,7 +90,7 @@ export class ResidentesComponent implements OnInit {
         this.dataSource = new MatTableDataSource(this.residentes);
       },
       error => {
-        console.log(<any>error);
+        (<any>error);
       }
     );
   }
@@ -114,9 +114,9 @@ export class ResidentesComponent implements OnInit {
    * @param residente
    */
   irAEditarResidente(residente: Usuario): void{
-    console.log(residente);
+    (residente);
     this.datosUsuario.cambiarUsuario(residente);
-    console.log(this.datosUsuario.usuario);
+    (this.datosUsuario.usuario);
     this.router.navigate(['modificar-residente']);
   }
   /**

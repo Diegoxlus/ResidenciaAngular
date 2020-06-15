@@ -50,10 +50,16 @@ export class AltaPersonaComponent {
    */
   msgError: string;
 
+  valorDni: any = false;
+
+  realizarValidacion = true;
+
   /**
    * FormGroup que contiene los requisitios que tiene que cumplir el formulario, es decir es empleado
    * para validar los campos del formulario y acceder a estos.
    */
+
+
   public FormularioAlta = new FormGroup({
     nombreAlta: new FormControl('', [
       Validators.required,
@@ -113,6 +119,7 @@ export class AltaPersonaComponent {
 
       }
     );
+    this.realizarValidacion = true;
   }
 
 
@@ -166,21 +173,26 @@ export class AltaPersonaComponent {
    * @param value
    */
   validarDni(value): boolean{
-
+    if(this.realizarValidacion == true && value!=null){
     var validChars = 'TRWAGMYFPDXBNJZSQVHLCKET';
     var nifRexp = /^[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKET]$/i;
-    var str = value.toString().toUpperCase();
+    (value);
+    this.valorDni = value.toUpperCase();
 
-    if (!nifRexp.test(str)) return false;
+    if (!nifRexp.test(this.valorDni)) return false;
 
-    var nie = str
+    var nie = this.valorDni
       .replace(/^[X]/, '0')
       .replace(/^[Y]/, '1')
       .replace(/^[Z]/, '2');
 
-    var letter = str.substr(-1);
+    var letter = this.valorDni.substr(-1);
     var charIndex = parseInt(nie.substr(0, 8)) % 23;
     return validChars.charAt(charIndex) === letter;
+    }
+    else{
+      return false;
+    }
 
 
   }
@@ -189,7 +201,10 @@ export class AltaPersonaComponent {
    * Este método permite pasar los valores del formulario al nuestro usuario.
    */
   private pasarValoresAlUsuario() {
-
+    if(this.rolAlta.value==''){
+      this.rolAlta.setValue(3);
+    }
+    this.realizarValidacion = false;
     this.nuevoUsuario.nombre = this.nombreAlta.value;
     this.nuevoUsuario.apellidos = this.apellidosAlta.value;
     this.nuevoUsuario.pass = this.contrasenaAlta.value;

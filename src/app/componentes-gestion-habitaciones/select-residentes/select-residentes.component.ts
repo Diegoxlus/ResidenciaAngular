@@ -51,7 +51,7 @@ export class SelectResidentesComponent implements OnInit, AfterViewInit, OnDestr
   ngOnInit() {
 
     this.usuarioService.getResidentesHabitacion().subscribe(result=>{
-      console.log(result);
+      (result);
       for (let residente of result){
         this.residentes.push(new Usuario(residente.nombre,residente.apellidos,residente.email,null,null,null,null,residente.numero));
       }
@@ -80,7 +80,7 @@ export class SelectResidentesComponent implements OnInit, AfterViewInit, OnDestr
 
         this.filterBanksMulti();
       });
-    console.log(this.selecionResidentes);
+    (this.selecionResidentes);
   }
 
   /**
@@ -124,7 +124,6 @@ export class SelectResidentesComponent implements OnInit, AfterViewInit, OnDestr
     }*/
     // get the search keyword
     let search = this.usuarioMultiFilterCtrl.value;
-    console.log(search);
     if (!search) {
       this.filteredUsuarioMulti.next(this.residentes.slice());
       return;
@@ -143,7 +142,7 @@ export class SelectResidentesComponent implements OnInit, AfterViewInit, OnDestr
    */
   changed() {
     if(this.usuarioMultiCtrl.value!=null) {
-      console.log(this.usuarioMultiCtrl.value.length < (2 + this.tipo));
+
       if (this.usuarioMultiCtrl.value.length < 2 + this.tipo) {
         this.selecionResidentes = this.usuarioMultiCtrl.value;
       } else {

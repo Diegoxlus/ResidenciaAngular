@@ -126,7 +126,7 @@ export class AltaMenuComponent{
 
       },error => {
         this.msgError= error;
-        console.log(error);
+
       }
     )
   }
@@ -145,7 +145,7 @@ export class AltaMenuComponent{
       result=>{
         this.registroCorrecto=true;
         this.existeComida=false;
-      console.log(result);
+
       },error=>{
         this.msgError = error.error;
       }

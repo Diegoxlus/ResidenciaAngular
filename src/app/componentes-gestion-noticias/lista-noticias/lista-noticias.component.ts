@@ -73,7 +73,7 @@ export class ListaNoticiasComponent implements OnInit{
         for (let noticia of noticias){
           this.arrayNoticias.push(new Noticia(noticia.id,noticia.titulo,noticia.descripcion,noticia.dia));
         }
-        console.log(this.arrayNoticias);
+
         this.dataSource = new MatTableDataSource<Noticia>(this.arrayNoticias);
         this.dataSource.paginator = this.paginator;
         this.dataSource.paginator._intl.itemsPerPageLabel="Noticias por pagina";
@@ -171,7 +171,7 @@ export class ListaNoticiasComponent implements OnInit{
         for (let noticia of noticias){
           this.arrayNoticias.push(new Noticia(noticia.id,noticia.titulo,noticia.descripcion,noticia.dia));
         }
-        console.log(this.arrayNoticias);
+
         this.dataSource = new MatTableDataSource<Noticia>(this.arrayNoticias);
         this.dataSource.paginator = this.paginator;
         this.dataSource.paginator._intl.itemsPerPageLabel="Noticias por pagina";

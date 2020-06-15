@@ -102,9 +102,9 @@ export class ListaAsistenciaComidaComponent{
           for (let asistencia of asistencias) {
             this.asistencias.push(new Asistencia(asistencia.residente, asistencia.dia, asistencia.come, asistencia.cena, asistencia.asiste_comida, asistencia.asiste_cena, '', '', asistencia.nombre, asistencia.apellidos))
           }
-          console.log(asistencias);
+
           this.dataSource.data = this.asistencias;
-          console.log(this.dataSource);
+
         }, error => {
 
         }
@@ -141,7 +141,7 @@ export class ListaAsistenciaComidaComponent{
    * @param asistencia
    */
   asisteComida(asistencia: Asistencia){
-    console.log(asistencia);
+
     this.asistenciaService.asisteComida(asistencia.residente,asistencia.dia).subscribe(
       result=>{
         this.refresh();
@@ -170,7 +170,7 @@ export class ListaAsistenciaComidaComponent{
    * @param asistencia
    */
   noAsisteComida(asistencia: Asistencia){
-    console.log(asistencia);
+
     this.asistenciaService.noAsisteComida(asistencia.residente,asistencia.dia).subscribe(
       result=>{
         this.refresh();

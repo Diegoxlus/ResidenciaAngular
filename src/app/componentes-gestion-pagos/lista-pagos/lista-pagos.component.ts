@@ -126,7 +126,7 @@ export class ListaPagosComponent implements OnInit {
   public refresh(){
     this.pagos = [];
     let mes = (this.selectedMonthIndex+1).toString()+'-'+this.selectedYearAsText;
-    console.log(mes);
+
     this.pagoService.getPagos(mes,this.opcion).subscribe(
       pagos=>{
        if(pagos.lenght == 0){
@@ -154,7 +154,7 @@ export class ListaPagosComponent implements OnInit {
   descargarPago(pago: Pago) {
     this.pagoService.descargarPago(pago).subscribe(
       result=>{
-        console.log(result);
+
         const blob: Blob = new Blob([result], {type:result.type});
         const fileName: string = pago.nombre+' '+pago.apellidos+' '+pago.mes;
         const objectUrl: string = URL.createObjectURL(blob);

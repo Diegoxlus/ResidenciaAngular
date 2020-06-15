@@ -126,7 +126,6 @@ export class EditPartesComponent implements OnInit {
    * Ahora el parte contiene los valores que se quieren editar.
    */
   private pasarValoresDatosParte() {
-    console.log(this.datosParteService.parte);
     this.parte.id = this.datosParteService.parte.id;
     this.parte.residente = this.datosParteService.parte.residente;
     this.parte.gravedad = this.datosParteService.parte.gravedad;

@@ -126,7 +126,7 @@ export class ListaPagosResidenteComponent implements OnInit {
   descargarPago(pago: Pago) {
     this.pagoService.descargarPago(pago).subscribe(
       result=>{
-        console.log(result);
+
         const blob: Blob = new Blob([result], {type:result.type});
         const fileName: string = "Pago-Residencia ("+pago.mes+')';
         const objectUrl: string = URL.createObjectURL(blob);

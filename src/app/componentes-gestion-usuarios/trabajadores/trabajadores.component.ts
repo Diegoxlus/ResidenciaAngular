@@ -93,7 +93,7 @@ export class TrabajadoresComponent implements OnInit{
         this.dataSource = new MatTableDataSource(this.trabajadores);
       },
       error => {
-        console.log(<any>error);
+        (<any>error);
       }
     );
   }
@@ -119,9 +119,9 @@ export class TrabajadoresComponent implements OnInit{
    * @param trabajador
    */
   irAEditarTrabajador(trabajador: Usuario): void{
-    console.log(trabajador);
+    (trabajador);
     this.datosUsuario.cambiarUsuario(trabajador);
-    console.log(this.datosUsuario.usuario);
+    (this.datosUsuario.usuario);
     this.router.navigate(['modificar-trabajador']);
   }
 

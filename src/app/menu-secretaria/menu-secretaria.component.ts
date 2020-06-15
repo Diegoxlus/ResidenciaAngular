@@ -61,7 +61,7 @@ export class MenuSecretariaComponent{
    * Permite navegar al componente que gestiona las habitaciones.
    */
   irGestionHabitaciones() {
-    console.log("Redirect correcto");
+
     this.router.navigate(['/habitaciones']);
   }
 

@@ -104,7 +104,7 @@
 
         <div class="form-group">
           <label for="dni">DNI</label>
-          <input [ngClass]="!dniRegistro.invalid ? 'ng-valid-input': 'ng-invalid-input'" type="text" class="form-control ng-valid-input" id="dni" name="dni" formControlName="dniRegistro">
+          <input [ngClass]="!dniRegistro.invalid && validarDni(dniRegistro.value)  ? 'ng-valid-input': 'ng-invalid-input'" type="text" class="form-control" id="dni" name="dni" formControlName="dniRegistro">
           <div *ngIf="(dniRegistro.invalid && dniRegistro.touched) || dniRegistro.dirty || validarDni(dniRegistro.value)">
             <small *ngIf="dniRegistro.errors?.required" class="text-danger">El DNI es necesario</small>
             <small *ngIf="dniRegistro.errors?.pattern" class="text-danger">El DNI no es valido</small>

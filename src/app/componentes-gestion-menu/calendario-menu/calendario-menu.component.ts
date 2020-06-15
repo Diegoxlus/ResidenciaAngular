@@ -60,7 +60,7 @@ export class CalendarioMenuComponent implements OnInit{
 
 
       },error => {
-        console.log(error);
+
       }
     )
   }

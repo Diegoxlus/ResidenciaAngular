@@ -37,7 +37,7 @@ export class NoticiaService {
    * Permite registrar una nueva noticia, el objeto noticia contiene el dia al que está asociada.
    */
   public registrarNoticia(noticia: Noticia) : Observable<any> {
-    console.log(noticia);
+
     let json = JSON.stringify(noticia);
     let parametros = "noticia="+json;
     let headers = new HttpHeaders().append('Content-Type','application/x-www-form-urlencoded')
@@ -70,8 +70,7 @@ export class NoticiaService {
    * Permite eliminar una noticia, recibe como parametro el ID de la noticia
    */
   eliminarNoticia(id) : Observable<any> {
-    console.log("si");
-    console.log(id);
+    (id);
     let headers = new HttpHeaders().append('Content-Type', 'application/json')
       .append('Authorization', 'Basic ' + btoa(sessionStorage.getItem('emailLogin') + ':' + sessionStorage.getItem('pass')));
     return this.http.delete(this.url+'/'+'eliminar'+'/'+id,{headers:headers,responseType:'json'});

@@ -79,7 +79,7 @@ export class AltaPagoComponent{
    */
   onChange(event: { monthIndex: number, year: number }) {
     this.selectedYearAsText = event.year.toString();
-    console.log(moment().month(event.monthIndex).format('MMMM'));
+
     this.selectedMonthIndex = event.monthIndex;
     this.selectedMonthAsText = moment().month(event.monthIndex).format('MMMM');
   }
@@ -126,7 +126,7 @@ export class AltaPagoComponent{
         }
       )
     }
-    console.log(this.file);
-    console.log(this.selectedMonthIndex);
+
+
   }
 }

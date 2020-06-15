@@ -87,12 +87,12 @@ export class HabitacionesComponent implements OnInit {
         for (let habitacion of result){
           this.habitaciones.push(new Habitacion(habitacion.numero,habitacion.tipo,habitacion.residente1,habitacion.residente2,habitacion.disponible));
         }
-        console.log(this.habitaciones);
+        (this.habitaciones);
         this.dataSource = new MatTableDataSource(this.habitaciones);
 
       },
       error => {
-        console.log(<any>error);
+        (<any>error);
       }
     );
   }

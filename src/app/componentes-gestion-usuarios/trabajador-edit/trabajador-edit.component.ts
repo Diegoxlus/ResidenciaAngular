@@ -189,7 +189,7 @@ export class TrabajadorEditComponent implements OnInit {
     this.fechaEdit.setValue(this.trabajador.f_nac);
     this.emailEdit.setValue(this.trabajador.email);
     this.rolEdit.setValue(this.trabajador.rol);
-    console.log(this.trabajador.rol);
+    (this.trabajador.rol);
   }
 
   /**

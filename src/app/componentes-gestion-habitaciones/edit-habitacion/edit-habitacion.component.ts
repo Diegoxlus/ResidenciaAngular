@@ -106,9 +106,9 @@ export class EditHabitacionComponent implements OnInit {
   editarHabitacion() {
     this.pasarValoresHabitacion();
     this.resetearIntento();
-    console.log(this.habitacion);
+
     this.habitacionService.editarHabitacion(this.habitacion).subscribe(data=>{
-      console.log(data);
+
         this.registroCorrecto=true;
         this.disponibleAlta.setValue(this.habitacion.disponible);
       },error =>{
@@ -220,10 +220,10 @@ export class EditHabitacionComponent implements OnInit {
         if(this.datosHabitaciones.habitacion.residente2==residente){
           this.datosHabitaciones.habitacion.residente2=null;
         }
-        console.log(result);
+
 
       },error => {
-        console.log(error);
+
       }
     )
   }

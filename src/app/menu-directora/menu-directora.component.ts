@@ -69,7 +69,7 @@ export class MenuDirectoraComponent {
    * Navega al componente que gestiona las habitaciones.
    */
   irGestionHabitaciones() {
-    console.log("Redirect correcto");
+    ("Redirect correcto");
     this.router.navigate(['/habitaciones']);
   }
   /**
